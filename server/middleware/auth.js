@@ -12,5 +12,5 @@ export const ownerChecker = (req, res, itemAuthorId) => {
   if (!req.session.user || itemAuthorId != req.session.user._id) {
     // res.session.prevUrl = req.originalUrl;
     res.redirect('/profile');
-  };
+  }
 };
