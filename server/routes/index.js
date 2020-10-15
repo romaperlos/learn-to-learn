@@ -6,7 +6,6 @@ const router = express.Router();
 
 const saltRounds = 10;
 
-
 router.get('/', (req, res) => {
   res.end();
 });
@@ -24,11 +23,11 @@ router
       const errUnqEmail = await User.isEmailUnique(email);
       if (errUnqUser || errUnqEmail) {
         return res.status(401).json({ message: errUnqUser || errUnqEmail });
-      };
+      }
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: error.message });
-    };
+    }
 
     // username и email вручную
     try {
@@ -38,7 +37,6 @@ router
         password: await bcrypt.hash(password, saltRounds),
       }).save();
       return res.status(200).end();
-
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: error.message });
@@ -64,7 +62,6 @@ router
             username: req.session.user.username,
           },
         });
-
       } else if (!user) {
         res.status(401).json({ message: 'Введенный e-mail не зарегистрирован' });
       } else {
@@ -83,7 +80,7 @@ router.get('/logout', async (req, res) => {
     } catch (error) {
       console.log(error.message);
       res.status(401).json({ message: error.message });
-    };
+    }
     res.clearCookie('user_sid');
   }
   res.end();
