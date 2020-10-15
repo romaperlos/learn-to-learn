@@ -1,0 +1,40 @@
+{
+  "name": "server-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "type": "module",
+  "scripts": {
+    "dev": "fuser -n tcp -k 3000; clear; nodemon server.js --ignore sessions",
+    "seed": "node ./seed/seeder.js",
+    "start": "clear; node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
+    "mongoose": "^5.9.19",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "session-file-store": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
