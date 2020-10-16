@@ -4,8 +4,8 @@ export const loadingTest = { type: LOADING_TEST };
 
 export const getTestText = () => async function (dispatch) {
   dispatch(loadingTest);
-  console.log(loadingTest)
-  const resp = await fetch('/directory');
+  console.log(process.env);
+  const resp = await fetch('http://127.0.0.1:3001/directory');
   console.log(resp.status);
   const result = await resp.json();
   console.log(result);
