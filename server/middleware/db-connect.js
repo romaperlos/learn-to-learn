@@ -8,5 +8,4 @@ mongoose.connect(process.env.DB_URL, {
   useCreateIndex: true,
 });
 
-
 export default mongoose.connection;
