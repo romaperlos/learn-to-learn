@@ -1,7 +1,7 @@
 import express from 'express';
-import useMiddleware from './middleware/index.js';
-import errorHandlers from './middleware/error-handlers.js';
-import indexRouter from './routes/index.js';
+import useMiddleware from './middleware/index';
+import errorHandlers from './middleware/error-handlers';
+import indexRouter from './routes/index';
 
 const app = express();
 
