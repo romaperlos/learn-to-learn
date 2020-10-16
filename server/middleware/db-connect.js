@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import './env';
+import './env.js';
 
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
