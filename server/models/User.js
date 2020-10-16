@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
   isAdmin: {
     type: Boolean,
   },
-  parentDirectory: {
+  company: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Company',
   },
