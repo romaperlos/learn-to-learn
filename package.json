@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "front": "cd ./frontend && npm start",
+    "dev": "cd ./server && npm run dev",
+    "native": "cd ./native && npm start"
   },
   "repository": {
     "type": "git",
