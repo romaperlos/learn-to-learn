@@ -20,5 +20,4 @@ const directorySchema = new mongoose.Schema({
     ref: 'Company',
   },
 });
-
 export default mongoose.model('Directory', directorySchema);
