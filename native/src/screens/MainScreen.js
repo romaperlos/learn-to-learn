@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  View, Text, StyleSheet, Button, ScrollView
+  View, Text, StyleSheet, Button, ScrollView,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CompanyInfo } from '../components/CompanyInfo';
