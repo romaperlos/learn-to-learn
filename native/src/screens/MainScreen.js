@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  View, Text, StyleSheet, Button,
+  View, Text, StyleSheet, Button, ScrollView
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CompanyInfo } from '../components/CompanyInfo';
@@ -17,16 +17,16 @@ export function MainScreen({ navigation }) {
   console.log(DATA);
 
   return (
-    <View style={styles.wrapper}>
+    <ScrollView style={styles.wrapper}>
       <CompanyInfo company={DATA[0]} />
       <Button title="Start education" onPress={goToMyCourse} borderRadius={30} color={THEME.MAIN_COLOR} overflow={'hidden'} />
-    </View>
+    </ScrollView>
   );
 }
 
 // свойства для конкретного экрана
 MainScreen.navigationOptions = {
-  headerTitle: "Let's start!",
+  headerTitle: '',
   headerRight: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
