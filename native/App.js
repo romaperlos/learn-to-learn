@@ -1,44 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import {
-  StyleSheet, Text, View, Image,
-} from 'react-native';
-import { store } from './src/redux/store';
+// import { StatusBar } from 'expo-status-bar';
+// import { Provider, useDispatch, useSelector } from 'react-redux';
+// import { store } from './src/redux/store';
+// import { getTestText } from './src/redux/actions';
+// import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { AppLoading } from 'expo';
+import { bootstrap } from './src/bootstrap';
+import { AppNavigation } from './src/navigation/AppNavigation';
 
-import { getTestText } from './src/redux/actions';
+// const WithRedux = (Component) => (props) => (
+//   <Provider store={store}>
+//     <Component {...props} />
+//   </Provider>
+// );
 
-const WithRedux = (Component) => (props) => (
-  <Provider store={store}>
-    <Component {...props} />
-  </Provider>
-);
+export default function App() {
+  // const test = useSelector((state) => state.test);
+  // const loading = useSelector((state) => state.loadingTest);
+  // const dispatch = useDispatch();
 
-function App() {
-  const test = useSelector((state) => state.test);
-  const loading = useSelector((state) => state.loadingTest);
-  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getTestText());
+  // }, []);
 
-  useEffect(() => {
-    dispatch(getTestText());
-  }, []);
+  const [isReady, setIsReady] = useState(false);
 
-  return (
-    <View style={styles.container}>
-      <Text>{loading && 'loading...'}</Text>
-      <Text>{test && test}</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  // Встроенное в expo свойство AppLoading, которое не показывает приложение пользователю, пока не подгрузились все асинхронные запросы
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={bootstrap}
+        onFinish={() => setIsReady(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
+
+  return <AppNavigation />;
+  //   <View style={styles.container}>
+  //     <Text>{loading && 'loading...'}</Text>
+  //     <Text>{test && test}</Text>
+  //     <StatusBar style="auto" />
+  //   </View>
+  // );
 }
 
-export default WithRedux(App);
+// export default WithRedux(App);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
