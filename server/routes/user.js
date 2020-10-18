@@ -4,7 +4,7 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-const saltRounds = 10;
+// const saltRounds = 10;
 
 router.get('/', (req, res) => {
   res.end();
@@ -16,25 +16,28 @@ router
     res.end();
   })
   .post(async (req, res) => {
-    const { username, email, password } = req.body;
-    // Проверка уникальности username и email вручную
+    const {
+      name, lastname, email, password,
+    } = req.body;
+    // Проверка уникальности name и email вручную
     try {
-      const errUnqUser = await User.isUserUnique(username);
+      // const errUnqUser = await User.isUserUnique(name);
       const errUnqEmail = await User.isEmailUnique(email);
-      if (errUnqUser || errUnqEmail) {
-        return res.status(401).json({ message: errUnqUser || errUnqEmail });
+      if (errUnqEmail) {
+        return res.status(401).json({ message: errUnqEmail });
       }
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: error.message });
     }
 
-    // username и email вручную
+    // name и email вручную
     try {
       await new User({
-        username,
+        name,
+        lastname,
         email,
-        password: await bcrypt.hash(password, saltRounds),
+        password,
       }).save();
       return res.status(200).end();
     } catch (error) {

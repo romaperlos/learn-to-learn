@@ -1,6 +1,6 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { ADD_DIRECTORY, CREATE_DIRECTORY, GET_ERROR } from '../actionTypes';
-import { createDirectoryAction, setError } from '../actions';
+import { ADD_DIRECTORY } from '../../actionTypes';
+import { createDirectoryAction, setError } from '../../actions';
 
 const createDirectoryFetch = async (directory) => {
   try {

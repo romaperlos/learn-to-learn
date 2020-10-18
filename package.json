@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/romaperlos/learn-to-learn/issues"
   },
-  "homepage": "https://github.com/romaperlos/learn-to-learn#readme",
-  "dependencies": {
-    "reactstrap": "^8.6.0"
-  }
+  "homepage": "https://github.com/romaperlos/learn-to-learn#readme"
 }
