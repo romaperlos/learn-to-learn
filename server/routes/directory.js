@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {
-    title, description, parent, content, company,
+    title, description,
   } = req.body;
   const directory = new Directory({
-    title, description, parent, content, company,
+    title, description,
   });
   try {
     await directory.save();
