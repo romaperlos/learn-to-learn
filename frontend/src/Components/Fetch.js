@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link, Route } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
+import { Grid, ThemeProvider } from '@material-ui/core';
 import Company from './Fetches/Company';
 import Content from './Fetches/Content';
 import Directory from './Fetches/Directory';
 import User from './Fetches/User';
 
-const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       // flexGrow: 0,
-      // display: 'block',
+      display: 'block',
       margin: theme.spacing(1),
       // width: '25ch',
     },
@@ -21,36 +21,22 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     padding: 10,
   },
+  superHeight: {
+    height: 500,
+    backgroundColor: 'red',
+  },
 }));
 
+// const expTheme: {
+
+// }
+
 export default function Fetch() {
-  const [input, setInput] = useState({
-    title: '',
-  });
-
-  const inputsChange = ({ target: { value, name } }) => {
-    setInput({
-      ...input,
-      [name]: value,
-    });
-    console.log(input);
-  };
-
   const classes = useStyles();
-  const fetchSomething = async (e) => {
-    e.preventDefault();
-    const res = await fetch('/directory', {
-      method: 'POST',
-      body: JSON.stringify(input),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    // console.log('ok');
-  };
 
   return (
   // <div className="d-flex align-items-center justify-content-center vh-100">
+  // <ThemeProvider theme={themeExp}>
     <Grid
       container
       spacing={3}
@@ -62,6 +48,21 @@ export default function Fetch() {
         <Link to="/testform/company">
           <Button variant="contained" color="primary">
             Company
+          </Button>
+        </Link>
+        <Link to="/testform/content">
+          <Button variant="contained" color="primary">
+            Content
+          </Button>
+        </Link>
+        <Link to="/testform/directory">
+          <Button variant="contained" color="primary">
+            Directory
+          </Button>
+        </Link>
+        <Link to="/testform/user">
+          <Button variant="contained" color="primary">
+            User
           </Button>
         </Link>
       </Grid>
@@ -80,6 +81,7 @@ export default function Fetch() {
         </Route>
       </Grid>
     </Grid>
+  // </ThemeProvider>
   // </div>
   );
 }
