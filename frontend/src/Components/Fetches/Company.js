@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      // flexGrow: 0,
-      // display: 'block',
-      margin: theme.spacing(1),
-      // width: '25ch',
-    },
-  },
-}));
+import { useStyles } from '../Fetch';
 
 export default function Company() {
   const [input, setInput] = useState({
-    title: '',
+    companyName: '',
+    description: '',
+    logoUrl: '',
+    user: '',
   });
 
   const inputsChange = ({ target: { value, name } }) => {
+    console.log(input, '<<<< first input');
     setInput({
       ...input,
       [name]: value,
@@ -38,9 +31,15 @@ export default function Company() {
         'Content-Type': 'application/json',
       },
     });
+    setInput({
+      companyName: '',
+      description: '',
+      logoUrl: '',
+      user: '',
+    });
     // console.log('ok');
   };
-
+  console.log(classes.bigPadding, '<<< classes');
   return (
     <div className="d-flex align-items-center justify-content-center">
       <Grid
@@ -49,14 +48,15 @@ export default function Company() {
         justify="center"
         alignItems="center"
         className="p-5"
+        // className={classes.root.bigPadding}
       >
         <Grid item xs>
           <h3>Company</h3>
           <form onSubmit={fetchSomething} className={classes.root} noValidate autoComplete="off">
-            <TextField onChange={inputsChange} id="standard-basic" label="Company name" name="companyName" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="Description" name="description" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="logoUrl" name="logoUrl" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="User" name="user" value={input.title} />
+            <TextField onChange={inputsChange} label="Company name" name="companyName" value={input.companyName} />
+            <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
+            <TextField onChange={inputsChange} label="logoUrl" name="logoUrl" value={input.logoUrl} />
+            <TextField onChange={inputsChange} label="User" name="user" value={input.user} />
             <Button type="submit" variant="contained">Seed!</Button>
           </form>
         </Grid>
