@@ -28,6 +28,6 @@ router.post('/', async (req, res) => {
     console.log(error);
     return res.status(401).json({ message: error.message });
   }
-});
+})
 
 export default router;
