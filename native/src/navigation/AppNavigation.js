@@ -5,6 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { MainScreen } from '../screens/MainScreen';
 import { LearningScreen } from '../screens/LearningScreen';
+import { DirectoryScreen } from '../screens/DirectoryScreen';
 import { THEME } from '../theme';
 
 // создаём параметры навигации по существующим экранам
@@ -14,15 +15,18 @@ const LearnNavigator = createStackNavigator(
     Learning: {
       screen: LearningScreen,
     },
+    Directory: {
+      screen: DirectoryScreen,
+    },
   },
   {
     initialRouteName: 'Main',
-    // общие свойства для навигации
+    // общие / дефолтные свойства для навигации
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: THEME.MAIN_COLOR,
       },
-      headerTintColor: '#fff',
+      headerTintColor: THEME.MAIN_FONT_COLOR,
     },
   },
 );

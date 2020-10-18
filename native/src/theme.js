@@ -2,5 +2,5 @@
 
 export const THEME = {
   MAIN_COLOR: '#3104B4',
-  DANGER_COLOR: '#d81b60',
+  MAIN_FONT_COLOR: '#fff',
 };
