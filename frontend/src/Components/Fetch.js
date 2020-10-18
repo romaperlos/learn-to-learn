@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link, Route } from 'react-router-dom';
-import { Grid, ThemeProvider } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Company from './Fetches/Company';
 import Content from './Fetches/Content';
 import Directory from './Fetches/Directory';
@@ -27,16 +27,10 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const expTheme: {
-
-// }
-
 export default function Fetch() {
   const classes = useStyles();
 
   return (
-  // <div className="d-flex align-items-center justify-content-center vh-100">
-  // <ThemeProvider theme={themeExp}>
     <Grid
       container
       spacing={3}
@@ -44,44 +38,39 @@ export default function Fetch() {
       alignItems="center"
       className={classes.mainGrid}
     >
-      <Grid item xs={12}>
-        <Link to="/testform/company">
-          <Button variant="contained" color="primary">
-            Company
-          </Button>
-        </Link>
-        <Link to="/testform/content">
-          <Button variant="contained" color="primary">
-            Content
-          </Button>
-        </Link>
-        <Link to="/testform/directory">
-          <Button variant="contained" color="primary">
-            Directory
-          </Button>
-        </Link>
-        <Link to="/testform/user">
-          <Button variant="contained" color="primary">
-            User
-          </Button>
-        </Link>
-      </Grid>
-      <Grid item xs={12}>
-        <Route path="/testform/company">
-          <Company />
-        </Route>
-        <Route path="/testform/content">
-          <Content />
-        </Route>
-        <Route path="/testform/directory">
-          <Directory />
-        </Route>
-        <Route path="/testform/user">
-          <User />
-        </Route>
-      </Grid>
+      <Link to="/testform/company">
+        <Button variant="contained" color="primary">
+          Company
+        </Button>
+      </Link>
+      <Link to="/testform/content">
+        <Button variant="contained" color="primary">
+          Content
+        </Button>
+      </Link>
+      <Link to="/testform/directory">
+        <Button variant="contained" color="primary">
+          Directory
+        </Button>
+      </Link>
+      <Link to="/testform/user">
+        <Button variant="contained" color="primary">
+          User
+        </Button>
+      </Link>
+      <Route path="/testform/company">
+        <Company />
+      </Route>
+      <Route path="/testform/content">
+        <Content />
+      </Route>
+      <Route path="/testform/directory">
+        <Directory />
+      </Route>
+      <Route path="/testform/user">
+        <User />
+      </Route>
     </Grid>
-  // </ThemeProvider>
-  // </div>
+
   );
 }
