@@ -22,7 +22,6 @@ export default function Directory() {
       ...input,
       [name]: value,
     });
-    console.log(input);
   };
 
   const classes = useStyles();
@@ -36,7 +35,6 @@ export default function Directory() {
       content: '',
       company: '',
     });
-    // console.log('ok');
   };
 
   return (

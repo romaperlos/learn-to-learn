@@ -10,5 +10,4 @@ export const createDirectoryAction = (directory) => ({
   type: CREATE_DIRECTORY,
   payload: directory,
 });
-
-export const addDirectoryAction = (item) => ({ type: ADD_DIRECTORY, payload: item });
+export const addDirectoryAction = (directory) => ({ type: ADD_DIRECTORY, payload: directory });
