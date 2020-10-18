@@ -4,7 +4,7 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-const saltRounds = 10;
+// const saltRounds = 10;
 
 router.get('/', (req, res) => {
   res.end();
