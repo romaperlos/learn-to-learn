@@ -4,7 +4,8 @@ import useMiddleware from './middleware/index.js';
 import errorHandlers from './middleware/error-handlers.js';
 import indexRouter from './routes/index.js';
 import directoryRouter from './routes/directory.js';
-import contentRouter from './routes/content.js'
+import contentRouter from './routes/content.js';
+
 const app = express();
 
 app.use(cors());
