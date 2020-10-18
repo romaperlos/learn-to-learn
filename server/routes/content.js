@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {
-    title, description, item, directory,
+    title, description, item,
   } = req.body;
   const content = new Content({
-    title, description, item, directory,
+    title, description, item,
   });
   try {
     await content.save();
@@ -28,6 +28,6 @@ router.post('/', async (req, res) => {
     console.log(error);
     return res.status(401).json({ message: error.message });
   }
-})
+});
 
 export default router;
