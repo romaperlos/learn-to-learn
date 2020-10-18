@@ -1,29 +1,29 @@
 import express from 'express';
-import Directory from '../models/Directory.js';
+import Content from '../models/Content.js';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  let directory;
+  let content;
   try {
-    directory = await Directory.find();
+    content = await Content.find();
   } catch (error) {
     console.log(error);
-    return res.status(401).json({ message: error.message });
+    res.status(401).json({ message: error.message });
   }
-  return res.status(200).json({ directory });
+  return res.status(200).json({ content });
 });
 
 router.post('/', async (req, res) => {
   const {
-    title, description,
+    title, description, item,
   } = req.body;
-  const directory = new Directory({
-    title, description,
+  const content = new Content({
+    title, description, item,
   });
   try {
-    await directory.save();
-    return res.status(200).json(directory);
+    await content.save();
+    return res.status(200).json(content);
   } catch (error) {
     console.log(error);
     return res.status(401).json({ message: error.message });
