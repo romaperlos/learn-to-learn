@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { useStyles } from '../Fetch';
+import { addDirectoryAction, createDirectoryAction } from '../../redux/actions';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      // flexGrow: 0,
-      // display: 'block',
-      margin: theme.spacing(1),
-      // width: '25ch',
-    },
-  },
-}));
 
 export default function Directory() {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     title: '',
+    description: '',
+    parent: '',
+    content: '',
+    company: '',
   });
 
   const inputsChange = ({ target: { value, name } }) => {
@@ -31,12 +28,13 @@ export default function Directory() {
   const classes = useStyles();
   const fetchSomething = async (e) => {
     e.preventDefault();
-    const res = await fetch('/directory', {
-      method: 'POST',
-      body: JSON.stringify(input),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    dispatch(addDirectoryAction(input));
+    setInput({
+      title: '',
+      description: '',
+      parent: '',
+      content: '',
+      company: '',
     });
     // console.log('ok');
   };
@@ -53,11 +51,11 @@ export default function Directory() {
         <Grid item xs>
           <h3>Directory</h3>
           <form onSubmit={fetchSomething} className={classes.root} noValidate autoComplete="off">
-            <TextField onChange={inputsChange} id="standard-basic" label="Title" name="title" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="Description" name="description" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="Parent" name="parrent" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="Content" name="content" value={input.title} />
-            <TextField onChange={inputsChange} id="standard-basic" label="Company" name="company" value={input.title} />
+            <TextField onChange={inputsChange} label="Title" name="title" value={input.title} />
+            <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
+            <TextField onChange={inputsChange} label="Parent" name="parent" value={input.parent} />
+            <TextField onChange={inputsChange} label="Content" name="content" value={input.content} />
+            <TextField onChange={inputsChange} label="Company" name="company" value={input.company} />
             <Button type="submit" variant="contained">Seed!</Button>
           </form>
         </Grid>

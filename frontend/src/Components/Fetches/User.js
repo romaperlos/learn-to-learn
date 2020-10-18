@@ -3,17 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      // flexGrow: 0,
-      // display: 'block',
-      margin: theme.spacing(1),
-      // width: '25ch',
-    },
-  },
-}));
+import { useStyles } from '../Fetch';
 
 export default function User() {
   const [input, setInput] = useState({
