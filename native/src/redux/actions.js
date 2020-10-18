@@ -1,14 +1,12 @@
-import { LOADING_TEST, GET_TEST_TEXT } from './actionTypes';
+/* eslint-disable func-names */
+import { LOADING_DIR, GET_DIRECTORIES } from './actionTypes';
 
-export const loadingTest = { type: LOADING_TEST };
+export const loadingDir = { type: LOADING_DIR };
 
-export const getTestText = () => async function (dispatch) {
-  dispatch(loadingTest);
-  console.log(process.env);
-  // const resp = await fetch('http://127.0.0.1:3001/directory');
-  const resp = await fetch('http://192.168.1.179:3001/directory');
-  console.log(resp.status);
+export const getDirectories = () => async function (dispatch) {
+  dispatch(loadingDir);
+  const resp = await fetch('http://192.168.1.140:3001/directory');
   const result = await resp.json();
   console.log(result);
-  return dispatch({ type: GET_TEST_TEXT, payload: <a href="result.directory[3].description">RRRR</a> });
+  return dispatch({ type: GET_DIRECTORIES, payload: result.directory });
 };
