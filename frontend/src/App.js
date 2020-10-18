@@ -4,6 +4,7 @@ import Body from './Components/Body';
 import Fetch from './Components/Fetch';
 import GridPage from './Components/GridPage';
 import Navigation from './Components/Navigation';
+import CompInfo from './Components/HomePage/AdminInfo/AdminInfo';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path="/grid">
           <GridPage />
+        </Route>
+        <Route path="/admininfo">
+          <CompInfo />
         </Route>
       </Switch>
     </>
