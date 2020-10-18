@@ -12,9 +12,9 @@ app.use(cors());
 useMiddleware(app);
 
 // Подключаем импортированные маршруты с определенным url префиксом.
-app.use('/api', indexRouter);
 app.use('/directory', directoryRouter);
 app.use('/content', contentRouter);
+app.use('/api', indexRouter);
 
 // Обработка несуществующих запросов
 errorHandlers(app);
