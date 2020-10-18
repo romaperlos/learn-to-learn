@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { useStyles } from '../Fetch';
-import { addDirectoryAction, createDirectoryAction } from '../../redux/actions';
 
+import { addDirectoryAction } from '../../redux/actions';
 
 export default function Directory() {
   const dispatch = useDispatch();
