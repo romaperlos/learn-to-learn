@@ -145,24 +145,3 @@ router.get('/checkSession', (req, res) => {
 });
 
 export default router;
-
-// router
-//   .route('/signup')
-//   .get((req, res) => {
-//     res.end();
-//   })
-//   .post(async (req, res) => {
-//     const {
-//       name, lastname, email, password,
-//     } = req.body;
-//     // Проверка уникальности name и email вручную
-//     try {
-//       // const errUnqUser = await User.isUserUnique(name);
-//       const errUnqEmail = await User.isEmailUnique(email);
-//       if (errUnqEmail) {
-//         return res.status(401).json({ message: errUnqEmail });
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       res.status(401).json({ message: error.message });
-//     }
