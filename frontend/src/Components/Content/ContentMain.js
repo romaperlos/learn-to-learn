@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { Container, Col, Row, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Container, Col, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const ContentMain = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
-
   const toggle = () => setOpen(!dropdownOpen);
+  const [state, setState] = useState([]);
+  function addInput(e) {
+    console.log(e.target);
+    e.persist()
+    const targ = e.target.value
+    setState(pre => [...pre, { type: targ, value: '' }])
+  }
+  console.log(state, '+++++++');
 
   return (
     <Container>
@@ -17,18 +24,29 @@ const ContentMain = (props) => {
         <textarea rows="10" cols="53" placeholder='Введите описание темы' />
       </Col>
       <Col>
+        {state.map((e)=>{
+          return (
+            <>
+            <input placeholder={`Вставьте ваш: ${e.type}`} />
+            <br/>
+            </>
+            )})}
+      </Col>
+      <Col>
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle caret color="success">
             Выберите дополнительный элемент
       </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem>Изображение</DropdownItem>
+          <DropdownMenu onClick={(e)=>{
+            console.log(state)
+            return addInput(e)}}>
+            <DropdownItem value='picUrl'>Изображение</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>Ссылка</DropdownItem>
+            <DropdownItem value='link'>Ссылка</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>Текстовой блок</DropdownItem>
+            <DropdownItem value='textArea'>Текстовой блок</DropdownItem>
             <DropdownItem divider />
-            <DropdownItem>Ссылка на видео</DropdownItem>
+            <DropdownItem value='videoUrl'>Ссылка на видео</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
       </Col>
