@@ -21,7 +21,6 @@ router
       name,
       lastname,
       email,
-      password,
     } = req.body;
     // Проверка уникальности name и email вручную
     try {
@@ -30,7 +29,20 @@ router
       if (errUnqEmail) {
         return res.status(401).json({ message: errUnqEmail });
       }
+
+      function generatePassword() {
+        let length = 8,
+            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+            retVal = "";
+        for (let i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return retVal;
+    }
+      const password = generatePassword()
+
       const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) ?? 10);
+
       const user = await new User({
         name,
         lastname,
