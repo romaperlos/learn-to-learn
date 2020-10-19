@@ -5,6 +5,7 @@ import mailer from '../middleware/nodemailer.js';
 
 const router = express.Router();
 
+
 // const saltRounds = 10;
 
 router.get('/', (req, res) => {
@@ -74,19 +75,6 @@ router
       res.status(401).json({ message: error.message });
     }
 
-    // name и email вручную
-    try {
-      await new User({
-        name,
-        lastname,
-        email,
-        password,
-      }).save();
-      return res.status(200).end();
-    } catch (error) {
-      console.log(error);
-      res.status(401).json({ message: error.message });
-    }
   });
 
 router
@@ -143,5 +131,7 @@ router.get('/checkSession', (req, res) => {
   }
   res.status(401).end();
 });
+
+
 
 export default router;

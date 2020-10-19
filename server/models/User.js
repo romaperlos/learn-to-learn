@@ -43,6 +43,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.static('isEmailUnique', async function (email) {
   const user = await this.findOne({ email });
+  console.log(user);
   if (user) {
     return `Адрес "${email}" уже занят`;
   }
