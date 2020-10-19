@@ -17,11 +17,11 @@ function MainDirectories() {
     <>
       <Grid container spacing={3}>
         {directoriesRedux.map((el) => (
-          <Grid item lg={3} sm={6} xs={12}>
+          <Grid key={el._id} item lg={3} sm={6} xs={12}>
             <MainCurrentDirectory
-              key={el._id}
               description={el.description}
               title={el.title}
+              itemId={el._id}
             />
           </Grid>
         ))}

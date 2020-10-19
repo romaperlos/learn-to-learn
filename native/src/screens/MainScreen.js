@@ -18,7 +18,7 @@ export function MainScreen({ navigation }) {
 
   return (
     <ScrollView style={styles.wrapper}>
-      <CompanyInfo company={DATA[0]} />
+      <CompanyInfo company={DATA[2]} />
       <View style={styles.container}>
         <Text onPress={goToMyCourse} style={styles.title}>START EDUCATION</Text>
       </View>
@@ -27,10 +27,15 @@ export function MainScreen({ navigation }) {
 }
 
 // свойства для конкретного экрана
-MainScreen.navigationOptions = {
+MainScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Learn-to-Learn',
   headerRight: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+      <Item
+        title="profile"
+        iconName="user"
+        onPress={() => console.log('was pressed user button')}
+      />
       <Item
         title="login"
         iconName="log-in"
@@ -41,13 +46,13 @@ MainScreen.navigationOptions = {
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
-        title="profile"
-        iconName="user"
-        onPress={() => console.log('was pressed user button')}
+        title="drawer"
+        iconName="menu"
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   ),
-};
+});
 
 const styles = StyleSheet.create({
   wrapper: {

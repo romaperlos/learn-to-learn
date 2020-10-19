@@ -1,8 +1,10 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
+import mailer from '../middleware/nodemailer.js';
 
 const router = express.Router();
+
 
 // const saltRounds = 10;
 
@@ -17,7 +19,9 @@ router
   })
   .post(async (req, res) => {
     const {
-      name, lastname, email, password,
+      name,
+      lastname,
+      email,
     } = req.body;
     // Проверка уникальности name и email вручную
     try {
@@ -26,24 +30,51 @@ router
       if (errUnqEmail) {
         return res.status(401).json({ message: errUnqEmail });
       }
+
+      function generatePassword() {
+        let length = 8,
+            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+            retVal = "";
+        for (let i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return retVal;
+    }
+      const password = generatePassword()
+
+      const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) ?? 10);
+
+      const user = await new User({
+        name,
+        lastname,
+        email,
+        password: hashedPassword,
+      }).save();
+      const message = {
+        from: 'Mailer Test <learntolearn@mail.ru>',
+        to: email,
+        subject: "Регистрация",
+        text: `
+        Поздравляем, Вы успешно зарегистрированы!
+        
+          Данные вашей учетной записи:
+          
+              Name:   ${name}
+              Lastname:   ${lastname}
+              Email:   ${email}
+              Password:   ${password}
+          
+
+
+        Данное письмо не требует ответа.`
+      }
+      mailer(message)
+      res.status(200)
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: error.message });
     }
 
-    // name и email вручную
-    try {
-      await new User({
-        name,
-        lastname,
-        email,
-        password,
-      }).save();
-      return res.status(200).end();
-    } catch (error) {
-      console.log(error);
-      res.status(401).json({ message: error.message });
-    }
   });
 
 router
@@ -100,5 +131,7 @@ router.get('/checkSession', (req, res) => {
   }
   res.status(401).end();
 });
+
+
 
 export default router;

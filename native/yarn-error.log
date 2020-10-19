@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js add react-navigatio-header-buttons
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.5/libexec/bin/yarn.js add react-navigator-drawer
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-navigatio-header-buttons: Not found
+  Error: https://registry.yarnpkg.com/react-navigator-drawer: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:66988:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.22.5/libexec/lib/cli.js:140749:22)
       at Request.emit (events.js:314:20)
@@ -29,6 +29,7 @@ Trace:
 npm manifest: 
   {
     "main": "node_modules/expo/AppEntry.js",
+    "proxy": "http://localhost:3001",
     "scripts": {
       "start": "expo start",
       "android": "expo start --android",
@@ -37,6 +38,7 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+      "@expo/vector-icons": "^10.2.1",
       "@react-native-community/masked-view": "0.1.10",
       "@react-navigation/native": "^5.7.6",
       "@react-navigation/stack": "^5.9.3",
@@ -57,7 +59,8 @@ npm manifest:
       "react-navigation-stack": "^2.8.4",
       "react-redux": "^7.2.1",
       "redux": "^4.0.5",
-      "redux-thunk": "^2.3.0"
+      "redux-thunk": "^2.3.0",
+      "rgbaster": "^2.1.1"
     },
     "devDependencies": {
       "@babel/core": "~7.9.0",
@@ -1185,7 +1188,7 @@ Lockfile:
       xcode "^3.0.0"
       xml-js "^1.6.11"
   
-  "@expo/vector-icons@^10.0.2":
+  "@expo/vector-icons@^10.0.2", "@expo/vector-icons@^10.2.1":
     version "10.2.1"
     resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.2.1.tgz#47fb2fa12d7ad601835babde6bd3ddea7f6fde89"
     integrity sha512-clYQZFLeU2y23n03hXg18EEsZS5c73sJJnfderztfSAqkUXkfUtv07fwuprYwbHIvgFkw6L7R6xJOCVYtS85iQ==
@@ -5720,6 +5723,11 @@ Lockfile:
     version "0.1.15"
     resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
     integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
+  
+  rgbaster@^2.1.1:
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/rgbaster/-/rgbaster-2.1.1.tgz#d83c0801ffd8887c0a96b0d2b756fc7e1fd68614"
+    integrity sha512-vUQI+ldMMSGXEbWtqb/6aqLY1LHc33OtXg2Q9S0TCxzt2KxGncRJB6dk860KzhWTjms+Fz4wkxrJu8MlCrFpYg==
   
   rimraf@2.6.3:
     version "2.6.3"
