@@ -30,4 +30,14 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.patch('/', async (req, res) => {
+  const { id, title, description } = req.body;
+  const item = await Directory.findById(id);
+  item.title = title;
+  item.description = description;
+  await item.save();
+  console.log(req.body);
+  res.status(200).end();
+});
+
 export default router;

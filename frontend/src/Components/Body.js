@@ -23,7 +23,7 @@ function Body() {
         container
         spacing={3}
         justify="center"
-        alignItems="top"
+        // alignItems="top"
       >
         <Grid item sm={6} className="mt-3">
           <MainDirectories />
