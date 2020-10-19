@@ -1,9 +1,11 @@
 import { all } from 'redux-saga/effects';
 
-import directory from './directory';
+import createDirectorySaga from './directory/createDirectorySaga';
+import getDirectoriesWatcher from './directory/getDerictoriesSaga';
 
 export default function* () {
   yield all([
-    directory(),
+    createDirectorySaga(),
+    getDirectoriesWatcher(),
   ]);
 }

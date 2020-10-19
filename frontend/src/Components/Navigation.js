@@ -30,9 +30,7 @@ export default function Navigation() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-            <Button color="inherit">Login</Button>
+          <Typography variant="h6" className={classes.title}>Learn to Learn App.
           </Typography>
           {/* <SimpleTabs /> */}
           <Button color="inherit">Login</Button>

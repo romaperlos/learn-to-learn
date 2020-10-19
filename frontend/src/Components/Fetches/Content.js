@@ -14,7 +14,6 @@ export default function Content() {
       ...input,
       [name]: value,
     });
-    console.log(input);
   };
 
   const classes = useStyles();

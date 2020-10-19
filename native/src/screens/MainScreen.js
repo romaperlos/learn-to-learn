@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  View, Text, StyleSheet, Button,
+  View, Text, StyleSheet, Button, ScrollView,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CompanyInfo } from '../components/CompanyInfo';
@@ -17,16 +17,18 @@ export function MainScreen({ navigation }) {
   console.log(DATA);
 
   return (
-    <View style={styles.wrapper}>
+    <ScrollView style={styles.wrapper}>
       <CompanyInfo company={DATA[0]} />
-      <Button title="Start education" onPress={goToMyCourse} borderRadius={30} color={THEME.MAIN_COLOR} overflow={'hidden'} />
-    </View>
+      <View style={styles.container}>
+        <Text onPress={goToMyCourse} style={styles.title}>START EDUCATION</Text>
+      </View>
+    </ScrollView>
   );
 }
 
 // свойства для конкретного экрана
 MainScreen.navigationOptions = {
-  headerTitle: "Let's start!",
+  headerTitle: 'Learn-to-Learn',
   headerRight: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
@@ -34,17 +36,12 @@ MainScreen.navigationOptions = {
         iconName="log-in"
         onPress={() => console.log('was pressed login button')}
       />
-      <Item
-        title="login"
-        iconName="log-out"
-        onPress={() => console.log('was pressed logout button')}
-      />
     </HeaderButtons>
   ),
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
-        title="login"
+        title="profile"
         iconName="user"
         onPress={() => console.log('was pressed user button')}
       />
@@ -56,9 +53,22 @@ const styles = StyleSheet.create({
   wrapper: {
     padding: 10,
   },
-  button: {
+  title: {
+    fontFamily: 'poppins-regular',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
     backgroundColor: THEME.MAIN_COLOR,
+    paddingVertical: 20,
+    marginVertical: 1,
+    width: '100%',
+    borderWidth: 1,
+    color: THEME.MAIN_FONT_COLOR,
     borderRadius: 10,
-    overflow: 'hidden',
+  },
+  container: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
