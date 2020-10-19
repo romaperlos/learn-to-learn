@@ -27,7 +27,7 @@ export default function User() {
     e.preventDefault();
     const res = await fetch('/user/signup', {
       method: 'POST',
-      body: JSON.stringify(input.email),
+      body: JSON.stringify(input),
       headers: {
         'Content-Type': 'application/json',
       },

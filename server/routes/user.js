@@ -17,19 +17,46 @@ router
     res.end();
   })
   .post(async (req, res) => {
-    const { email } = req.body;
+    const {
+      name,
+      lastname,
+      email,
+      password,
+    } = req.body;
     // Проверка уникальности name и email вручную
     try {
       // const errUnqUser = await User.isUserUnique(name);
       const errUnqEmail = await User.isEmailUnique(email);
       if (errUnqEmail) {
         return res.status(401).json({ message: errUnqEmail });
-      } else {
-        let user = await new User({
-          email: email,
-        }).save();
-        res.redirect('/signup');
       }
+      const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) ?? 10);
+      const user = await new User({
+        name,
+        lastname,
+        email,
+        password: hashedPassword,
+      }).save();
+      const message = {
+        from: 'Mailer Test <learntolearn@mail.ru>',
+        to: email,
+        subject: "Регистрация",
+        text: `
+        Поздравляем, Вы успешно зарегистрированы!
+        
+          Данные вашей учетной записи:
+          
+              Name:   ${name}
+              Lastname:   ${lastname}
+              Email:   ${email}
+              Password:   ${password}
+          
+
+
+        Данное письмо не требует ответа.`
+      }
+      mailer(message)
+      res.status(200)
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: error.message });
