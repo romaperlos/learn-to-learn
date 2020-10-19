@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     directory = await Directory.find();
   } catch (error) {
     console.log(error);
-    return res.status(401).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
   return res.status(200).json({ directory });
 });
@@ -26,7 +26,18 @@ router.post('/', async (req, res) => {
     return res.status(200).json(directory);
   } catch (error) {
     console.log(error);
-    return res.status(401).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    await Directory.deleteOne({ _id: req.params.id });
+    const directoryAll = await Directory.find();
+    return res.status(200).json({ directoryAll });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: error.message });
   }
 });
 
