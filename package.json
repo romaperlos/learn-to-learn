@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/romaperlos/learn-to-learn/issues"
   },
-  "homepage": "https://github.com/romaperlos/learn-to-learn#readme"
+  "homepage": "https://github.com/romaperlos/learn-to-learn#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1"
+  }
 }

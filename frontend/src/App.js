@@ -7,7 +7,6 @@ import ContentMain from './Components/Content/ContentMain';
 function App() {
   return (
     <>
-
       <Navigation />
       <Body />
       <Switch>
