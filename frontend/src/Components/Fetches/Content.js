@@ -26,6 +26,7 @@ export default function Content() {
         'Content-Type': 'application/json',
       },
     });
+    return res;
     // console.log('ok');
   };
 

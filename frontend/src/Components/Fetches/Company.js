@@ -37,6 +37,7 @@ export default function Company() {
       logoUrl: '',
       user: '',
     });
+    return res;
     // console.log('ok');
   };
   console.log(classes.bigPadding, '<<< classes');

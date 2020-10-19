@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -28,7 +27,7 @@ export default function User() {
     e.preventDefault();
     const res = await fetch('/user/signup', {
       method: 'POST',
-      body: JSON.stringify(input),
+      body: JSON.stringify(input.email),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -37,7 +36,7 @@ export default function User() {
       // console.log('ok');
       return dispatch(setError(res));
     }
-    setInput({
+    return setInput({
       name: '',
       lastname: '',
       email: '',
