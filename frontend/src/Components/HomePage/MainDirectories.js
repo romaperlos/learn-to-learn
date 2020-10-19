@@ -2,17 +2,25 @@ import Grid from '@material-ui/core/Grid';
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getDirectoriesAction } from '../../redux/actions';
+import { getDirectoriesAction, setCurrentDirectoryAction } from '../../redux/actions';
 import CreateDirectoryModal from './CreateDirectoryModal';
 import MainCurrentDirectory from './MainCurrentDirectory';
 
 function MainDirectories() {
+  const directories = useSelector((state) => state.directories);
+  const page = window.location.pathname;
   const dispatch = useDispatch();
+  console.log(directories, ' <<< directories');
   useEffect(() => {
-    dispatch(getDirectoriesAction);
+    if (page === '/' || directories.length === 0) {
+      dispatch(setCurrentDirectoryAction(''));
+      dispatch(getDirectoriesAction());
+    }
   }, [dispatch]);
 
   const directoriesRedux = useSelector((state) => state.directories);
+  const currentDirectory = useSelector((state) => state.currentDirectory);
+  console.log(currentDirectory, '  <<< current dir');
 
   return (
     <>
@@ -26,6 +34,7 @@ function MainDirectories() {
               description={el.description}
               title={el.title}
               itemId={el._id}
+              parrentId={el.parent && el.parent}
             />
           </Grid>
         ))}

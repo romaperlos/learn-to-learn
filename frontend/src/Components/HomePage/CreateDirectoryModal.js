@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CreateDirectoryModal() {
+function CreateDirectoryModal(props) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {

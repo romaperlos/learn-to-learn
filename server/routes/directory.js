@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {
-    title, description,
+    title, description, parent,
   } = req.body;
   const directory = new Directory({
-    title, description,
+    title, description, parent,
   });
   try {
     await directory.save();
@@ -49,6 +49,14 @@ router.patch('/', async (req, res) => {
   await item.save();
   console.log(req.body);
   res.status(200).end();
+});
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const directories = await Directory.find({ parent: id });
+  console.log(directories);
+  res.json(directories);
 });
 
 export default router;
