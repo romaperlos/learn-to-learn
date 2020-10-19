@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getDirectoriesAction } from '../../redux/actions';
+import CreateDirectoryModal from './CreateDirectoryModal';
 import MainCurrentDirectory from './MainCurrentDirectory';
 
 function MainDirectories() {
@@ -16,6 +17,9 @@ function MainDirectories() {
   return (
     <>
       <Grid container spacing={3}>
+        <Grid item lg={3} sm={6} xs={12}>
+          <CreateDirectoryModal />
+        </Grid>
         {directoriesRedux.map((el) => (
           <Grid key={el._id} item lg={3} sm={6} xs={12}>
             <MainCurrentDirectory
@@ -26,7 +30,6 @@ function MainDirectories() {
           </Grid>
         ))}
       </Grid>
-
     </>
   );
 }

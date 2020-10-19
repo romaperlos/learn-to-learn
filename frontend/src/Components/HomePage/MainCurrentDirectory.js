@@ -13,6 +13,14 @@ import MainEditInModal from './MainEditInModal';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    minHeight: 300,
+  },
+  description: {
+    height: 50,
+  },
+  action: {
+    justifyContent: 'space-evenly',
+    marginBottom: 10,
   },
 });
 
@@ -49,16 +57,16 @@ export default function MainCurrentDirectory(props) {
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
               {description}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button onClick={handleClick} size="small" color="primary">
+        <CardActions className={classes.action}>
+          <Button onClick={handleClick} size="small" color="primary" variant="outlined">
             Edit
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" variant="outlined">
             Delete
           </Button>
         </CardActions>
