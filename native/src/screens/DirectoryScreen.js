@@ -23,12 +23,26 @@ DirectoryScreen.navigationOptions = ({ navigation }) => {
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
-          title="home"
-          iconName="home"
-          onPress={() => navigation.navigate('Main')}
+          title="profile"
+          iconName="user"
+          onPress={() => console.log('was pressed user button')}
         />
+        <Item
+            title="logout"
+            iconName="log-out"
+            onPress={() => console.log('was pressed user button')}
+          />
       </HeaderButtons>
     ),
+    // headerLeft: (
+    //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+    //     <Item
+    //       title="drawer"
+    //       iconName="menu"
+    //       onPress={() => navigation.toggleDrawer()}
+    //     />
+    //   </HeaderButtons>
+    // ),
   };
 };
 
