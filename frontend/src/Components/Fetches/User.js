@@ -33,7 +33,7 @@ export default function User() {
     });
     if (res.ok) {
       // console.log('ok');
-      return dispatch(setError(res));
+      dispatch(setError(res));
     }
     return setInput({
       name: '',

@@ -8,16 +8,31 @@ import Popover from '@material-ui/core/Popover';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux';
 import MainEditInModal from './MainEditInModal';
+import { getDirectoriesAction, setdirectoriesAction } from '../../redux/actions';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    minHeight: 300,
+  },
+  description: {
+    height: 50,
+  },
+  action: {
+    justifyContent: 'space-evenly',
+    marginBottom: 10,
   },
 });
 
 export default function MainCurrentDirectory(props) {
-  const { description, title, itemId } = props;
+  const dispatch = useDispatch();
+  const {
+    description, title, itemId, parentId,
+  } = props;
+  const parent = parentId ? `/directory/${parentId}` : '/';
+
   const classes = useStyles();
   const random = Math.floor(Math.random() * 4 + 1);
 
@@ -31,13 +46,21 @@ export default function MainCurrentDirectory(props) {
     setAnchorEl(null);
   };
 
+  const getDirectories = () => {
+    // console.log(itemId);
+    dispatch(setdirectoriesAction(itemId));
+    console.log('im here');
+    console.log(itemId);
+    dispatch(getDirectoriesAction(itemId));
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
   return (
     <>
       <Card className={classes.root}>
-        <CardActionArea>
+
+        <CardActionArea onClick={getDirectories}>
           <CardMedia
             component="img"
             alt="Contemplative Reptile"
@@ -49,16 +72,16 @@ export default function MainCurrentDirectory(props) {
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
               {description}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button onClick={handleClick} size="small" color="primary">
+        <CardActions className={classes.action}>
+          <Button onClick={handleClick} size="small" color="primary" variant="outlined">
             Edit
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" variant="outlined">
             Delete
           </Button>
         </CardActions>

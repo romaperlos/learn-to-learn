@@ -1,5 +1,5 @@
 import {
-  ADD_DIRECTORY, CREATE_DIRECTORY, CREATE_USER, EDIT_DIRECTORY, GET_DIRECTORIES, GET_ERROR, SET_DIRECTORIES,
+  ADD_DIRECTORY, CREATE_DIRECTORY, CREATE_USER, EDIT_DIRECTORY, GET_CURRENT_DIRECTORIES, GET_DIRECTORIES, GET_ERROR, SET_DIRECTORIES, SET_CURRENT_DIRECTORY,
 } from './actionTypes';
 
 export const createUser = (user) => ({ type: CREATE_USER, payload: user });
@@ -16,7 +16,14 @@ export const setdirectoriesAction = (directories) => ({
   payload: directories,
 });
 
-export const getDirectoriesAction = { type: GET_DIRECTORIES };
+export const getDirectoriesAction = (directory = false) => (
+  { type: GET_DIRECTORIES, payload: directory }
+);
+export const getCurrentDirectoriesAction = (parrentId) => (
+  { type: GET_CURRENT_DIRECTORIES, payload: parrentId }
+);
+
+export const setCurrentDirectoryAction = (id) => ({ type: SET_CURRENT_DIRECTORY, payload: id });
 
 export const addDirectoryAction = (directory) => ({ type: ADD_DIRECTORY, payload: directory });
 
