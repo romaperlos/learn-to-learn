@@ -9,13 +9,9 @@ import ContentMain from './Components/Content/ContentMain';
 function App() {
   return (
     <>
-
       <Navigation />
       <Body />
       <Switch>
-      <Route path="/">
-          <CourseList/>
-        </Route>
         <Route path="/testform">
           {/* <Fetch /> */}
         </Route>

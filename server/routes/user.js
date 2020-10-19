@@ -1,6 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
+import mailer from '../middleware/nodemailer.js';
 
 const router = express.Router();
 
@@ -16,15 +17,18 @@ router
     res.end();
   })
   .post(async (req, res) => {
-    const {
-      name, lastname, email, password,
-    } = req.body;
+    const { email } = req.body;
     // Проверка уникальности name и email вручную
     try {
       // const errUnqUser = await User.isUserUnique(name);
       const errUnqEmail = await User.isEmailUnique(email);
       if (errUnqEmail) {
         return res.status(401).json({ message: errUnqEmail });
+      } else {
+        let user = await new User({
+          email: email,
+        }).save();
+        res.redirect('/signup');
       }
     } catch (error) {
       console.log(error);
@@ -102,3 +106,24 @@ router.get('/checkSession', (req, res) => {
 });
 
 export default router;
+
+// router
+//   .route('/signup')
+//   .get((req, res) => {
+//     res.end();
+//   })
+//   .post(async (req, res) => {
+//     const {
+//       name, lastname, email, password,
+//     } = req.body;
+//     // Проверка уникальности name и email вручную
+//     try {
+//       // const errUnqUser = await User.isUserUnique(name);
+//       const errUnqEmail = await User.isEmailUnique(email);
+//       if (errUnqEmail) {
+//         return res.status(401).json({ message: errUnqEmail });
+//       }
+//     } catch (error) {
+//       console.log(error);
+//       res.status(401).json({ message: error.message });
+//     }
