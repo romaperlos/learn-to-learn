@@ -32,28 +32,21 @@ router
       }
 
       function generatePassword() {
-        let length = 8,
-            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-            retVal = "";
+        const length = 8;
+        const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let pass = '';
         for (let i = 0, n = charset.length; i < length; ++i) {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
+          pass += charset.charAt(Math.floor(Math.random() * n));
         }
-        return retVal;
-    }
-      const password = generatePassword()
+        return pass;
+      }
 
-      const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) ?? 10);
+      const password = generatePassword();
 
-      const user = await new User({
-        name,
-        lastname,
-        email,
-        password: hashedPassword,
-      }).save();
       const message = {
         from: 'Mailer Test <learntolearn@mail.ru>',
         to: email,
-        subject: "Регистрация",
+        subject: 'Регистрация',
         text: `
         Поздравляем, Вы успешно зарегистрированы!
         
@@ -66,15 +59,28 @@ router
           
 
 
-        Данное письмо не требует ответа.`
+        Данное письмо не требует ответа.`,
+      };
+      mailer(message);
+      res.status(200);
+
+      const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) || 10);
+      try {
+        await new User({
+          name,
+          lastname,
+          email,
+          password: hashedPassword,
+        }).save();
+        return res.status(200).end();
+      } catch (error) {
+        console.log(error);
+        res.status(401).json({ message: error.message });
       }
-      mailer(message)
-      res.status(200)
     } catch (error) {
       console.log(error);
       res.status(401).json({ message: error.message });
     }
-
   });
 
 router
