@@ -27,8 +27,20 @@ function Body() {
         // alignItems="top"
       >
         <Grid item sm={6} className="mt-3">
-          <Breadcrumbs />
-          <MainDirectories />
+          <Grid
+            container
+            spacing={3}
+            justify="center"
+            // alignItems="center"
+          >
+            <Grid item sm={9}>
+              <Breadcrumbs />
+            </Grid>
+            <Grid item sm={12}>
+              <MainDirectories />
+            </Grid>
+
+          </Grid>
         </Grid>
         <Grid item sm={3} className="mt-3">
           <Fetch />
