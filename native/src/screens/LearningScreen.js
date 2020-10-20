@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  StyleSheet, ScrollView, FlatList, Text, View,
+  StyleSheet, FlatList, Text, View,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { getDirectories } from '../redux/actions';
@@ -15,6 +15,9 @@ export function LearningScreen({ navigation }) {
   const directories = useSelector((state) => state.directories);
   const loading = useSelector((state) => state.loadingTest);
   const dispatch = useDispatch();
+  console.log(directories, 'screen');
+
+  const parentDirectories = directories.filter((el) => el.parent === null);
 
   useEffect(() => {
     dispatch(getDirectories());
@@ -29,7 +32,7 @@ export function LearningScreen({ navigation }) {
       <Text>{loading && 'loading...'}</Text>
       {directories && (
       <FlatList
-        data={directories}
+        data={parentDirectories}
         keyExtractor={(directory) => directory._id.toString()}
         renderItem={({ item }) => <Directory directory={item} onForward={forwardDirectoryHandler} />}
       />
