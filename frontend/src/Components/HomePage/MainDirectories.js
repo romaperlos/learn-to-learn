@@ -19,7 +19,7 @@ function MainDirectories() {
   }, [dispatch]);
 
   const directoriesRedux = useSelector((state) => state.directories);
-  const currentDirectory = useSelector((state) => state.currentDirectory);
+  const currentDirectory = useSelector((state) => state.currentDirectory.id);
   console.log(currentDirectory, '  <<< current dir');
 
   return (
