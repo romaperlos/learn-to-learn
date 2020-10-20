@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  StyleSheet, Text, View, Image, ImageBackground
+  StyleSheet, Text, View, Image,
 } from 'react-native';
 import { THEME } from '../theme';
 
@@ -23,14 +23,14 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     width: '100%',
-    height: 400,
+    height: 350,
     flex: 1,
   },
 
   image: {
     width: '100%',
     height: '100%',
-    marginBottom: 40,
+    marginBottom: 20,
     borderRadius: 10,
     flex: 1,
   },
