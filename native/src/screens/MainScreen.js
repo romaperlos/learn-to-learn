@@ -36,31 +36,31 @@ export function MainScreen({ navigation }) {
         {!loginUser
         && (
           <View style={styles.container}>
-          <TextInput
-            style={styles.input}
-            textContentType="emailAddress"
-            onChangeText={(inputEmail) => setInputEmail(inputEmail)}
-            value={inputEmail}
-            placeholder="Email"
-          />
-          <TextInput
-            style={styles.input}
-            textContentType="password"
-            onChangeText={(inputPassword) => setInputPassword(inputPassword)}
-            value={inputPassword}
-            placeholder="Password"
-          />
-          <Button
-            style={styles.loginButton}
-            title="LOGIN"
-            onPress={() => dispatch(handlerLogin(
-              {
-                email: inputEmail,
-                password: inputPassword,
-              },
-            ))}
-          />
-         </View>
+            <TextInput
+              style={styles.input}
+              textContentType="emailAddress"
+              onChangeText={(inputEmail) => setInputEmail(inputEmail)}
+              value={inputEmail}
+              placeholder="Email"
+            />
+            <TextInput
+              style={styles.input}
+              textContentType="password"
+              onChangeText={(inputPassword) => setInputPassword(inputPassword)}
+              value={inputPassword}
+              placeholder="Password"
+            />
+            <Button
+              style={styles.loginButton}
+              title="LOGIN"
+              onPress={() => dispatch(handlerLogin(
+                {
+                  email: inputEmail,
+                  password: inputPassword,
+                },
+              ))}
+            />
+          </View>
         )}
         {errorLogin && <Text style={styles.title}>Something went wrong...</Text>}
         {loginUser && <Text onPress={goToMyCourse} style={styles.title}>START EDUCATION</Text>}
