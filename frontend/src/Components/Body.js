@@ -1,9 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Fetch from './Fetch';
 import MainDirectories from './HomePage/MainDirectories';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
+import ContentMain from './Content/ContentMain';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Body() {
+  const currentDirectory = useSelector((state) => state.currentDirectory.id);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -38,6 +42,9 @@ function Body() {
             </Grid>
             <Grid item sm={12}>
               <MainDirectories />
+              <Route path="/new">
+                <ContentMain directory={currentDirectory} />
+              </Route>
             </Grid>
 
           </Grid>
