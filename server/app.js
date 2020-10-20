@@ -6,6 +6,7 @@ import userRouter from './routes/user.js';
 import directoryRouter from './routes/directory.js';
 import contentRouter from './routes/content.js';
 import nativeRouter from './routes/native.js';
+import companyRouter from './routes/company.js';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/directory', directoryRouter);
 app.use('/content', contentRouter);
 app.use('/user', userRouter);
 app.use('/native', nativeRouter);
+app.use('/company', companyRouter);
 
 // Обработка несуществующих запросов
 errorHandlers(app);
