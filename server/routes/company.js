@@ -19,11 +19,11 @@ async function printAverageColor(filename) {
 
   const imageData = ctx.getImageData(0, 0, width, height);
 
-  console.log(`Filename: ${filename}, size: ${width}×${height}`);
-  console.log('// [red, green, blue, opacity]');
-  console.log('Simple average color: ', fac.getColorFromArray4(imageData.data, { algorithm: 'simple' }));
-  console.log('Sqrt average color: ', fac.getColorFromArray4(imageData.data));
-  console.log('Dominant average color: ', fac.getColorFromArray4(imageData.data, { algorithm: 'dominant' }));
+  // console.log(`Filename: ${filename}, size: ${width}×${height}`);
+  // console.log('// [red, green, blue, opacity]');
+  // console.log('Simple average color: ', fac.getColorFromArray4(imageData.data, { algorithm: 'simple' }));
+  // console.log('Sqrt average color: ', fac.getColorFromArray4(imageData.data));
+  // console.log('Dominant average color: ', fac.getColorFromArray4(imageData.data, { algorithm: 'dominant' }));
 }
 
 printAverageColor('https://vk.vkfaces.com/858236/v858236396/30086/KoILHha5HCU.jpg');

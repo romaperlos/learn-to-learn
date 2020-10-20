@@ -22,16 +22,13 @@ function MainDirectories() {
     // }
   }, [dispatch]);
 
-  const directoriesRedux = useSelector((state) => state.directories);
-  // const currentDirectory = useSelector((state) => state.currentDirectory.id);
-
   return (
     <>
       <Grid container spacing={3}>
         <Grid item lg={3} sm={6} xs={12}>
           <CreateDirectoryModal />
         </Grid>
-        {directoriesRedux.map((el) => (
+        {directories.map((el) => (
           <Grid key={el._id} item lg={3} sm={6} xs={12}>
             <MainCurrentDirectory
               description={el.description}

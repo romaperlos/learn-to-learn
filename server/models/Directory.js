@@ -20,5 +20,9 @@ const directorySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Company',
   },
+  lastDir: {
+    type: Boolean,
+    default: false,
+  },
 });
 export default mongoose.model('Directory', directorySchema);
