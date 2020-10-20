@@ -9,6 +9,7 @@ const initialState = {
   loginUser: false,
   loadingLogin: false,
   errorLogin: false,
+  subs: [],
 };
 
 export const store = createStore(reducer, initialState, applyMiddleware(thunk));
