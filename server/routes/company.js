@@ -32,7 +32,6 @@ router.get('/', async (req, res) => {
   let company;
   try {
     company = await Company.find();
-    console.log(directory);
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: error.message });
@@ -41,12 +40,14 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const {
-    title, description, parent,
-  } = req.body;
-  const company = new Company({
-    title, description, parent: parentId,
-  });
+
+  console.log('>>>',req.body);
+  // const {
+  //   companyName, description, logoUrl,
+  // } = req.body;
+  // const company = new Company({
+  //   companyName, description, logoUrl,
+  // });
   try {
     await company.save();
     return res.status(200).json(company);
