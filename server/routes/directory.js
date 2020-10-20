@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   let directory;
   try {
-    directory = await Directory.find();
+    directory = await Directory.find({ parent: null });
+    console.log(directory);
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: error.message });
@@ -18,8 +19,11 @@ router.post('/', async (req, res) => {
   const {
     title, description, parent,
   } = req.body;
+  console.log(parent);
+  const parentId = parent || null;
+  console.log(parentId, ' <<<   parentId');
   const directory = new Directory({
-    title, description, parent,
+    title, description, parent: parentId,
   });
   try {
     await directory.save();

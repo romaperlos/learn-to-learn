@@ -10,12 +10,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import MainEditInModal from './MainEditInModal';
-import { getDirectoriesAction, setdirectoriesAction } from '../../redux/actions';
+import { getDirectoriesAction, setCurrentDirectoryAction, setdirectoriesAction } from '../../redux/actions';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    minHeight: 300,
+    minHeight: 318,
   },
   description: {
     height: 50,
@@ -48,9 +48,7 @@ export default function MainCurrentDirectory(props) {
 
   const getDirectories = () => {
     // console.log(itemId);
-    dispatch(setdirectoriesAction(itemId));
-    console.log('im here');
-    console.log(itemId);
+    dispatch(setCurrentDirectoryAction(itemId));
     dispatch(getDirectoriesAction(itemId));
   };
 

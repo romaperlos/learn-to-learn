@@ -29,7 +29,7 @@ function Body() {
           <MainDirectories />
         </Grid>
         <Grid item sm={3} className="mt-3">
-          <Fetch />
+          {/* <Fetch /> */}
         </Grid>
       </Grid>
     </div>
