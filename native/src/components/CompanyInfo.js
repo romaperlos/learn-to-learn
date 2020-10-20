@@ -7,7 +7,9 @@ import { THEME } from '../theme';
 
 export const CompanyInfo = ({ company }) => (
   <View style={styles.container}>
-    <Image style={styles.image} source={{ uri: company.logoUrl }} />
+    <View style={styles.imageContainer}>
+      <Image style={styles.image} source={{ uri: company.logoUrl }} />
+    </View>
     <Text style={styles.title}>{ company.companyName }</Text>
     <Text style={styles.description}>{ company.description }</Text>
   </View>
@@ -19,11 +21,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  imageContainer: {
+    width: '100%',
+    height: 350,
+    flex: 1,
+  },
+
   image: {
     width: '100%',
-    height: 300,
-    marginBottom: 40,
+    height: '100%',
+    marginBottom: 20,
     borderRadius: 10,
+    flex: 1,
   },
 
   title: {

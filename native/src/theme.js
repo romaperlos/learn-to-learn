@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
+import { DATA } from './data';
 
 export const THEME = {
-  MAIN_COLOR: '#3104B4',
-  MAIN_FONT_COLOR: '#fff',
+  MAIN_COLOR: DATA[0].mainColor,
+  MAIN_FONT_COLOR: DATA[0].mainFontColor,
 };

@@ -137,6 +137,8 @@ router.get('/checkSession', (req, res) => {
   res.status(401).end();
 });
 
+
+
 export default router;
 
 // Регистрация по прямой ссылки

@@ -3,34 +3,73 @@
 // import { createStackNavigator } from '@react-navigation/stack';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { MainScreen } from '../screens/MainScreen';
 import { LearningScreen } from '../screens/LearningScreen';
 import { DirectoryScreen } from '../screens/DirectoryScreen';
+import { AboutScreen } from '../screens/AboutScreen';
+import { FeedbackScreen } from '../screens/FeedbackScreen';
+import { LoginScreen } from '../screens/LoginScreen';
+
 import { THEME } from '../theme';
+
+const navigatorOptions = {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: THEME.MAIN_COLOR,
+    },
+    headerTintColor: THEME.MAIN_FONT_COLOR,
+  },
+}
 
 // создаём параметры навигации по существующим экранам
 const LearnNavigator = createStackNavigator(
   {
     Main: MainScreen,
-    Learning: {
-      screen: LearningScreen,
-    },
-    Directory: {
-      screen: DirectoryScreen,
-    },
+    Learning: LearningScreen,
+    Directory: DirectoryScreen,
   },
-  {
-    initialRouteName: 'Main',
-    // общие / дефолтные свойства для навигации
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: THEME.MAIN_COLOR,
-      },
-      headerTintColor: THEME.MAIN_FONT_COLOR,
-    },
-  },
+  navigatorOptions,
 );
+
+const AboutNavigator = createStackNavigator({
+  About: AboutScreen,
+},
+navigatorOptions);
+
+const FeedbackNavigator = createStackNavigator({
+  Feedback: FeedbackScreen,
+},
+navigatorOptions);
+
+export const LeftNavigator = createDrawerNavigator({
+  Main: {
+    screen: LearnNavigator,
+    navigationOptions: {
+      drawerLabel: 'Home',
+    },
+  },
+  About: {
+    screen: AboutNavigator,
+    navigationOptions: {
+      drawerLabel: 'About App',
+    },
+  },
+  Feedback: {
+    screen: FeedbackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Send feedback',
+    },
+  },
+},
+{
+  contentOptions: {
+    activeTintColor: THEME.MAIN_COLOR,
+    labelStyle: {
+      fontFamily: 'open-bold',
+    },
+  },
+});
 
 // оборачиваем наш навигатор в контейнер, чтобы экспортировать его в App.js
 export const AppNavigation = createAppContainer(LearnNavigator);
-// export const AppNavigation = <NavigationContainer><LearnNavigator.Navigator>{}</LearnNavigator.Navigator></NavigationContainer>;

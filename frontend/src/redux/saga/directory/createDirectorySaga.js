@@ -11,7 +11,13 @@ const createDirectoryFetch = async (directory) => {
         'Content-Type': 'application/json',
       },
     });
-    return res;
+    const data = await res.json();
+    console.log(data.status, '    <<<<<< this is res');
+    const result = {
+      res,
+      data,
+    };
+    return result;
   } catch (error) {
     return error;
   }
@@ -19,8 +25,8 @@ const createDirectoryFetch = async (directory) => {
 
 function* createDirectoryWorker(action) {
   const answer = yield call(createDirectoryFetch, action.payload);
-  if (answer.ok) {
-    yield put(createDirectoryAction(action.payload));
+  if (answer.res.ok) {
+    yield put(createDirectoryAction(answer.data));
   } else {
     yield put(setError(answer));
   }

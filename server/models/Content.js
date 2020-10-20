@@ -8,7 +8,8 @@ const contentSchema = new mongoose.Schema({
     type: String,
   },
   item: [{
-    type: Object,
+    type: String,
+    value: String,
   }],
   directory: {
     type: mongoose.Schema.Types.ObjectId,

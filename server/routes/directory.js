@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const {
-    title, description,
+    title, description, parent,
   } = req.body;
   const directory = new Directory({
-    title, description,
+    title, description, parent,
   });
   try {
     await directory.save();
@@ -39,6 +39,24 @@ router.delete('/:id', async (req, res) => {
     console.log(error);
     return res.status(400).json({ message: error.message });
   }
+});
+
+router.patch('/', async (req, res) => {
+  const { id, title, description } = req.body;
+  const item = await Directory.findById(id);
+  item.title = title;
+  item.description = description;
+  await item.save();
+  console.log(req.body);
+  res.status(200).end();
+});
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const directories = await Directory.find({ parent: id });
+  console.log(directories);
+  res.json(directories);
 });
 
 export default router;

@@ -38,26 +38,38 @@ export default function Fetch() {
       alignItems="center"
       className={classes.mainGrid}
     >
-      <Link to="/testform/company">
-        <Button variant="contained" color="primary">
-          Company
-        </Button>
-      </Link>
-      <Link to="/testform/content">
-        <Button variant="contained" color="primary">
-          Content
-        </Button>
-      </Link>
-      <Link to="/testform/directory">
-        <Button variant="contained" color="primary">
-          Directory
-        </Button>
-      </Link>
-      <Link to="/testform/user">
-        <Button variant="contained" color="primary">
-          User
-        </Button>
-      </Link>
+      <Grid item md={3}>
+
+        <Link to="/testform/company">
+          <Button variant="contained" color="primary">
+            Company
+          </Button>
+        </Link>
+      </Grid>
+      <Grid item md={3}>
+
+        <Link to="/testform/content">
+          <Button variant="contained" color="primary">
+            Content
+          </Button>
+        </Link>
+      </Grid>
+      <Grid item md={3}>
+
+        <Link to="/testform/directory">
+          <Button variant="contained" color="primary">
+            Directory
+          </Button>
+        </Link>
+      </Grid>
+      <Grid item md={3}>
+
+        <Link to="/testform/user">
+          <Button variant="contained" color="primary">
+            User
+          </Button>
+        </Link>
+      </Grid>
       <Route path="/testform/company">
         <Company />
       </Route>

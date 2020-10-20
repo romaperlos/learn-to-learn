@@ -12,7 +12,6 @@ export default function User() {
     name: '',
     lastname: '',
     email: '',
-    password: '',
   });
 
   const inputsChange = ({ target: { value, name } }) => {
@@ -34,13 +33,12 @@ export default function User() {
     });
     if (res.ok) {
       // console.log('ok');
-      return dispatch(setError(res));
+      dispatch(setError(res));
     }
     return setInput({
       name: '',
       lastname: '',
       email: '',
-      password: '',
     });
   };
 
@@ -59,7 +57,6 @@ export default function User() {
             <TextField onChange={inputsChange} id="standard-basic" label="Name" name="name" value={input.name} />
             <TextField onChange={inputsChange} id="standard-basic" label="Last name" name="lastname" value={input.lastname} />
             <TextField onChange={inputsChange} id="standard-basic" label="Email" name="email" value={input.email} />
-            <TextField onChange={inputsChange} id="standard-basic" label="Password" name="password" value={input.password} />
             <Button type="submit" variant="contained">Seed!</Button>
           </form>
         </Grid>
