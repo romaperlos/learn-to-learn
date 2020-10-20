@@ -10,6 +10,7 @@ const directorySchema = new mongoose.Schema({
   parent: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Directory',
+    default: null,
   },
   content: [{
     type: mongoose.Schema.Types.ObjectId,

@@ -9,6 +9,8 @@ import { LearningScreen } from '../screens/LearningScreen';
 import { DirectoryScreen } from '../screens/DirectoryScreen';
 import { AboutScreen } from '../screens/AboutScreen';
 import { FeedbackScreen } from '../screens/FeedbackScreen';
+import { LoginScreen } from '../screens/LoginScreen';
+
 import { THEME } from '../theme';
 
 const navigatorOptions = {
@@ -18,7 +20,7 @@ const navigatorOptions = {
     },
     headerTintColor: THEME.MAIN_FONT_COLOR,
   },
-};
+}
 
 // создаём параметры навигации по существующим экранам
 const LearnNavigator = createStackNavigator(
@@ -30,44 +32,44 @@ const LearnNavigator = createStackNavigator(
   navigatorOptions,
 );
 
-// const AboutNavigator = createStackNavigator({
-//   About: AboutScreen,
-// },
-// navigatorOptions);
+const AboutNavigator = createStackNavigator({
+  About: AboutScreen,
+},
+navigatorOptions);
 
-// const FeedbackNavigator = createStackNavigator({
-//   Feedback: FeedbackScreen,
-// },
-// navigatorOptions);
+const FeedbackNavigator = createStackNavigator({
+  Feedback: FeedbackScreen,
+},
+navigatorOptions);
 
-// export const LeftNavigator = createDrawerNavigator({
-//   Main: {
-//     screen: LearnNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'Home',
-//     },
-//   },
-//   About: {
-//     screen: AboutNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'About App',
-//     },
-//   },
-//   Feedback: {
-//     screen: FeedbackNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'Send feedback',
-//     },
-//   },
-// },
-// {
-//   contentOptions: {
-//     activeTintColor: THEME.MAIN_COLOR,
-//     labelStyle: {
-//       fontFamily: 'open-bold',
-//     },
-//   },
-// });
+export const LeftNavigator = createDrawerNavigator({
+  Main: {
+    screen: LearnNavigator,
+    navigationOptions: {
+      drawerLabel: 'Home',
+    },
+  },
+  About: {
+    screen: AboutNavigator,
+    navigationOptions: {
+      drawerLabel: 'About App',
+    },
+  },
+  Feedback: {
+    screen: FeedbackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Send feedback',
+    },
+  },
+},
+{
+  contentOptions: {
+    activeTintColor: THEME.MAIN_COLOR,
+    labelStyle: {
+      fontFamily: 'open-bold',
+    },
+  },
+});
 
 // оборачиваем наш навигатор в контейнер, чтобы экспортировать его в App.js
 export const AppNavigation = createAppContainer(LearnNavigator);

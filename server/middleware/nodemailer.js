@@ -1,12 +1,15 @@
 import nodemailer from 'nodemailer';
+import './env.js';
+const user = process.env.MAIL_ACC;
+const pass = process.env.MAIL_PASS;
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.mail.ru',
   port: 465,
   secure: true,
   auth: {
-    user: 'learntolearn@mail.ru',
-    pass: 'Elbrus2020',
+    user,
+    pass,
   },
 });
 
