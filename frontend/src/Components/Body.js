@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Fetch from './Fetch';
 import MainDirectories from './HomePage/MainDirectories';
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ function Body() {
         // alignItems="top"
       >
         <Grid item sm={6} className="mt-3">
+          <Breadcrumbs />
           <MainDirectories />
         </Grid>
         <Grid item sm={3} className="mt-3">
