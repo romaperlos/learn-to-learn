@@ -35,17 +35,11 @@ router.post('/', async (req, res) => {
     ctx.drawImage(img, 0, 0);
 
     const imageData = ctx.getImageData(0, 0, width, height);
-
-    // console.log(`Filename: ${filename}, size: ${width}×${height}`);
-    // console.log('// [red, green, blue, opacity]');
-    // console.log('Simple average color: ', fac.getColorFromArray4(imageData.data, { algorithm: 'simple' }));
-    // console.log('Sqrt average color: ', fac.getColorFromArray4(imageData.data));
-    // console.log('Dominant average color: ', fac.getColorFromArray4(imageData.data, { algorithm: 'dominant' }));
     return fac.getColorFromArray4(imageData.data, { algorithm: 'dominant' });
   }
 
-  let resColor = `rgba(${await printAverageColor(`${logoUrl}`)})`;
-  console.log(resColor);
+  const responseColor = await printAverageColor(`${logoUrl}`);
+  const resColor = `rgba(${responseColor})`;
 
   const company = await new Company({
     companyName, description, logoUrl, mainColor: resColor,
