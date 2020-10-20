@@ -14,7 +14,7 @@ function App() {
           {/* <Fetch /> */}
         </Route>
         <Route path="/admininfo">
-          <ContentMain />
+          <ContentMain key='1' />
         </Route>
       </Switch>
     </>

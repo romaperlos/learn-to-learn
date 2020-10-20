@@ -7,9 +7,7 @@ router.get('/', async (req, res) => {
   let directory;
   try {
     directory = await Directory.find({ parent: null });
-    console.log(directory);
   } catch (error) {
-    console.log(error);
     return res.status(400).json({ message: error.message });
   }
   return res.status(200).json({ directory });
@@ -21,7 +19,6 @@ router.post('/', async (req, res) => {
   } = req.body;
   console.log(parent);
   const parentId = parent || null;
-  console.log(parentId, ' <<<   parentId');
   const directory = new Directory({
     title, description, parent: parentId,
   });
@@ -34,9 +31,12 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
+  console.log('DELETE');
+  const { id } = req.body;
+  console.log(id, ' <<<<< im ID');
   try {
-    await Directory.deleteOne({ _id: req.params.id });
+    await Directory.findByIdAndDelete(id);
     const directoryAll = await Directory.find();
     return res.status(200).json({ directoryAll });
   } catch (error) {
