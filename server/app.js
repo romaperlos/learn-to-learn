@@ -5,6 +5,7 @@ import errorHandlers from './middleware/error-handlers.js';
 import userRouter from './routes/user.js';
 import directoryRouter from './routes/directory.js';
 import contentRouter from './routes/content.js';
+import nativeRouter from './routes/native.js';
 
 const app = express();
 
@@ -15,6 +16,7 @@ useMiddleware(app);
 app.use('/directory', directoryRouter);
 app.use('/content', contentRouter);
 app.use('/user', userRouter);
+app.use('/native', nativeRouter);
 
 // Обработка несуществующих запросов
 errorHandlers(app);
