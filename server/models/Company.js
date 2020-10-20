@@ -14,6 +14,8 @@ const companySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  mainColor: String,
+  mainFontColor: String,
 });
 
 export default mongoose.model('Company', companySchema);
