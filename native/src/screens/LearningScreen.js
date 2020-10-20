@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable arrow-body-style */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
@@ -20,7 +21,7 @@ export function LearningScreen({ navigation }) {
   }, []);
 
   const forwardDirectoryHandler = (directory) => {
-    navigation.navigate('Directory', { directoryTitle: directory.title });
+    navigation.navigate('Directory', { directory });
   };
 
   return (
@@ -30,7 +31,7 @@ export function LearningScreen({ navigation }) {
       <FlatList
         data={directories}
         keyExtractor={(directory) => directory._id.toString()}
-        renderItem={({ item }) => <Directory directory={item} onForward={forwardDirectoryHandler}/>}
+        renderItem={({ item }) => <Directory directory={item} onForward={forwardDirectoryHandler} />}
       />
       )}
     </View>
@@ -43,10 +44,10 @@ LearningScreen.navigationOptions = ({ navigation }) => {
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
-        title="profile"
-        iconName="user"
-        onPress={() => console.log('was pressed user button')}
-      />
+          title="profile"
+          iconName="user"
+          onPress={() => console.log('was pressed user button')}
+        />
         <Item
           title="logout"
           iconName="log-out"

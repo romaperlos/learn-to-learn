@@ -6,20 +6,19 @@ import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
 
 export function DirectoryScreen({ navigation }) {
-  console.log(navigation);
-  const directoryTitle = navigation.getParam('directoryTitle');
-  console.log(directoryTitle);
+  const directory = navigation.getParam('directory');
+  console.log(directory);
   return (
     <View style={styles.center}>
-      <Text style={styles.text}>{directoryTitle}</Text>
+      <Text style={styles.text}>{directory.title}</Text>
     </View>
   );
 }
 
 DirectoryScreen.navigationOptions = ({ navigation }) => {
-  const directoryTitle = navigation.getParam('directoryTitle');
+  const directory = navigation.getParam('directory');
   return {
-    headerTitle: directoryTitle,
+    headerTitle: directory.title,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
