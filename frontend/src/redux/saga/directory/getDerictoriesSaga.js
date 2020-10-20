@@ -3,16 +3,13 @@ import { setdirectoriesAction } from '../../actions';
 import { GET_DIRECTORIES } from '../../actionTypes';
 
 const getCurrentDirectories = async (id) => {
-  console.log(id, ' <<<< id in saga');
   const res = await fetch(`/directory/${id}`);
   const data = await res.json();
-  console.log(data, '   <<<<< data in async');
   return data;
 };
 const getDirectories = async () => {
   const res = await fetch('/directory');
   const data = await res.json();
-  console.log(data.directory, '   <<<<< data');
   return data.directory;
 };
 

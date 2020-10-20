@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import { editDirectory } from '../../redux/actions';
 
 function MainEditInModal(props) {
+  // const currentDirectory = useSelector((state) => state.currentDirectory.id);
   const {
     title, description, setAnchorEl, id,
   } = props;
   const dispatch = useDispatch();
-  // const directories = useSelector((state) => state.directories);
   const [input, setInput] = useState({
     id,
     title,
@@ -25,7 +25,6 @@ function MainEditInModal(props) {
 
   const fetchSomething = async (e) => {
     e.preventDefault();
-    console.log('fetch');
     await fetch('/directory', {
       method: 'PATCH',
       body: JSON.stringify(input),
@@ -33,7 +32,6 @@ function MainEditInModal(props) {
         'Content-Type': 'application/json',
       },
     });
-    console.log('after dispatch');
     dispatch(editDirectory(input));
     setAnchorEl(null);
   };

@@ -1,5 +1,5 @@
 const {
-  CREATE_DIRECTORY, ADD_DIRECTORY, GET_DIRECTORIES, SET_DIRECTORIES, EDIT_DIRECTORY, SET_CURRENT_DIRECTORY,
+  CREATE_DIRECTORY, ADD_DIRECTORY, GET_DIRECTORIES, SET_DIRECTORIES, EDIT_DIRECTORY, DELETE_DIRECTORY, TRY_DELETE_ITEM,
 } = require('../actionTypes');
 
 const directoryReducer = (state = [], action) => {
@@ -11,7 +11,6 @@ const directoryReducer = (state = [], action) => {
     case GET_DIRECTORIES:
       return state;
     case SET_DIRECTORIES:
-      console.log(action.payload, ' <<<< action payload set');
       return [...action.payload];
     case EDIT_DIRECTORY:
       return [...state.map((item) => {
@@ -22,6 +21,10 @@ const directoryReducer = (state = [], action) => {
         }
         return item;
       })];
+    case TRY_DELETE_ITEM:
+      return state;
+    case DELETE_DIRECTORY:
+      return [...state.filter((el) => el._id !== action.payload)];
 
     default:
       return state;

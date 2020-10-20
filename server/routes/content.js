@@ -15,9 +15,11 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  console.log('<<<<<');
   const {
     title, description, item,
   } = req.body;
+  console.log(title, description, item);
   const content = new Content({
     title, description, item,
   });

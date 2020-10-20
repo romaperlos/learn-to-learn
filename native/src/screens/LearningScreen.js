@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 /* eslint-disable arrow-body-style */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  StyleSheet, ScrollView, FlatList, Text, View,
+  StyleSheet, FlatList, Text, View,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { getDirectories } from '../redux/actions';
@@ -14,13 +15,16 @@ export function LearningScreen({ navigation }) {
   const directories = useSelector((state) => state.directories);
   const loading = useSelector((state) => state.loadingTest);
   const dispatch = useDispatch();
+  console.log(directories, 'screen');
+
+  const parentDirectories = directories.filter((el) => el.parent === null);
 
   useEffect(() => {
     dispatch(getDirectories());
   }, []);
 
   const forwardDirectoryHandler = (directory) => {
-    navigation.navigate('Directory', { directoryTitle: directory.title });
+    navigation.navigate('Directory', { directory });
   };
 
   return (
@@ -28,9 +32,9 @@ export function LearningScreen({ navigation }) {
       <Text>{loading && 'loading...'}</Text>
       {directories && (
       <FlatList
-        data={directories}
+        data={parentDirectories}
         keyExtractor={(directory) => directory._id.toString()}
-        renderItem={({ item }) => <Directory directory={item} onForward={forwardDirectoryHandler}/>}
+        renderItem={({ item }) => <Directory directory={item} onForward={forwardDirectoryHandler} />}
       />
       )}
     </View>
@@ -43,10 +47,10 @@ LearningScreen.navigationOptions = ({ navigation }) => {
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
-        title="profile"
-        iconName="user"
-        onPress={() => console.log('was pressed user button')}
-      />
+          title="profile"
+          iconName="user"
+          onPress={() => console.log('was pressed user button')}
+        />
         <Item
           title="logout"
           iconName="log-out"

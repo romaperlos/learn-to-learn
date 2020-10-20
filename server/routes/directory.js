@@ -6,9 +6,8 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   let directory;
   try {
-    directory = await Directory.find();
+    directory = await Directory.find({ parent: null });
   } catch (error) {
-    console.log(error);
     return res.status(400).json({ message: error.message });
   }
   return res.status(200).json({ directory });
@@ -18,8 +17,10 @@ router.post('/', async (req, res) => {
   const {
     title, description, parent,
   } = req.body;
+  console.log(parent);
+  const parentId = parent || null;
   const directory = new Directory({
-    title, description, parent,
+    title, description, parent: parentId,
   });
   try {
     await directory.save();
@@ -30,9 +31,12 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
+  console.log('DELETE');
+  const { id } = req.body;
+  console.log(id, ' <<<<< im ID');
   try {
-    await Directory.deleteOne({ _id: req.params.id });
+    await Directory.findByIdAndDelete(id);
     const directoryAll = await Directory.find();
     return res.status(200).json({ directoryAll });
   } catch (error) {
