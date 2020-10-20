@@ -10,7 +10,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import MainEditInModal from './MainEditInModal';
-import { getDirectoriesAction, setCurrentDirectoryAction, setdirectoriesAction } from '../../redux/actions';
+import {
+  getDirectoriesAction, setCurrentDirectoryAction, tryDeleteItemAction, addBreadcrumbsLinkAction,
+} from '../../redux/actions';
 
 const useStyles = makeStyles({
   root: {
@@ -29,9 +31,8 @@ const useStyles = makeStyles({
 export default function MainCurrentDirectory(props) {
   const dispatch = useDispatch();
   const {
-    description, title, itemId, parentId,
+    description, title, itemId,
   } = props;
-  const parent = parentId ? `/directory/${parentId}` : '/';
 
   const classes = useStyles();
   const random = Math.floor(Math.random() * 4 + 1);
@@ -46,10 +47,15 @@ export default function MainCurrentDirectory(props) {
     setAnchorEl(null);
   };
 
+  const deleteItem = () => {
+    dispatch(tryDeleteItemAction(itemId));
+  };
+
   const getDirectories = () => {
     // console.log(itemId);
-    dispatch(setCurrentDirectoryAction(itemId));
+    dispatch(addBreadcrumbsLinkAction({ id: itemId, title }));
     dispatch(getDirectoriesAction(itemId));
+    dispatch(setCurrentDirectoryAction(itemId));
   };
 
   const open = Boolean(anchorEl);
@@ -79,7 +85,7 @@ export default function MainCurrentDirectory(props) {
           <Button onClick={handleClick} size="small" color="primary" variant="outlined">
             Edit
           </Button>
-          <Button size="small" color="primary" variant="outlined">
+          <Button onClick={deleteItem} size="small" color="primary" variant="outlined">
             Delete
           </Button>
         </CardActions>
