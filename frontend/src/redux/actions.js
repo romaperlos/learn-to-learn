@@ -1,5 +1,5 @@
 import {
-  ADD_DIRECTORY, CREATE_DIRECTORY, CREATE_USER, EDIT_DIRECTORY, GET_CURRENT_DIRECTORIES, GET_DIRECTORIES, GET_ERROR, SET_DIRECTORIES, SET_CURRENT_DIRECTORY,
+  ADD_DIRECTORY, CREATE_DIRECTORY, CREATE_USER, EDIT_DIRECTORY, GET_CURRENT_DIRECTORIES, GET_DIRECTORIES, GET_ERROR, SET_DIRECTORIES, SET_CURRENT_DIRECTORY, DELETE_DIRECTORY, TRY_DELETE_ITEM, ADD_BREADCRUMB_LINK, DELETE_BREADCRUMB_LINK,
 } from './actionTypes';
 
 export const createUser = (user) => ({ type: CREATE_USER, payload: user });
@@ -28,3 +28,10 @@ export const setCurrentDirectoryAction = (id) => ({ type: SET_CURRENT_DIRECTORY,
 export const addDirectoryAction = (directory) => ({ type: ADD_DIRECTORY, payload: directory });
 
 export const editDirectory = (item) => ({ type: EDIT_DIRECTORY, payload: item });
+
+export const tryDeleteItemAction = (id) => ({ type: TRY_DELETE_ITEM, payload: id });
+
+export const deleteDirectoryAction = (id) => ({ type: DELETE_DIRECTORY, payload: id });
+
+export const addBreadcrumbsLinkAction = (obj) => ({ type: ADD_BREADCRUMB_LINK, payload: obj });
+export const deleteBreadcrumbsLinkAction = (id) => ({ type: DELETE_BREADCRUMB_LINK, payload: id });

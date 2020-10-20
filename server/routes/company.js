@@ -1,7 +1,7 @@
 import express from 'express';
 import can from 'canvas';
 import FastAverageColor from 'fast-average-color';
-import Company from '../models/Company.js';
+import Company from '../models/Company.js'
 
 const { loadImage, createCanvas } = can;
 

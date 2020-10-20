@@ -2,7 +2,9 @@ import Grid from '@material-ui/core/Grid';
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getDirectoriesAction, setCurrentDirectoryAction } from '../../redux/actions';
+import {
+  addBreadcrumbsLinkAction, deleteBreadcrumbsLinkAction, getDirectoriesAction, setCurrentDirectoryAction,
+} from '../../redux/actions';
 import CreateDirectoryModal from './CreateDirectoryModal';
 import MainCurrentDirectory from './MainCurrentDirectory';
 
@@ -10,17 +12,18 @@ function MainDirectories() {
   const directories = useSelector((state) => state.directories);
   const page = window.location.pathname;
   const dispatch = useDispatch();
-  console.log(directories, ' <<< directories');
   useEffect(() => {
     if (page === '/' || directories.length === 0) {
       dispatch(setCurrentDirectoryAction(''));
       dispatch(getDirectoriesAction());
     }
+    // if (page === '/') {
+    //   dispatch(deleteBreadcrumbsLinkAction({ id: '' }));
+    // }
   }, [dispatch]);
 
   const directoriesRedux = useSelector((state) => state.directories);
-  const currentDirectory = useSelector((state) => state.currentDirectory.id);
-  console.log(currentDirectory, '  <<< current dir');
+  // const currentDirectory = useSelector((state) => state.currentDirectory.id);
 
   return (
     <>

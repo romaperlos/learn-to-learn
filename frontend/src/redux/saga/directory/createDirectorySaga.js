@@ -12,7 +12,6 @@ const createDirectoryFetch = async (directory) => {
       },
     });
     const data = await res.json();
-    console.log(data.status, '    <<<<<< this is res');
     const result = {
       res,
       data,

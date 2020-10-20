@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editDirectory } from '../../redux/actions';
 
 function MainEditInModal(props) {
-  const currentDirectory = useSelector((state) => state.currentDirectory.id);
+  // const currentDirectory = useSelector((state) => state.currentDirectory.id);
   const {
     title, description, setAnchorEl, id,
   } = props;

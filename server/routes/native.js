@@ -3,7 +3,7 @@ import Directory from '../models/Directory.js';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/directory', async (req, res) => {
   let directory;
   try {
     directory = await Directory.find();
