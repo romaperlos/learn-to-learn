@@ -1,18 +1,102 @@
+/* eslint-disable no-else-return */
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet, FlatList,
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { AppHeaderIcon } from '../components/AppHeaderIcon';
+import { ContentTitle } from '../components/ContentTitle';
+import { Subtitle } from '../components/Subtitle';
+import { VideoURL } from '../components/VideoURL';
+import { TextURL } from '../components/TextURL';
+import { TextArea } from '../components/TextArea';
+import { PicURL } from '../components/picURL';
 
-export default function ContentScreen({}) {
+
+export function ContentScreen({ navigation }) {
+  const subDirectory = navigation.getParam('subDirectory');
+  const content = useSelector((state) => state.content);
+
+  let subDirectoryContent = null;
+
+  if (content) {
+    subDirectoryContent = content.filter((el) => el.directory === subDirectory._id);
+  }
+
+  console.log('>>>>>>>>>', subDirectoryContent);
+
+  const showContent = (contentTitle) => {};
+
   return (
-    <View style={styles.center}>
-      <Text>ContentScreen</Text>
+    <View style={styles.container}>
+      <View style={styles.topMenu}>
+        <FlatList
+          data={subDirectoryContent}
+          keyExtractor={(contentTitle) => contentTitle._id.toString()}
+          renderItem={({ item }) => <ContentTitle contentTitle={item} onShowContent={showContent} />}
+        />
+
+      </View>
+      <View style={styles.contentContainer}>
+        <FlatList
+          data={subDirectoryContent[0].item}
+          keyExtractor={(contentItem) => contentItem.id.toString()}
+          renderItem={({ item }) => {
+            if (item.type === 'subtitle') {
+              return <Subtitle subtitle={item.value} />;
+            } else if (item.type === 'videoUrl') {
+              return <VideoURL videoURL={item.value} />;
+            } else if (item.type === 'link') {
+              return <TextURL textURL={item.value} />;
+            } else if (item.type === 'textArea') {
+              return <TextArea textArea={item.value} />;
+            } else if (item.type === 'picUrl') {
+              return <PicURL picUrl={item.value} />;
+          }}}
+        />
+      </View>
     </View>
   );
 }
 
+ContentScreen.navigationOptions = ({ navigation }) => ({
+  headerTitle: 'My content',
+  headerRight: (
+    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+      <Item
+        title="profile"
+        iconName="user"
+        onPress={() => console.log('was pressed user button')}
+      />
+      <Item
+        title="logout"
+        iconName="log-out"
+        onPress={() => console.log('was pressed logout button')}
+      />
+    </HeaderButtons>
+  ),
+});
+
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
+  container: {
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 15,
+  },
+  topMenu: {
+    width: '100%',
+    height: 'auto',
+    marginTop: 30,
+    paddingHorizontal: 10,
+    borderBottomWidth: 1,
+    borderColor: '#D8D8D8',
+  },
+  contentContainer: {
+
+    marginHorizontal: 5,
+    // alignItems: 'center',
   },
 });

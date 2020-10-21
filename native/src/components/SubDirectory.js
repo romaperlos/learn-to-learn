@@ -3,12 +3,16 @@ import React from 'react';
 import {
   StyleSheet, Text, View, TouchableOpacity,
 } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import { THEME } from '../theme';
 
 export const SubDirectory = ({ subDirectory, onChooseSubDirectory }) => (
   <TouchableOpacity activeOpacity={0.5} onPress={() => onChooseSubDirectory(subDirectory)}>
     <View style={styles.container}>
       <Text style={styles.title}>{subDirectory.title}</Text>
+      <View style={styles.iconContainer}>
+        {subDirectory.lastDir && <Feather name="corner-down-right" size={30} color="black" />}
+      </View>
     </View>
   </TouchableOpacity>
 );
@@ -20,16 +24,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-
+  iconContainer: {
+    width: '100%',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    flex: 1,
+  },
   title: {
     fontFamily: 'poppins-regular',
-    fontSize: 15,
+    fontSize: 23,
     textAlign: 'center',
     fontWeight: 'bold',
     backgroundColor: THEME.MAIN_COLOR,
     paddingVertical: 10,
     marginVertical: 1,
-    width: '90%',
+    width: '100%',
     borderWidth: 1,
     color: THEME.MAIN_FONT_COLOR,
     borderRadius: 5,

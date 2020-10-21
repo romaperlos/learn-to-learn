@@ -24,10 +24,10 @@ export function MainScreen({ navigation }) {
   const loadingLogin = useSelector((state) => state.loadingLogin);
   const errorLogin = useSelector((state) => state.errorLogin);
 
-  console.log({
-    email: inputEmail,
-    password: inputPassword,
-  });
+  // console.log({
+  //   email: inputEmail,
+  //   password: inputPassword,
+  // });
 
   return (
     <ScrollView style={styles.wrapper}>
