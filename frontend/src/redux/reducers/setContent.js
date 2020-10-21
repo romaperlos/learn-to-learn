@@ -1,4 +1,4 @@
-import { GET_CONTENT_CATEGORY, SET_CONTENT_CATEGORY } from "../actionTypes";
+import { GET_CONTENT_CATEGORY, SET_CONTENT_CATEGORY } from '../actionTypes';
 
 const setContentReducer = (state = [], action) => {
   switch (action.type) {
