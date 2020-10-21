@@ -44,14 +44,14 @@
 
 // export default upload;
 
-import express from 'express';
+// import express from 'express';
 import multer from 'multer';
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => { cb(null, 'public') },
+  destination: (req, file, cb) => { cb(null, 'public'); },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname)
-  }
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
 });
 
 export default storage;
