@@ -1,5 +1,6 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import { LOADING_DIR, GET_DIRECTORIES, LOADING_LOGIN, HANDLER_LOGIN, ERROR_LOGIN } from './actionTypes';
+import { LOADING_DIR, GET_DIRECTORIES, LOADING_LOGIN, HANDLER_LOGIN, ERROR_LOGIN, START_BREAD_CRUMBS, ADD_BREAD_CRUMBS, DELETE_BREAD_CRUMBS } from './actionTypes';
 
 export const loadingDir = { type: LOADING_DIR };
 
@@ -7,7 +8,6 @@ export const getDirectories = () => async function (dispatch) {
   dispatch(loadingDir);
   const resp = await fetch('http://192.168.1.140:3001/native/directory');
   const result = await resp.json();
-  console.log(result, 'fetch');
   return dispatch({ type: GET_DIRECTORIES, payload: result.directory });
 };
 
@@ -29,4 +29,16 @@ export const handlerLogin = (user) => async function (dispatch) {
     return dispatch({ type: HANDLER_LOGIN });
   }
   return dispatch({ type: ERROR_LOGIN });
+};
+
+export const startBreadCrumbs = (directory) => {
+  return ({ type: START_BREAD_CRUMBS, payload: directory });
+};
+
+export const addBreadCrumbs = (subDirectory) => {
+  return ({ type: ADD_BREAD_CRUMBS, payload: subDirectory });
+};
+
+export const deleteBreadCrumbs = (newBreadCrumbs) => {
+  return ({ type: DELETE_BREAD_CRUMBS, payload: newBreadCrumbs });
 };

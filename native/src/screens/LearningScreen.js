@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { getDirectories } from '../redux/actions';
+import { startBreadCrumbs } from '../redux/actions';
 import { Directory } from '../components/Directory';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
@@ -15,15 +16,19 @@ export function LearningScreen({ navigation }) {
   const directories = useSelector((state) => state.directories);
   const loading = useSelector((state) => state.loadingTest);
   const dispatch = useDispatch();
-  console.log(directories, 'screen');
-
-  const parentDirectories = directories.filter((el) => el.parent === null);
 
   useEffect(() => {
     dispatch(getDirectories());
   }, []);
 
+  let parentDirectories = null;
+
+  if (directories) {
+    parentDirectories = directories.filter((el) => el.parent === null);
+  }
+  
   const forwardDirectoryHandler = (directory) => {
+    dispatch(startBreadCrumbs(directory));
     navigation.navigate('Directory', { directory });
   };
 
