@@ -1,10 +1,15 @@
 import Grid from '@material-ui/core/Grid';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import '../../css/animation.css';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
-import { getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction } from '../../redux/actions';
-import CreateContent from '../Content/CreateContent';
+import { getContentsCategoryAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction } from '../../redux/actions';
+import CreateContentCard from '../Content/CreateContentCard';
 
 import CreateDirectoryModal from './CreateDirectoryModal';
 import MainCurrentDirectory from './MainCurrentDirectory';
@@ -14,6 +19,8 @@ function MainDirectories() {
   const isLastDir = useSelector((state) => state.isLastDir.isLast);
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
   console.log(isLastDir, ' on render');
+  // const [contentArr, setContentArr] = useState([]);
+  // const contentArr = [];
   const page = window.location.pathname;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,24 +32,61 @@ function MainDirectories() {
     // if (page === '/') {
     //   dispatch(deleteBreadcrumbsLinkAction({ id: '' }));
     // }
+    if (isLastDir) {
+      console.log('im in if');
+      dispatch(getContentsCategoryAction(currentDirectory));
+      console.log('im after if');
+      // const getContents = async () => {
+      //   const res = await fetch(`content/${currentDirectory}`);
+      //   const data = await res.json();
+      //   console.log(data);
+      //   setContentArr(data.content);
+      // };
+      // getContents();
+      // console.log(contentArr, ' <<<<< STATE IN IF');
+    }
   }, [dispatch]);
+
+  // useEffect(() => {
+  // }, []);
+  if (isLastDir) {
+    console.log('im in if');
+    const getContents = async () => {
+      const res = await fetch(`content/${currentDirectory}`);
+      const data = await res.json();
+      console.log(data);
+      // setContentArr(data.content);
+    };
+    getContents();
+    // console.log(contentArr, ' <<<<< STATE IN IF');
+  }
 
   return (
     <>
       <Route exact path="/">
+
         <Grid container spacing={3}>
+          {!isLastDir && (
           <Grid item lg={3} sm={6} xs={12}>
             <CreateDirectoryModal />
           </Grid>
+          )}
+          {/* Проверка на наличие ID в сторе. Если его нет, то это главная и рендера не будет */}
           {(currentDirectory) && (
-            <Grid item lg={3} sm={6} xs={12}>
-              <Link to="/new">
-                <CreateContent />
-              </Link>
-            </Grid>
+          <Grid item lg={3} sm={6} xs={12}>
+            <Link to="/new">
+              <CreateContentCard />
+            </Link>
+          </Grid>
           )}
 
-          {directories.map((el) => (
+          {/* <TransitionGroup className="myClass"> */}
+          {!isLastDir && directories.map((el) => (
+            // <CSSTransition
+            //   key={el._id}
+            //   timeout={500}
+            //   classNames="s-directories"
+            // >
             <Grid key={el._id} item lg={3} sm={6} xs={12}>
               <MainCurrentDirectory
                 description={el.description}
@@ -52,7 +96,9 @@ function MainDirectories() {
                 isLastDir={el.lastDir}
               />
             </Grid>
+            // </CSSTransition>
           ))}
+          {/* </TransitionGroup> */}
         </Grid>
       </Route>
     </>

@@ -105,6 +105,8 @@ const ContentMain = (props) => {
                 text: ' Вставьте сюда, ссылку на Ваше видео.',
               };
               break;
+            default:
+              break;
           }
           return (
             <>

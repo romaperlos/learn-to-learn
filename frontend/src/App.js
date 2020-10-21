@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Body from './Components/Body';
 import Navigation from './Components/Navigation';
-import ContentMain from './Components/Content/ContentMain';
+// import ContentMain from './Components/Content/ContentMain';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           {/* <Fetch /> */}
         </Route>
         <Route path="/admininfo">
-          <ContentMain key='1' />
+          {/* <ContentMain key='1' /> */}
         </Route>
       </Switch>
     </>

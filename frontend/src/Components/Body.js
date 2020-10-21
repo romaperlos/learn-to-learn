@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Fetch from './Fetch';
 import MainDirectories from './HomePage/MainDirectories';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
-import ContentMain from './Content/ContentMain';
+import CreateMain from './Content/CreateMain';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +43,7 @@ function Body() {
             <Grid item sm={12}>
               <MainDirectories />
               <Route path="/new">
-                <ContentMain directory={currentDirectory} />
+                <CreateMain directory={currentDirectory} />
               </Route>
             </Grid>
 
