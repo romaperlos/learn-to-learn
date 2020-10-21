@@ -2,8 +2,9 @@
 /* eslint-disable import/prefer-default-export */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { addBreadCrumbs, deleteBreadCrumbs } from '../redux/actions';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { SubDirectory } from '../components/SubDirectory';
 import { LeftDirectory } from '../components/LeftDirectory';
@@ -23,12 +24,18 @@ export function DirectoryScreen({ navigation }) {
 
   const showThemes = (leftDirectory) => {
     const newSubDirectories = directories.filter((el) => el.parent === leftDirectory._id);
-    console.log(subDirectories, '!!!!!!!!!!!!!!!!');
+    const breadCrumbsIndex = breadCrumbs.findIndex((el) => el._id === leftDirectory._id);
+    const cloneBreadCrumbs = [...breadCrumbs];
+    console.log(cloneBreadCrumbs);
+    const newBreadCrumbs = breadCrumbs.splice(breadCrumbsIndex + 1, Infinity);
+    dispatch(deleteBreadCrumbs(newBreadCrumbs));
     return setSubDirectories(newSubDirectories);
-    // dispatch(startBreadCrumbs(leftDirectory));
   };
 
-  // console.log(subDirectories, '<<<<<<<<<<<<<<<<<<<');
+  const ChooseSubDirectory = (subDirectory) => {
+    dispatch(addBreadCrumbs(subDirectory));
+    showThemes(subDirectory);
+  };
 
   return (
     <View style={styles.container}>
@@ -43,7 +50,7 @@ export function DirectoryScreen({ navigation }) {
         <FlatList
           data={subDirectories}
           keyExtractor={(subDirectory) => subDirectory._id.toString()}
-          renderItem={({ item }) => <SubDirectory subDirectory={item} />}
+          renderItem={({ item }) => <SubDirectory subDirectory={item} onChooseSubDirectory={ChooseSubDirectory} />}
         />
       </View>
     </View>
