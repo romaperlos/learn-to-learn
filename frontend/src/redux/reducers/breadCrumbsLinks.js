@@ -3,6 +3,7 @@ import { ADD_BREADCRUMB_LINK, DELETE_BREADCRUMB_LINK } from '../actionTypes';
 const initialState = [{
   id: '',
   title: 'Main',
+  isLast: false,
 }];
 
 const breadcrumbsReducer = (state = initialState, action) => {

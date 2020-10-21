@@ -23,8 +23,9 @@ router.post('/', async (req, res) => {
   } = req.body;
   console.log(title, description, item);
   const content = new Content({
-    title, description, item,
+    title, description, item, directory,
   });
+  console.log(content, ' CONTENT!');
   try {
     const currentDir = await Directory.findById(directory);
     currentDir.content.push(content);
@@ -35,6 +36,18 @@ router.post('/', async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(401).json({ message: error.message });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log(id, ' <<<< ID');
+  try {
+    const content = await Content.find({ directory: id }).populate('directory');
+    return res.status(200).json({ content });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ message: error.message });
   }
 });
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import MainEditInModal from './MainEditInModal';
 import {
-  getDirectoriesAction, setCurrentDirectoryAction, tryDeleteItemAction, addBreadcrumbsLinkAction,
+  getDirectoriesAction, setCurrentDirectoryAction, tryDeleteItemAction, addBreadcrumbsLinkAction, setIsLastDirAction,
 } from '../../redux/actions';
 
 const useStyles = makeStyles({
@@ -35,6 +35,10 @@ export default function MainCurrentDirectory(props) {
     description, title, itemId, isLastDir,
   } = props;
   console.log(isLastDir);
+  // useEffect(() => {
+  //   dispatch(setIsLastDirAction(isLastDir));
+  //   // dispatch(setIsLastDirAction(false));
+  // }, [dispatch]);
   const classes = useStyles();
   const random = Math.floor(Math.random() * 4 + 1);
 
@@ -54,9 +58,10 @@ export default function MainCurrentDirectory(props) {
 
   const getDirectories = () => {
     // console.log(itemId);
-    dispatch(addBreadcrumbsLinkAction({ id: itemId, title }));
+    dispatch(addBreadcrumbsLinkAction({ id: itemId, title, isLastDir }));
     dispatch(getDirectoriesAction(itemId));
     dispatch(setCurrentDirectoryAction(itemId));
+    dispatch(setIsLastDirAction(isLastDir));
   };
 
   const open = Boolean(anchorEl);

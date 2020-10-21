@@ -1,4 +1,5 @@
 import { all } from 'redux-saga/effects';
+import getContentCategoryWatcher from './content/getCategoryContentSaga';
 
 import createDirectorySaga from './directory/createDirectorySaga';
 import deleteDirectoryWatcher from './directory/deleteDirectorySaga';
@@ -9,5 +10,6 @@ export default function* () {
     createDirectorySaga(),
     getDirectoriesWatcher(),
     deleteDirectoryWatcher(),
+    getContentCategoryWatcher(),
   ]);
 }
