@@ -8,7 +8,9 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
-import { getContentsCategoryAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction } from '../../redux/actions';
+import {
+  getContentsCategoryAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction,
+} from '../../redux/actions';
 import CreateContentCard from '../Content/CreateContentCard';
 
 import CreateDirectoryModal from './CreateDirectoryModal';
@@ -18,9 +20,6 @@ function MainDirectories() {
   const directories = useSelector((state) => state.directories);
   const isLastDir = useSelector((state) => state.isLastDir.isLast);
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
-  console.log(isLastDir, ' on render');
-  // const [contentArr, setContentArr] = useState([]);
-  // const contentArr = [];
   const page = window.location.pathname;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,36 +28,20 @@ function MainDirectories() {
       dispatch(getDirectoriesAction());
       dispatch(setIsLastDirAction(false));
     }
-    // if (page === '/') {
-    //   dispatch(deleteBreadcrumbsLinkAction({ id: '' }));
-    // }
+
     if (isLastDir) {
-      console.log('im in if');
       dispatch(getContentsCategoryAction(currentDirectory));
-      console.log('im after if');
-      // const getContents = async () => {
-      //   const res = await fetch(`content/${currentDirectory}`);
-      //   const data = await res.json();
-      //   console.log(data);
-      //   setContentArr(data.content);
-      // };
-      // getContents();
-      // console.log(contentArr, ' <<<<< STATE IN IF');
     }
   }, [dispatch]);
 
-  // useEffect(() => {
-  // }, []);
   if (isLastDir) {
-    console.log('im in if');
+    // console.log('im in if');
     const getContents = async () => {
       const res = await fetch(`content/${currentDirectory}`);
       const data = await res.json();
       console.log(data);
-      // setContentArr(data.content);
     };
     getContents();
-    // console.log(contentArr, ' <<<<< STATE IN IF');
   }
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Body from './Components/Body';
 import Navigation from './Components/Navigation';
+import SendFile from './Components/test/SendFile';
 // import ContentMain from './Components/Content/ContentMain';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
         <Route path="/testform">
           {/* <Fetch /> */}
         </Route>
-        <Route path="/admininfo">
-          {/* <ContentMain key='1' /> */}
+        <Route path="/sendfile">
+          <SendFile />
         </Route>
       </Switch>
     </>
