@@ -64,15 +64,16 @@ router.post('/', async (req, res) => {
 //   }
 // });
 
-router.post('/upload', (req, res) => {
-  upload(req, res, (err) => {
+router.post('/upload', function (req, res) {
+  upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
-      return res.status(500).json(err);
-    } if (err) {
-      return res.status(500).json(err);
+      return res.status(500).json(err)
+    } else if (err) {
+      return res.status(500).json(err)
     }
-    return res.status(200).send(req.file);
-  });
+    return res.status(200).send(req.file)
+  })
+
 });
 
 export default router;

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function SendFile() {
   const [selectedFile, setSelectedFile] = useState(null);
-
+  
   const onChangeHandler = (event) => {
     setSelectedFile({
       selectedFile: event.target.files[0],
@@ -11,10 +11,11 @@ function SendFile() {
     });
   };
   const onClickHandler = async (e) => {
+    console.log(selectedFile);
     e.preventDefault();
     const data = new FormData();
     data.append('file', selectedFile);
-
+console.log(data);
     const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
     });
     console.log(res);
@@ -22,7 +23,7 @@ function SendFile() {
 
   return (
     <>
-      <form onSubmit={(e) => onClickHandler(e)}>
+      <form onSubmit={onClickHandler}>
         <input type="file" name="file" onChange={onChangeHandler} />
         <input type="submit" value="Go" />
       </form>

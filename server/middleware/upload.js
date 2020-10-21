@@ -1,4 +1,4 @@
-// import multer from 'multer';
+import multer from 'multer';
 // import FTPStorage from 'multer-ftp';
 // import FTP from 'ftp';
 
@@ -42,16 +42,12 @@
 //   // });
 // });
 
-// export default upload;
-
-// import express from 'express';
-import multer from 'multer';
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => { cb(null, 'public'); },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
+  destination: '../public'},
+  {filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname)
+  }
+})
 
 export default storage;
