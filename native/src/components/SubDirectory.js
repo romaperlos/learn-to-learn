@@ -5,8 +5,8 @@ import {
 } from 'react-native';
 import { THEME } from '../theme';
 
-export const SubDirectory = ({ subDirectory }) => (
-  <TouchableOpacity activeOpacity={0.5}>
+export const SubDirectory = ({ subDirectory, onChooseSubDirectory }) => (
+  <TouchableOpacity activeOpacity={0.5} onPress={() => onChooseSubDirectory(subDirectory)}>
     <View style={styles.container}>
       <Text style={styles.title}>{subDirectory.title}</Text>
     </View>

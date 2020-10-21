@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import { LOADING_DIR, GET_DIRECTORIES, LOADING_LOGIN, HANDLER_LOGIN, ERROR_LOGIN, START_BREAD_CRUMBS } from './actionTypes';
+import { LOADING_DIR, GET_DIRECTORIES, LOADING_LOGIN, HANDLER_LOGIN, ERROR_LOGIN, START_BREAD_CRUMBS, ADD_BREAD_CRUMBS, DELETE_BREAD_CRUMBS } from './actionTypes';
 
 export const loadingDir = { type: LOADING_DIR };
 
@@ -33,4 +33,12 @@ export const handlerLogin = (user) => async function (dispatch) {
 
 export const startBreadCrumbs = (directory) => {
   return ({ type: START_BREAD_CRUMBS, payload: directory });
+};
+
+export const addBreadCrumbs = (subDirectory) => {
+  return ({ type: ADD_BREAD_CRUMBS, payload: subDirectory });
+};
+
+export const deleteBreadCrumbs = (newBreadCrumbs) => {
+  return ({ type: DELETE_BREAD_CRUMBS, payload: newBreadCrumbs });
 };
