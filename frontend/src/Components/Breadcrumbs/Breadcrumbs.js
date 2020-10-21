@@ -1,25 +1,61 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import { makeStyles, Breadcrumbs as BreadcrumbsUI } from '@material-ui/core';
+
+import Link from '@material-ui/core/Link';
 import { deleteBreadcrumbsLinkAction, getDirectoriesAction, setCurrentDirectoryAction } from '../../redux/actions';
+import { useHistory } from 'react-router-dom';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(6),
+    },
+  },
+}));
 
 function Breadcrumbs() {
+  const history = useHistory();
+  const classes = useStyles();
   const breadcrumbs = useSelector((state) => state.breadcrumbs);
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
   const dispatch = useDispatch();
-  const deleteItem = (id) => {
+  const deleteItem = (e, id) => {
+    e.preventDefault();
     dispatch(deleteBreadcrumbsLinkAction(id));
     dispatch(setCurrentDirectoryAction(id));
     dispatch(getDirectoriesAction(id));
+    if (!id) {
+      history.push('/');
+    }
   };
 
   return (
     <>
-      {breadcrumbs.map((el) => (
-        <Button key={el.id} onClick={() => deleteItem(el.id)} variant="contained" color="primary">
-          {el.title}
-        </Button>
-      ))}
+      <BreadcrumbsUI aria-label="breadcrumb">
+        {breadcrumbs.map((el, i) => {
+          if (breadcrumbs.length - 1 === i) {
+            return (
+              <Link key={el.id} onClick={(e) => deleteItem(e, el.id)} color="textPrimary" href="/" aria-current="page">
+                {el.title}
+              </Link>
+            );
+          }
+          // if (el.id === '') {
+          //   return (
+          //     <Link key={el.id} onClick={(e) => deleteItem(e, el.id)} color="textPrimary" href="/123" aria-current="page">
+          //       {el.title}
+          //     </Link>
+          //   );
+          // }
+          return (
+            <Link key={el.id} onClick={(e) => deleteItem(e, el.id)} color="inherit" href="/">
+              {el.title}
+            </Link>
+          );
+        })}
+      </BreadcrumbsUI>
     </>
   );
 }

@@ -5,6 +5,7 @@ import breadcrumbsReducer from './reducers/breadCrumbsLinks';
 import directoryReducer from './reducers/directory';
 import errorReducer from './reducers/error';
 import setDirectoryReducer from './reducers/setDirectory';
+import setIsLastReducer from './reducers/setIsLastDir';
 import rootSaga from './saga/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -16,6 +17,7 @@ const store = createStore(combineReducers({
   error: errorReducer,
   currentDirectory: setDirectoryReducer,
   breadcrumbs: breadcrumbsReducer,
+  isLastDir: setIsLastReducer,
 }),
 JSON.parse(preloadedState),
 composeWithDevTools(

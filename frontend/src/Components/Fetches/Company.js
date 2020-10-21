@@ -9,7 +9,6 @@ export default function Company() {
     companyName: '',
     description: '',
     logoUrl: '',
-    user: '',
   });
 
   const inputsChange = ({ target: { value, name } }) => {
@@ -18,13 +17,12 @@ export default function Company() {
       ...input,
       [name]: value,
     });
-    console.log(input);
   };
 
   const classes = useStyles();
   const fetchSomething = async (e) => {
     e.preventDefault();
-    const res = await fetch('/directory', {
+    const res = await fetch('/company', {
       method: 'POST',
       body: JSON.stringify(input),
       headers: {
@@ -35,12 +33,9 @@ export default function Company() {
       companyName: '',
       description: '',
       logoUrl: '',
-      user: '',
     });
     return res;
-    // console.log('ok');
   };
-  console.log(classes.bigPadding, '<<< classes');
   return (
     <div className="d-flex align-items-center justify-content-center">
       <Grid
@@ -49,7 +44,6 @@ export default function Company() {
         justify="center"
         alignItems="center"
         className="p-5"
-        // className={classes.root.bigPadding}
       >
         <Grid item xs>
           <h3>Company</h3>
@@ -57,7 +51,6 @@ export default function Company() {
             <TextField onChange={inputsChange} label="Company name" name="companyName" value={input.companyName} />
             <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
             <TextField onChange={inputsChange} label="logoUrl" name="logoUrl" value={input.logoUrl} />
-            <TextField onChange={inputsChange} label="User" name="user" value={input.user} />
             <Button type="submit" variant="contained">Seed!</Button>
           </form>
         </Grid>
