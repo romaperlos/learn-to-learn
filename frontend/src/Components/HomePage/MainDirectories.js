@@ -37,15 +37,15 @@ function MainDirectories() {
     <>
       <Route exact path="/">
 
-        <Grid container spacing={3}>
+        <Grid container spacing={3}  alignItems="center">
           {!isLastDir && (
-          <Grid item lg={3} sm={6} xs={12}>
+          <Grid item lg={3} sm={6} xs={6}>
             <CreateDirectoryModal />
           </Grid>
           )}
           {/* Проверка на наличие ID в сторе. Если его нет, то это главная и рендера не будет */}
           {(currentDirectory) && (
-          <Grid item lg={3} sm={6} xs={12}>
+          <Grid item lg={3} sm={6} xs={6}>
             <Link to="/new">
               <CreateContentCard />
             </Link>
@@ -59,7 +59,7 @@ function MainDirectories() {
             //   timeout={500}
             //   classNames="s-directories"
             // >
-            <Grid key={el._id} item lg={3} sm={6} xs={12}>
+            <Grid key={el._id} item lg={3} sm={6} xs={6}>
               <MainCurrentDirectory
                 description={el.description}
                 title={el.title}

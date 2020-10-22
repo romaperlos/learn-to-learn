@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    // maxWidth: 345,
     minHeight: 318,
   },
   description: {
