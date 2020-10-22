@@ -22,19 +22,23 @@ export function DirectoryScreen({ navigation }) {
   }
   const [subDirectories, setSubDirectories] = useState(initialSubDirectories);
 
+
   const showThemes = (leftDirectory) => {
     const newSubDirectories = directories.filter((el) => el.parent === leftDirectory._id);
     const breadCrumbsIndex = breadCrumbs.findIndex((el) => el._id === leftDirectory._id);
     const cloneBreadCrumbs = [...breadCrumbs];
-    console.log(cloneBreadCrumbs);
-    const newBreadCrumbs = breadCrumbs.splice(breadCrumbsIndex + 1, Infinity);
-    dispatch(deleteBreadCrumbs(newBreadCrumbs));
+    cloneBreadCrumbs.splice(breadCrumbsIndex + 1, Infinity);
+    dispatch(deleteBreadCrumbs(cloneBreadCrumbs));
     return setSubDirectories(newSubDirectories);
   };
 
   const ChooseSubDirectory = (subDirectory) => {
+    if (subDirectory.lastDir) {
+      return navigation.navigate('Content', { subDirectory });
+    }
     dispatch(addBreadCrumbs(subDirectory));
-    showThemes(subDirectory);
+    const newSubDirectories = directories.filter((el) => el.parent === subDirectory._id);
+    return setSubDirectories(newSubDirectories);
   };
 
   return (
@@ -60,7 +64,7 @@ export function DirectoryScreen({ navigation }) {
 DirectoryScreen.navigationOptions = ({ navigation }) => {
   const directory = navigation.getParam('directory');
   return {
-    headerTitle: directory.title,
+    headerTitle: 'Back to My Courses',
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
@@ -75,32 +79,28 @@ DirectoryScreen.navigationOptions = ({ navigation }) => {
           />
       </HeaderButtons>
     ),
-    // headerLeft: (
-    //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-    //     <Item
-    //       title="drawer"
-    //       iconName="menu"
-    //       onPress={() => navigation.toggleDrawer()}
-    //     />
-    //   </HeaderButtons>
-    // ),
   };
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    color: 'red',
+    paddingTop: 15,
   },
   leftMenu: {
-    flex: 2,
+    flex: 1,
+    marginHorizontal: 5,
+    paddingRight: 10,
+    borderRightWidth: 1,
+    borderColor:'#D8D8D8',
   },
   rightMenu: {
-    flex: 2,
+    flex: 3,
+    marginHorizontal: 5,
+    // alignItems: 'center',
   },
 });

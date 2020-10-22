@@ -7,8 +7,7 @@ import {
   StyleSheet, FlatList, Text, View,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { getDirectories } from '../redux/actions';
-import { startBreadCrumbs } from '../redux/actions';
+import { getDirectories, startBreadCrumbs, getContent } from '../redux/actions';
 import { Directory } from '../components/Directory';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
@@ -19,6 +18,7 @@ export function LearningScreen({ navigation }) {
 
   useEffect(() => {
     dispatch(getDirectories());
+    dispatch(getContent());
   }, []);
 
   let parentDirectories = null;

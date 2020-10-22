@@ -1,5 +1,5 @@
 import {
-  ADD_DIRECTORY, CREATE_DIRECTORY, CREATE_USER, EDIT_DIRECTORY, GET_CURRENT_DIRECTORIES, GET_DIRECTORIES, GET_ERROR, SET_DIRECTORIES, SET_CURRENT_DIRECTORY, DELETE_DIRECTORY, TRY_DELETE_ITEM, ADD_BREADCRUMB_LINK, DELETE_BREADCRUMB_LINK, SET_ISLASTDIR,
+  ADD_DIRECTORY, CREATE_DIRECTORY, CREATE_USER, EDIT_DIRECTORY, GET_CURRENT_DIRECTORIES, GET_DIRECTORIES, GET_ERROR, SET_DIRECTORIES, SET_CURRENT_DIRECTORY, DELETE_DIRECTORY, TRY_DELETE_ITEM, ADD_BREADCRUMB_LINK, DELETE_BREADCRUMB_LINK, SET_ISLASTDIR, GET_CONTENT_CATEGORY, SET_CONTENT_CATEGORY, USER_AUTH, SET_THEME,
 } from './actionTypes';
 
 export const createUser = (user) => ({ type: CREATE_USER, payload: user });
@@ -37,3 +37,10 @@ export const addBreadcrumbsLinkAction = (obj) => ({ type: ADD_BREADCRUMB_LINK, p
 export const deleteBreadcrumbsLinkAction = (id) => ({ type: DELETE_BREADCRUMB_LINK, payload: id });
 
 export const setIsLastDirAction = (boolean) => ({ type: SET_ISLASTDIR, payload: boolean });
+
+export const getContentsCategoryAction = (id) => ({ type: GET_CONTENT_CATEGORY, payload: id });
+export const setContentsCategoryAction = (arr) => ({ type: SET_CONTENT_CATEGORY, payload: arr });
+
+export const isUserAuth = (obj) => ({ type: USER_AUTH, payload: obj });
+
+export const setThemeAction = (obj) => ({ type: SET_THEME, payload: obj });

@@ -10,6 +10,7 @@ import { DirectoryScreen } from '../screens/DirectoryScreen';
 import { AboutScreen } from '../screens/AboutScreen';
 import { FeedbackScreen } from '../screens/FeedbackScreen';
 import { LoginScreen } from '../screens/LoginScreen';
+import { ContentScreen } from '../screens/ContentScreen';
 
 import { THEME } from '../theme';
 
@@ -28,6 +29,7 @@ const LearnNavigator = createStackNavigator(
     Main: MainScreen,
     Learning: LearningScreen,
     Directory: DirectoryScreen,
+    Content: ContentScreen,
   },
   navigatorOptions,
 );
