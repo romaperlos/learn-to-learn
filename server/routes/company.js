@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
 
 router.patch('/', async (req, res) => {
   const {
-    companyName, description, logoUrl, companyId,
+    companyName, description, logoUrl, companyId, mainColor
   } = req.body;
 
   let company;
@@ -67,6 +67,7 @@ router.patch('/', async (req, res) => {
     companyName ? company.companyName = companyName : company.companyName;
     description ? company.description = description : company.description;
     logoUrl ? company.logoUrl = logoUrl : company.logoUrl;
+    mainColor ? company.mainColor = mainColor : company.mainColor;
     await company.save();
     return res.status(200).json(company);
   } catch (error) {
