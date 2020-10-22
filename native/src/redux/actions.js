@@ -1,6 +1,16 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable func-names */
-import { LOADING_DIR, GET_DIRECTORIES, LOADING_LOGIN, HANDLER_LOGIN, ERROR_LOGIN, START_BREAD_CRUMBS, ADD_BREAD_CRUMBS, DELETE_BREAD_CRUMBS } from './actionTypes';
+import {
+  LOADING_DIR,
+  GET_DIRECTORIES,
+  LOADING_LOGIN,
+  HANDLER_LOGIN,
+  ERROR_LOGIN,
+  START_BREAD_CRUMBS,
+  ADD_BREAD_CRUMBS,
+  DELETE_BREAD_CRUMBS,
+  GET_CONTENT,
+} from './actionTypes';
 
 export const loadingDir = { type: LOADING_DIR };
 
@@ -9,6 +19,12 @@ export const getDirectories = () => async function (dispatch) {
   const resp = await fetch('http://192.168.1.140:3001/native/directory');
   const result = await resp.json();
   return dispatch({ type: GET_DIRECTORIES, payload: result.directory });
+};
+
+export const getContent = () => async function (dispatch) {
+  const resp = await fetch('http://192.168.1.140:3001/native/content');
+  const result = await resp.json();
+  return dispatch({ type: GET_CONTENT, payload: result.content });
 };
 
 export const loadingLogin = { type: LOADING_LOGIN };
