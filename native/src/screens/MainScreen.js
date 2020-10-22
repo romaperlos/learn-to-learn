@@ -23,17 +23,14 @@ export function MainScreen({ navigation }) {
   const loginUser = useSelector((state) => state.loginUser);
   const loadingLogin = useSelector((state) => state.loadingLogin);
   const errorLogin = useSelector((state) => state.errorLogin);
+  const companyInfo = useSelector((state) => state.companyInfo);
 
-  // console.log({
-  //   email: inputEmail,
-  //   password: inputPassword,
-  // });
+  console.log(companyInfo);
 
   return (
     <ScrollView style={styles.wrapper}>
-      <CompanyInfo company={DATA[0]} />
-      <View style={styles.container}>
-        {!loginUser
+      
+      {!loginUser
         && (
           <View style={styles.container}>
             <TextInput
@@ -62,13 +59,17 @@ export function MainScreen({ navigation }) {
             />
           </View>
         )}
-        {errorLogin && <Text style={styles.title}>Something went wrong...</Text>}
-        {loginUser && <Text onPress={goToMyCourse} style={styles.title}>START EDUCATION</Text>}
-      </View>
+      {errorLogin && <Text style={styles.title}>Something went wrong...</Text>}
+      {loginUser && (
+      <>
+        {companyInfo && <CompanyInfo company={companyInfo} />}
+        <Text onPress={goToMyCourse} style={styles.title}>START EDUCATION</Text>
+      </>
+      )}
     </ScrollView>
   );
 }
-
+ 
 // свойства для конкретного экрана
 MainScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Learn-to-Learn',
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 5,
     borderWidth: 1,
-    borderColor: THEME.MAIN_COLOR,
+    borderColor: '#000',
     marginBottom: 5,
     borderRadius: 10,
   },

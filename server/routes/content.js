@@ -51,4 +51,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Content.findByIdAndDelete(id);
+    const content = await Content.find();
+    return res.status(200).json({ content });
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ message: error.message });
+  }
+});
+
 export default router;
