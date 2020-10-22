@@ -56,14 +56,30 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.patch('/', async (req, res) => {
+router.post('/customcolor', async (req, res) => {
   const {
-    companyName, description, logoUrl, companyId, mainColor
+    companyName, description, logoUrl, mainColor,
   } = req.body;
 
-  let company;
+  const company = await new Company({
+    companyName, description, logoUrl, mainColor,
+  });
   try {
-    company = await Company.findById(companyId);
+    await company.save();
+    return res.status(200).json(company);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: error.message });
+  }
+});
+
+router.patch('/', async (req, res) => {
+  const {
+    companyName, description, logoUrl, companyId, mainColor,
+  } = req.body;
+
+  try {
+    const company = await Company.findById(companyId);
     companyName ? company.companyName = companyName : company.companyName;
     description ? company.description = description : company.description;
     logoUrl ? company.logoUrl = logoUrl : company.logoUrl;
