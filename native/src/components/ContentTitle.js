@@ -7,12 +7,11 @@ import {
 } from 'react-native';
 import { THEME } from '../theme';
 
-export const LeftDirectory = ({ leftDirectory, onShowThemes }) => {
+export const ContentTitle = ({ contentTitle, onShowContent }) => {
   return (
-    <TouchableOpacity activeOpacity={0.5} onPress={() => onShowThemes(leftDirectory)}>
+    <TouchableOpacity activeOpacity={0.5} onPress={() => onShowContent(contentTitle)}>
       <View style={styles.container}>
-        {leftDirectory.parent && <Feather name="chevron-down" size={18} color="black" />}
-        <Text style={styles.title}>{leftDirectory.title}</Text>
+        <Text style={styles.title}>{contentTitle.title}</Text>
       </View>
     </TouchableOpacity>
   );

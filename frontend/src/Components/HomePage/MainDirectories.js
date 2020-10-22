@@ -15,34 +15,23 @@ import CreateContentCard from '../Content/CreateContentCard';
 
 import CreateDirectoryModal from './CreateDirectoryModal';
 import MainCurrentDirectory from './MainCurrentDirectory';
+import ContentListRender from '../Content/ContentListRender';
 
 function MainDirectories() {
   const directories = useSelector((state) => state.directories);
   const isLastDir = useSelector((state) => state.isLastDir.isLast);
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
+  const contents = useSelector((state) => state.contents);
   const page = window.location.pathname;
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (page === '/' || directories.length === 0) {
       dispatch(setCurrentDirectoryAction(''));
       dispatch(getDirectoriesAction());
       dispatch(setIsLastDirAction(false));
     }
-
-    if (isLastDir) {
-      dispatch(getContentsCategoryAction(currentDirectory));
-    }
   }, [dispatch]);
-
-  if (isLastDir) {
-    // console.log('im in if');
-    const getContents = async () => {
-      const res = await fetch(`content/${currentDirectory}`);
-      const data = await res.json();
-      console.log(data);
-    };
-    getContents();
-  }
 
   return (
     <>
@@ -82,6 +71,11 @@ function MainDirectories() {
             // </CSSTransition>
           ))}
           {/* </TransitionGroup> */}
+          <Grid item xs={12}>
+            {isLastDir && contents.map((el, i) => (
+              <ContentListRender key={el._id} title={el.title} description={el.description} id={el._id} num={i + 1} />
+            ))}
+          </Grid>
         </Grid>
       </Route>
     </>

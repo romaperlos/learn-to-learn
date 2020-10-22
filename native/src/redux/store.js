@@ -5,7 +5,8 @@ import { reducer } from './reducer';
 
 const initialState = {
   directories: null,
-  loadingTest: false,
+  content: null,
+  loadingDir: false,
   loginUser: false,
   loadingLogin: false,
   errorLogin: false,

@@ -17,13 +17,16 @@ function SendFile() {
     data.append('file', selectedFile);
     // console.log('>>>>>',data);
 
-    const res = await fetch('/upload', {
-      method: 'POST',
-      body: data
-    })
-    // const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
-    // });
-    console.log('1', res);
+    // const res = await fetch('/upload', {
+    //   method: 'POST',
+    //   body: data
+    // })
+    // // const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
+    // // });
+    
+    const res = await axios.post('/upload', data, { // receive two parameter endpoint url ,form data
+    });
+    console.log(res);
   };
 
   return (

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Fetch from './Fetch';
 import MainDirectories from './HomePage/MainDirectories';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
 import CreateMain from './Content/CreateMain';
+
+import { deleteBreadcrumbsLinkAction, setCurrentDirectoryAction } from '../redux/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Body() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(deleteBreadcrumbsLinkAction(''));
+  }, []);
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
   const classes = useStyles();
   return (
