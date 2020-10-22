@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { CirclePicker } from 'react-color';
+import { useDispatch } from 'react-redux';
 import { useStyles } from '../Fetch';
+import { setThemeAction } from '../../redux/actions';
 
 export default function Company() {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     companyName: '',
     description: '',
@@ -36,6 +40,10 @@ export default function Company() {
     });
     return res;
   };
+
+  const colorChange = (color, event) => {
+    dispatch(setThemeAction({ primary: color.hex }));
+  };
   return (
     <div className="d-flex align-items-center justify-content-center">
       <Grid
@@ -53,7 +61,7 @@ export default function Company() {
             <TextField onChange={inputsChange} label="logoUrl" name="logoUrl" value={input.logoUrl} />
             <Button type="submit" variant="contained">Seed!</Button>
           </form>
-          
+          <CirclePicker onChangeComplete={colorChange} />
         </Grid>
       </Grid>
     </div>
