@@ -41,4 +41,4 @@ export const setIsLastDirAction = (boolean) => ({ type: SET_ISLASTDIR, payload: 
 export const getContentsCategoryAction = (id) => ({ type: GET_CONTENT_CATEGORY, payload: id });
 export const setContentsCategoryAction = (arr) => ({ type: SET_CONTENT_CATEGORY, payload: arr });
 
-export const isUserAuth = (bool) => ({ type: USER_AUTH, payload: bool });
+export const isUserAuth = (obj) => ({ type: USER_AUTH, payload: obj });

@@ -40,7 +40,7 @@ export default function Navigation() {
   };
 
   const logout = () => {
-    dispatch(isUserAuth(false));
+    dispatch(isUserAuth({ auth: false }));
   };
 
   return (
