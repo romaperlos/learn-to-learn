@@ -50,6 +50,7 @@ export const reducer = (state, action) => {
         loadingLogin: false,
         errorLogin: false,
         loginUser: true,
+        companyInfo: action.payload,
       };
 
     case START_BREAD_CRUMBS:
