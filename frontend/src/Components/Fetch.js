@@ -46,22 +46,22 @@ export default function Fetch() {
           </Button>
         </Link>
       </Grid>
-      <Grid item md={3}>
+      {/* <Grid item md={3}>
 
         <Link to="/testform/content">
           <Button variant="contained" color="primary">
             Content
           </Button>
         </Link>
-      </Grid>
-      <Grid item md={3}>
+      </Grid> */}
+      {/* <Grid item md={3}>
 
         <Link to="/testform/directory">
           <Button variant="contained" color="primary">
             Directory
           </Button>
         </Link>
-      </Grid>
+      </Grid> */}
       <Grid item md={3}>
 
         <Link to="/testform/user">

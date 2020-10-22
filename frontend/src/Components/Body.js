@@ -47,9 +47,9 @@ function Body() {
             <CreateMain directory={currentDirectory} />
           </Route>
         </Grid>
-        {/* <Grid item sm={3} className="mt-3">
+        <Grid item sm={12} className="mt-3">
           <Fetch />
-        </Grid> */}
+        </Grid>
       </Grid>
     </div>
   );
