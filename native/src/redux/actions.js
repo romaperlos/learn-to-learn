@@ -42,7 +42,9 @@ export const handlerLogin = (user) => async function (dispatch) {
     }),
   });
   if (resp.status === 200) {
-    return dispatch({ type: HANDLER_LOGIN });
+    const result = await resp.json();
+    console.log('thunk>>>>>>', result);
+    return dispatch({ type: HANDLER_LOGIN, payload: result.company });
   }
   return dispatch({ type: ERROR_LOGIN });
 };
