@@ -2,14 +2,13 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  StyleSheet, View, Image,
+  StyleSheet, Text, View, TouchableOpacity,
 } from 'react-native';
 
-export const PicURL = ({ picUrl }) => {
-  console.log(picUrl);
+export const Title = ({ title }) => {
   return (
       <View style={styles.container}>
-        <Image source={{ uri: picUrl }} style={styles.image} />
+        <Text style={styles.text}>{title}</Text>
       </View>
   );
 };
@@ -21,11 +20,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-  image: {
+  text: {
+    fontFamily: 'open-regular',
+    fontSize: 30,
+    textAlign: 'center',
+    fontWeight: 'bold',
     width: '100%',
-    height: 200,
-    marginBottom: 20,
-    borderRadius: 10,
-    flex: 1,
+    color: '#000',
   },
 });
