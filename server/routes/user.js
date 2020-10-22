@@ -92,6 +92,7 @@ router
     const { email, password } = req.body;
     try {
       const user = await User.findOne({ email }).populate('company');
+      console.log(user);
       if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user = user;
         req.session.user.password = undefined;

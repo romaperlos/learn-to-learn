@@ -56,6 +56,25 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.patch('/', async (req, res) => {
+  const {
+    companyName, description, logoUrl, companyId,
+  } = req.body;
+
+  let company;
+  try {
+    company = await Company.findById(companyId);
+    companyName ? company.companyName = companyName : company.companyName;
+    description ? company.description = description : company.description;
+    logoUrl ? company.logoUrl = logoUrl : company.logoUrl;
+    await company.save();
+    return res.status(200).json(company);
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: error.message });
+  }
+});
+
 router.route('/registration')
   .get((req, res) => {
     res.end();
