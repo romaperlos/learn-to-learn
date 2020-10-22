@@ -8,58 +8,30 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
-import { getContentsCategoryAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction } from '../../redux/actions';
+import {
+  getContentsCategoryAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction,
+} from '../../redux/actions';
 import CreateContentCard from '../Content/CreateContentCard';
 
 import CreateDirectoryModal from './CreateDirectoryModal';
 import MainCurrentDirectory from './MainCurrentDirectory';
+import ContentListRender from '../Content/ContentListRender';
 
 function MainDirectories() {
   const directories = useSelector((state) => state.directories);
   const isLastDir = useSelector((state) => state.isLastDir.isLast);
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
-  console.log(isLastDir, ' on render');
-  // const [contentArr, setContentArr] = useState([]);
-  // const contentArr = [];
+  const contents = useSelector((state) => state.contents);
   const page = window.location.pathname;
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (page === '/' || directories.length === 0) {
       dispatch(setCurrentDirectoryAction(''));
       dispatch(getDirectoriesAction());
       dispatch(setIsLastDirAction(false));
     }
-    // if (page === '/') {
-    //   dispatch(deleteBreadcrumbsLinkAction({ id: '' }));
-    // }
-    if (isLastDir) {
-      console.log('im in if');
-      dispatch(getContentsCategoryAction(currentDirectory));
-      console.log('im after if');
-      // const getContents = async () => {
-      //   const res = await fetch(`content/${currentDirectory}`);
-      //   const data = await res.json();
-      //   console.log(data);
-      //   setContentArr(data.content);
-      // };
-      // getContents();
-      // console.log(contentArr, ' <<<<< STATE IN IF');
-    }
   }, [dispatch]);
-
-  // useEffect(() => {
-  // }, []);
-  if (isLastDir) {
-    console.log('im in if');
-    const getContents = async () => {
-      const res = await fetch(`content/${currentDirectory}`);
-      const data = await res.json();
-      console.log(data);
-      // setContentArr(data.content);
-    };
-    getContents();
-    // console.log(contentArr, ' <<<<< STATE IN IF');
-  }
 
   return (
     <>
@@ -99,6 +71,11 @@ function MainDirectories() {
             // </CSSTransition>
           ))}
           {/* </TransitionGroup> */}
+          <Grid item xs={12}>
+            {isLastDir && contents.map((el, i) => (
+              <ContentListRender key={el._id} title={el.title} description={el.description} id={el._id} num={i + 1} />
+            ))}
+          </Grid>
         </Grid>
       </Route>
     </>
