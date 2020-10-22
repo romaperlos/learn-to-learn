@@ -95,6 +95,7 @@ router
       if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user = user;
         req.session.user.password = undefined;
+        req.session.user.company = user.company;
         res.status(200).json(user);
       } else if (!user) {
         res.status(401).json({ message: 'Введенный e-mail не зарегистрирован' });
