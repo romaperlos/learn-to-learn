@@ -25,23 +25,13 @@ function MainDirectories() {
   const page = window.location.pathname;
   const dispatch = useDispatch();
 
-
-  // window.onbeforeunload = () => dispatch(setCurrentDirectoryAction(''));
-
   useEffect(() => {
-    // dispatch(setCurrentDirectoryAction(''));
     if (page === '/' || directories.length === 0) {
       dispatch(setCurrentDirectoryAction(''));
       dispatch(getDirectoriesAction());
       dispatch(setIsLastDirAction(false));
     }
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (isLastDir) {
-  //     dispatch(getContentsCategoryAction(currentDirectory));
-  //   }
-  // }, []);
 
   return (
     <>
