@@ -6,10 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 import Popover from '@material-ui/core/Popover';
 import CreateDirectory from './CreateDirectory';
+import { useSelector } from 'react-redux';
+
+
+// const isLastDir = useSelector((state) => state)
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    // maxWidth: 345,
     minHeight: 318,
   },
   description: {

@@ -53,6 +53,7 @@ export default function Company() {
             <TextField onChange={inputsChange} label="logoUrl" name="logoUrl" value={input.logoUrl} />
             <Button type="submit" variant="contained">Seed!</Button>
           </form>
+          
         </Grid>
       </Grid>
     </div>

@@ -12,13 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import MainEditInModal from './MainEditInModal';
 import {
-  getDirectoriesAction, setCurrentDirectoryAction, tryDeleteItemAction, addBreadcrumbsLinkAction,
+  getDirectoriesAction, setCurrentDirectoryAction, tryDeleteItemAction, addBreadcrumbsLinkAction, setIsLastDirAction, getContentsCategoryAction,
 } from '../../redux/actions';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    minHeight: 318,
+    // maxWidth: 345,
+    // minHeight: 318,
   },
   description: {
     height: 50,
@@ -34,7 +34,6 @@ export default function MainCurrentDirectory(props) {
   const {
     description, title, itemId, isLastDir,
   } = props;
-  console.log(isLastDir);
   const classes = useStyles();
   const random = Math.floor(Math.random() * 4 + 1);
 
@@ -54,9 +53,13 @@ export default function MainCurrentDirectory(props) {
 
   const getDirectories = () => {
     // console.log(itemId);
-    dispatch(addBreadcrumbsLinkAction({ id: itemId, title }));
+    dispatch(addBreadcrumbsLinkAction({ id: itemId, title, isLastDir }));
     dispatch(getDirectoriesAction(itemId));
     dispatch(setCurrentDirectoryAction(itemId));
+    dispatch(setIsLastDirAction(isLastDir));
+    if (isLastDir) {
+      dispatch(getContentsCategoryAction(itemId));
+    }
   };
 
   const open = Boolean(anchorEl);
