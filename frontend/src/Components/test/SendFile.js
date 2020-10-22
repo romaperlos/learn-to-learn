@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function SendFile() {
   const [selectedFile, setSelectedFile] = useState(null);
-  
+
   const onChangeHandler = (event) => {
     setSelectedFile({
       selectedFile: event.target.files[0],
@@ -11,14 +11,19 @@ function SendFile() {
     });
   };
   const onClickHandler = async (e) => {
-    console.log(selectedFile);
+    // console.log(selectedFile);
     e.preventDefault();
     const data = new FormData();
     data.append('file', selectedFile);
-console.log(data);
-    const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
-    });
-    console.log(res);
+    // console.log('>>>>>',data);
+
+    const res = await fetch('/upload', {
+      method: 'POST',
+      body: data
+    })
+    // const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
+    // });
+    console.log('1', res);
   };
 
   return (
