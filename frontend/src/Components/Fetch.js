@@ -38,14 +38,14 @@ export default function Fetch() {
       alignItems="center"
       className={classes.mainGrid}
     >
-      <Grid item md={3}>
+      {/* <Grid item md={3}>
 
         <Link to="/testform/company">
           <Button variant="contained" color="primary">
             Company
           </Button>
         </Link>
-      </Grid>
+      </Grid> */}
       {/* <Grid item md={3}>
 
         <Link to="/testform/content">
@@ -62,14 +62,14 @@ export default function Fetch() {
           </Button>
         </Link>
       </Grid> */}
-      <Grid item md={3}>
+      {/* <Grid item md={3}>
 
         <Link to="/testform/user">
           <Button variant="contained" color="primary">
             User
           </Button>
         </Link>
-      </Grid>
+      </Grid> */}
       <Route path="/testform/company">
         <Company />
       </Route>
