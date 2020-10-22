@@ -15,7 +15,7 @@ function SendFile() {
     const data = new FormData();
     data.append('file', selectedFile);
 
-    const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
+    const res = await axios.post('/upload', data, { // receive two parameter endpoint url ,form data
     });
     console.log(res);
   };
