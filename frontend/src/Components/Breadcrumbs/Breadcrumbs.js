@@ -21,19 +21,19 @@ function Breadcrumbs() {
   const breadcrumbs = useSelector((state) => state.breadcrumbs);
   // const currentDirectory = useSelector((state) => state.currentDirectory.id);
   // const isLastDir = useSelector((state) => state.isLastDir.isLast);
-  // const directories = useSelector((state) => state.directories);
+  const directories = useSelector((state) => state.directories);
   const dispatch = useDispatch();
   const deleteItem = (e, id, isLast) => {
     e.preventDefault();
-    dispatch(deleteBreadcrumbsLinkAction(id));
     dispatch(setCurrentDirectoryAction(id));
     dispatch(getDirectoriesAction(id));
+    dispatch(deleteBreadcrumbsLinkAction(id));
     dispatch(setIsLastDirAction(isLast));
     if (!id) {
       history.push('/');
     }
   };
-  
+
   return (
     <>
       <BreadcrumbsUI aria-label="breadcrumb">
