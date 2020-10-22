@@ -1,4 +1,3 @@
-import multer from 'multer';
 // import FTPStorage from 'multer-ftp';
 // import FTP from 'ftp';
 

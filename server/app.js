@@ -11,6 +11,9 @@ import uploadRouter from './routes/upload.js';
 
 const app = express();
 
+app.use(cors());
+useMiddleware(app);
+
 // Подключаем импортированные маршруты с определенным url префиксом.
 app.use('/directory', directoryRouter);
 app.use('/content', contentRouter);
@@ -18,7 +21,6 @@ app.use('/user', userRouter);
 app.use('/native', nativeRouter);
 app.use('/company', companyRouter);
 app.use('/upload', uploadRouter);
-
 
 // Обработка несуществующих запросов
 // errorHandlers(app);
