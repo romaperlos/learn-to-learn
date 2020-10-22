@@ -7,6 +7,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Box, Container } from '@material-ui/core';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Link } from 'react-router-dom';
+import Fetch from './Fetch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,9 +26,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navigation() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
   // <div className={classes.root}>
+
     <>
       <Container fixed>
         <Toolbar>
@@ -33,6 +47,7 @@ export default function Navigation() {
             color="inherit"
             aria-label="menu"
             className={classes.menuButton}
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
@@ -40,6 +55,32 @@ export default function Navigation() {
           <Box mr={3}>
             <Button color="inherit" variant="outlined">My Acc</Button>
           </Box>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <Link to="/">
+              <MenuItem onClick={handleClose}>Main</MenuItem>
+            </Link>
+            <Link to="/testform/company">
+              <MenuItem onClick={handleClose}>Company</MenuItem>
+            </Link>
+            <Link to="/testform/user">
+              <MenuItem onClick={handleClose}>Users</MenuItem>
+            </Link>
+            {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+          </Menu>
           <Button color="secondary" variant="contained">Logout</Button>
         </Toolbar>
       </Container>
