@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userReducer from '../../redux/reducers/userReducer';
+import { isUserAuth } from '../../redux/actions';
 
 function Copyright() {
   return (
@@ -73,7 +74,7 @@ export default function UserLoginForm() {
     });
     const data = await res.json();
     if (res.ok) {
-      dispatch(userReducer(true));
+      dispatch(isUserAuth(true));
     }
     console.log(data);
   };

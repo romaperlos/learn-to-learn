@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const isAuth = useSelector((state) => state.auth);
+  const isAuth = useSelector((state) => state.user.auth);
 
   return (
     <>
