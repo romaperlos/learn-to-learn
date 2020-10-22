@@ -91,16 +91,11 @@ router
   .post(async (req, res) => {
     const { email, password } = req.body;
     try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate('company');
       if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user = user;
         req.session.user.password = undefined;
-        res.json({
-          user: {
-            _id: req.session.user._id,
-            name: req.session.user.name,
-          },
-        });
+        res.status(200).json(user);
       } else if (!user) {
         res.status(401).json({ message: 'Введенный e-mail не зарегистрирован' });
       } else {
