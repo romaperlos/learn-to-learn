@@ -8,7 +8,7 @@ const router = express.Router();
 const multerStorage = multer.diskStorage({
   destination(req, file, callback) {
     console.log(process.cwd(), '<<<<<<<<');
-    callback(null, './uploadFiles');
+    callback(null, './uploadFiles/directory');
   },
   filename(req, file, callback) {
     console.log(file);
@@ -21,10 +21,12 @@ const multerStorage = multer.diskStorage({
 
 const upload = multer({ storage: multerStorage });
 
-router.post('/', (req, res, next) => {
+
+router.post('/directoryimg', (req, res, next) => {
   console.log('>>>>>>>>>>>>>>>>>', req.body);
   next();
 }, upload.single('file'), (req, res) => {
+  console.log('>>>>>>>>>>>>>>>>>', req.body);
   res.json({ responseText: 'Response from file upload!' });
 });
 

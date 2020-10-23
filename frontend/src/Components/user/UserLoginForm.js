@@ -73,8 +73,8 @@ export default function UserLoginForm() {
       },
     });
     const data = await res.json();
-    console.log(data, );
-    // if (res.ok) {
+    console.log(data,);
+    if (res.ok) {
       dispatch(isUserAuth({ auth: true, company: data }));
       // dispatch(setThemeAction({ primary: data.company.company.mainColor, secondary: data.company.company.secondColor }));
     }
@@ -138,13 +138,14 @@ export default function UserLoginForm() {
             <Grid item>
               <Link href="#" variant="body2">
                 Don't have an account? Sign Up
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
+              </Link>// router.post('/directoryimg', (req, res, next) => {
+                //   console.log('>>>>>>>>>>>>>>>>>', req.body);
+                //   next();
+                // }, upload.single('file'), (req, res) => {
+                //   console.log('>>>>>>>>>>>>>>>>>', req.body);
+                //   res.json({ responseText: 'Response from file upload!' });
+                // });
+                <Copyright />
       </Box>
     </Container>
   );
