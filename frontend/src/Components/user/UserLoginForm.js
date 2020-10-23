@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
 import { useDispatch } from 'react-redux';
 // import userReducer from '../../redux/reducers/userReducer';
 import { isUserAuth, setThemeAction } from '../../redux/actions';
@@ -30,7 +29,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -50,19 +48,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
 export default function UserLoginForm() {
   const classes = useStyles();
   const [input, setInput] = useState();
   const dispatch = useDispatch();
-
   const inputsChange = ({ target: { value, name } }) => {
     setInput({
       ...input,
       [name]: value,
     });
   };
-
   const submitForm = async (e) => {
     e.preventDefault();
     const res = await fetch('/user/login', {
@@ -78,7 +73,6 @@ export default function UserLoginForm() {
       dispatch(setThemeAction({ primary: data.company.mainColor, secondary: data.company.secondColor }));
     }
   };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -89,12 +83,10 @@ export default function UserLoginForm() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.= await res.json();
-    if (res.ok) {
-          dispatch(isUserAuth({ auth: true, company: data }));
-      dispatch(setThemeAction({primary: data.company.mainColor, secondary: data.company.secondColor }));
-    }
-    console.log
+        <form className={classes.form} onSubmit={(e) => submitForm(e)} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
             required
             fullWidth
             id="email"
@@ -105,47 +97,46 @@ export default function UserLoginForm() {
             onChange={inputsChange}
           />
           <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          onChange={inputsChange}
-        />
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-        >
-          Sign In
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={inputsChange}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
           </Button>
-        <Grid container>
-          <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
               </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                Don't have an account? Sign Up
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Link href="#" variant="body2">
-              Don't have an account? Sign Up
-              </Link>// router.post('/directoryimg', (req, res, next) => {
-              //   console.log('>>>>>>>>>>>>>>>>>', req.body);
-              //   next();
-              // }, upload.single('file'), (req, res) => {
-              //   console.log('>>>>>>>>>>>>>>>>>', req.body);
-              //   res.json({ responseText: 'Response from file upload!' });
-              // });
-              <Copyright />
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
       </Box>
     </Container>
   );
