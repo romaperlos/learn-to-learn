@@ -6,19 +6,31 @@ import {
 import { THEME } from '../theme';
 
 export const CompanyInfo = ({ company }) => {
-  
-  console.log(company)
+  console.log(company);
 
   return (
-  <View style={styles.container}>
-    <View style={styles.imageContainer}>
-      <Image style={styles.image} source={{ uri: company.logoUrl }} />
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: company.logoUrl }} />
+      </View>
+      <Text style={{
+        color: company.mainColor,
+        fontFamily: 'poppins-regular',
+        fontSize: 40,
+      }}
+      >
+        { company.companyName }
+      </Text>
+      <Text style={{
+        color: company.mainColor,
+        fontFamily: 'open-regular',
+      }}
+      >
+        { company.description }
+      </Text>
     </View>
-    <Text style={styles.title}>{ company.companyName }</Text>
-    <Text style={styles.description}>{ company.description }</Text>
-  </View>
-);
-  }
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -40,14 +52,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  title: {
-    color: THEME.MAIN_COLOR,
-    fontFamily: 'poppins-regular',
-    fontSize: 40,
-  },
+  // title: {
+  //   color: THEME.MAIN_COLOR,
+  //   fontFamily: 'poppins-regular',
+  //   fontSize: 40,
+  // },
 
-  description: {
-    color: THEME.MAIN_COLOR,
-    fontFamily: 'open-regular',
-  },
+  // description: {
+  //   color: THEME.MAIN_COLOR,
+  //   fontFamily: 'open-regular',
+  // },
 });

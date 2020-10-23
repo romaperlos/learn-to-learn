@@ -15,6 +15,11 @@ export function AboutScreen({}) {
       <Text style={styles.text}>Learn-to-Learn Application</Text>
       <Text>Created by R.A.M.A. team</Text>
       <Text>Version <Text style={styles.marker}>1.0.0</Text></Text>
+      <Image
+        // style={styles.tinyLogo}
+        source={require('../logo2.png')}
+        style={styles.imageLogo}
+      />
     </View>
   );
 }
@@ -59,7 +64,12 @@ const styles = StyleSheet.create({
   image: {
     width: 300,
     height: 100,
-    marginBottom: 40,
+    marginBottom: 60,
+  },
+  imageLogo: {
+    width: 50,
+    height: 50,
+    marginTop: 15,
   },
   text: {
     fontFamily: 'poppins-regular',
