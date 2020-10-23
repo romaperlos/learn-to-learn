@@ -9,6 +9,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { Title } from '../components/Title';
 import { Subtitle } from '../components/Subtitle';
+import { Description } from '../components/Description';
 import { VideoURL } from '../components/VideoURL';
 import { TextURL } from '../components/TextURL';
 import { TextArea } from '../components/TextArea';
@@ -62,7 +63,8 @@ export function ContentScreen({ navigation }) {
         keyExtractor={(contentTitle) => contentTitle._id.toString()}
         renderItem={({ item }) => (
           <View>
-            <Title title={item.title}/>
+            <Title title={item.title} />
+            <Description description={item.description} />
             {item.item.map((el) => {
               if (el.type === 'subtitle') {
                 return <Subtitle subtitle={el.value} />;

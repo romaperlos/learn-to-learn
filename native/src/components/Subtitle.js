@@ -15,10 +15,12 @@ export const Subtitle = ({ subtitle }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+
   },
   text: {
     fontFamily: 'open-regular',

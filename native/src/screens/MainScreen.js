@@ -54,8 +54,6 @@ export function MainScreen({ navigation }) {
               placeholder="Password"
               secureTextEntry={true}
               clearButtonMode="always"
-              
-              
             />
             <Text
               style={styles.loginButton}
@@ -108,20 +106,20 @@ MainScreen.navigationOptions = ({ navigation }) => ({
   headerStyle: {
     backgroundColor: 'grey',
   },
-  headerRight: (
-    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      {/* <Item
-        title="profile"
-        iconName="user"
-        onPress={() => console.log('was pressed user button')}
-      /> */}
-      <Item
-        title="logout"
-        iconName="log-out"
-        onPress={() => console.log('was pressed logout button')}
-      />
-    </HeaderButtons>
-  ),
+  // headerRight: (
+  //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+  //     {/* <Item
+  //       title="profile"
+  //       iconName="user"
+  //       onPress={() => console.log('was pressed user button')}
+  //     /> */}
+  //     {/* <Item
+  //       title="logout"
+  //       iconName="log-out"
+  //       onPress={() => console.log('was pressed logout button')}
+  //     />
+  //   </HeaderButtons> */}
+  // ),
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
