@@ -17,7 +17,7 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 325,
+    width: 200,
     minHeight: 400,
   },
   description: {
