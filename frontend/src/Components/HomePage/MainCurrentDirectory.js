@@ -17,14 +17,15 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    // maxWidth: 345,
-    // minHeight: 318,
+    maxWidth: 325,
+    minHeight: 400,
   },
   description: {
-    height: 50,
+    // height: 75,
   },
   action: {
     justifyContent: 'space-evenly',
+    alignItems: 'flex-end',
     marginBottom: 10,
   },
 });
@@ -72,8 +73,9 @@ export default function MainCurrentDirectory(props) {
           <CardMedia
             component="img"
             alt="Contemplative Reptile"
-            height="140"
-            image={`/static/images/cards/raccoon-${random}.jpg`}
+            height="200"
+            // image={`/static/images/cards/raccoon-${random}.jpg`}
+            image="/static/images/logo/logo2.png"
             title="Contemplative Reptile"
           />
           <CardContent>

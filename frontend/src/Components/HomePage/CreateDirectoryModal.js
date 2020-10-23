@@ -13,11 +13,11 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
-    // maxWidth: 345,
-    minHeight: 318,
+    maxWidth: 325,
+    minHeight: 350,
   },
   description: {
-    height: 318,
+    height: 350,
   },
   action: {
     justifyContent: 'space-evenly',
