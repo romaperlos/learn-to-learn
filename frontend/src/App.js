@@ -2,7 +2,7 @@ import {
   AppBar, Container, createMuiTheme, Grid, makeStyles, Paper, ThemeProvider,
 } from '@material-ui/core';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Body from './Components/Body';
 import Breadcrumbs from './Components/Breadcrumbs/Breadcrumbs';
@@ -34,10 +34,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
+
   const classes = useStyles();
   const isAuth = useSelector((state) => state.user.auth);
   const themeRedux = useSelector((state) => state.theme);
   console.log(themeRedux, 'theme redux!');
+  // const dispatch = useDispatch();
   const theme = createMuiTheme({
     palette: {
       primary: {

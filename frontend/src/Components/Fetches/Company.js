@@ -51,8 +51,9 @@ export default function Company() {
     return res;
   };
 
-  const colorChange = (color, event) => {
+  const colorChange = async (color, event) => {
     dispatch(setThemeAction({ primary: color.hex }));
+    const data = await fetch()
   };
   const colorChangeSecond = (color, event) => {
     dispatch(setThemeAction({ secondary: color.hex }));
