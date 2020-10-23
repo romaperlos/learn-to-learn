@@ -7,8 +7,9 @@ import directoryRouter from './routes/directory.js';
 import contentRouter from './routes/content.js';
 import nativeRouter from './routes/native.js';
 import companyRouter from './routes/company.js';
-import uploadlogoRouter from './routes/uploadlogo.js';
-import uploaddirectoryRouter from './routes/uploaddirectory.js';
+import uploadLogoRouter from './routes/uploadLogo.js';
+import uploadDirectoryRouter from './routes/uploadDirectory.js';
+
 
 const app = express();
 
@@ -21,8 +22,8 @@ app.use('/content', contentRouter);
 app.use('/user', userRouter);
 app.use('/native', nativeRouter);
 app.use('/company', companyRouter);
-app.use('/uploadlogo', uploadlogoRouter);
-app.use('/uploaddirectori', uploaddirectoryRouter);
+app.use('/upload/logo', uploadLogoRouter);
+app.use('/upload/directory', uploadDirectoryRouter);
 // Обработка несуществующих запросов
 // errorHandlers(app);
 
