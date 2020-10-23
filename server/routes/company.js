@@ -1,20 +1,19 @@
 import express from 'express';
-import multer from 'multer';
 import can from 'canvas';
 import FastAverageColor from 'fast-average-color';
-import storage from '../middleware/upload.js';
 import Company from '../models/Company.js';
 
 const { loadImage, createCanvas } = can;
 
-const upload = multer({ storage }).single('file');
-
 const router = express.Router();
+// const companyId = '5f8f1aeb5df87f9d9e11930b';
 
 router.get('/', async (req, res) => {
+  const companyId = req.session.company;
   let company;
+
   try {
-    company = await Company.find();
+    company = await Company.findOne({ _id: companyId });
   } catch (error) {
     console.log(error);
     return res.status(400).json({ message: error.message });
@@ -57,22 +56,36 @@ router.post('/', async (req, res) => {
   }
 });
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => { cb(null, 'public') },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + '-' + file.originalname)
-//   }
-// });
+router.route('/registration')
+  .get((req, res) => {
+    res.end();
+  })
+  .post(async (req, res) => {
+    const {
+      companyName, description, logoUrl,
+    } = req.body;
+    // Проверка уникальности по companyName
+    try {
+      const errUnqCompanyName = await Company.isUserUnique(companyName);
+      if (errUnqCompanyName) {
+        return res.status(401).json({ message: errUnqCompanyName });
+      }
 
-router.post('/upload', (req, res) => {
-  upload(req, res, (err) => {
-    if (err instanceof multer.MulterError) {
-      return res.status(500).json(err);
-    } if (err) {
-      return res.status(500).json(err);
+      try {
+        await new Company({
+          companyName,
+          description,
+          logoUrl,
+        }).save();
+        return res.status(200).end();
+      } catch (error) {
+        console.log(error);
+        res.status(401).json({ message: error.message });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(401).json({ message: error.message });
     }
-    return res.status(200).send(req.file);
   });
-});
 
 export default router;

@@ -13,6 +13,7 @@ import { VideoURL } from '../components/VideoURL';
 import { TextURL } from '../components/TextURL';
 import { TextArea } from '../components/TextArea';
 import { PicURL } from '../components/picURL';
+import { handlerLogout } from '../redux/actions';
 
 export function ContentScreen({ navigation }) {
   const subDirectory = navigation.getParam('subDirectory');
@@ -101,23 +102,30 @@ export function ContentScreen({ navigation }) {
   );
 }
 
-ContentScreen.navigationOptions = ({ navigation }) => ({
-  headerTitle: 'My content',
-  headerRight: (
-    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      <Item
-        title="profile"
-        iconName="user"
-        onPress={() => console.log('was pressed user button')}
-      />
-      <Item
-        title="logout"
-        iconName="log-out"
-        onPress={() => console.log('was pressed logout button')}
-      />
-    </HeaderButtons>
-  ),
-});
+ContentScreen.navigationOptions = ({ navigation }) => {
+  const companyInfo = navigation.getParam('companyInfo');
+  const logout = navigation.getParam('logout');
+  return {
+    headerTitle: 'My content',
+    headerStyle: {
+      backgroundColor: companyInfo.mainColor,
+    },
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="home"
+          iconName="home"
+          onPress={() => navigation.navigate('Main')}
+        />
+        <Item
+          title="logout"
+          iconName="log-out"
+          onPress={() => logout()}
+        />
+      </HeaderButtons>
+    ),
+  };
+};
 
 const styles = StyleSheet.create({
   // container: {

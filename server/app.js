@@ -22,8 +22,7 @@ app.use('/native', nativeRouter);
 app.use('/company', companyRouter);
 app.use('/upload', uploadRouter);
 
-
 // Обработка несуществующих запросов
-errorHandlers(app);
+// errorHandlers(app);
 
 export default app;

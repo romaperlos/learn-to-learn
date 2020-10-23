@@ -24,4 +24,5 @@ router.get('/content', async (req, res) => {
   return res.status(200).json({ content });
 });
 
+
 export default router;
