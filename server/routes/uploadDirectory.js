@@ -7,7 +7,7 @@ const router = express.Router();
 
 const multerStorage = multer.diskStorage({
   destination(req, file, callback) {
-    callback(null, '../public/uploadFiles/directory/');
+    callback(null, path.join(process.env.PWD, 'public', 'uploadFiles', 'directory'));
   },
   filename(req, file, callback) {
     callback(null, file.originalname.replace(/(\.[^.]+)$/, `_${uuidv4()}$1`));
@@ -16,9 +16,7 @@ const multerStorage = multer.diskStorage({
 
 const upload = multer({ storage: multerStorage });
 
-router.post('/', (req, res, next) => {
-  next();
-}, upload.single('file'), (req, res) => {
+router.post('/', upload.single('file'), (req, res) => {
   const reqBody = { ...req.body };
   const { directoryId } = reqBody;
   const way = req.file.path;
