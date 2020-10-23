@@ -59,7 +59,7 @@ export default function Company() {
             <TextField onChange={inputsChange} label="Company name" name="companyName" value={input.companyName} />
             <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
             <TextField onChange={inputsChange} label="logoUrl" name="logoUrl" value={input.logoUrl} />
-            <Button type="submit" variant="contained">Seed!</Button>
+            <Button type="submit" color="primary" variant="contained">Seed!</Button>
           </form>
           <CirclePicker onChangeComplete={colorChange} />
         </Grid>
