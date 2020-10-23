@@ -73,10 +73,9 @@ export default function UserLoginForm() {
       },
     });
     const data = await res.json();
-    console.log(data, );
-    // if (res.ok) {
+    if (res.ok) {
       dispatch(isUserAuth({ auth: true, company: data }));
-      // dispatch(setThemeAction({ primary: data.company.company.mainColor, secondary: data.company.company.secondColor }));
+      dispatch(setThemeAction({ primary: data.company.mainColor, secondary: data.company.secondColor }));
     }
     console.log(data);
   };

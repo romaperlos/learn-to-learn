@@ -74,8 +74,9 @@ router.post('/customcolor', async (req, res) => {
 });
 
 router.patch('/', async (req, res) => {
+  console.log(req.body);
   const {
-    companyName, description, logoUrl, companyId, mainColor,
+    companyName, description, logoUrl, companyId, mainColor, secondColor, whiteFont
   } = req.body;
 
   try {
