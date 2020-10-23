@@ -84,6 +84,8 @@ router.patch('/', async (req, res) => {
     description ? company.description = description : company.description;
     logoUrl ? company.logoUrl = logoUrl : company.logoUrl;
     mainColor ? company.mainColor = mainColor : company.mainColor;
+    secondColor ? company.secondColor = secondColor : company.secondColor;
+    whiteFont ? company.whiteFont = whiteFont : company.whiteFont;
     await company.save();
     return res.status(200).json(company);
   } catch (error) {
