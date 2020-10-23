@@ -4,7 +4,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { CirclePicker } from 'react-color';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormControlLabel, FormGroup, Switch, Typography } from '@material-ui/core';
+import {
+  FormControlLabel, FormGroup, Switch, Typography,
+} from '@material-ui/core';
 import { useStyles } from '../Fetch';
 import { setThemeAction } from '../../redux/actions';
 
@@ -51,11 +53,26 @@ export default function Company() {
     return res;
   };
 
-  const colorChange = (color, event) => {
+  const colorChange = async (color, event) => {
     dispatch(setThemeAction({ primary: color.hex }));
+    const res = await fetch('/company', {
+      method: 'PATCH',
+      body: JSON.stringify({ companyId: userCompany._id, mainColor: color.hex }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await res.json();
   };
-  const colorChangeSecond = (color, event) => {
+  const colorChangeSecond = async (color, event) => {
     dispatch(setThemeAction({ secondary: color.hex }));
+    const res = await fetch('/company', {
+      method: 'PATCH',
+      body: JSON.stringify({ companyId: userCompany._id, secondColor: color.hex }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   };
   return (
     <>
