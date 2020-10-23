@@ -1,9 +1,11 @@
+import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Container, Col, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Container, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
+import { useTheme } from '@material-ui/core/styles';
 import { setContentsCategoryAction, setIsLastDirAction, getContentsCategoryAction } from '../../redux/actions';
 
 const ContentMain = (props) => {
@@ -55,7 +57,8 @@ const ContentMain = (props) => {
       history.push('/');
     })();
   }
-
+  const theme = useTheme();
+  console.log(theme.palette.primary.main, ' <<<<<<<<<<<<<<< theme');
   return (
     <Container>
       <Col>
@@ -144,7 +147,7 @@ const ContentMain = (props) => {
       </Col>
       <Col>
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret color="success">
+          <DropdownToggle caret style={{ backgroundColor: theme.palette.primary.main }}>
             Выберите дополнительный элемент
           </DropdownToggle>
           <DropdownMenu onClick={(e) => addInput(e)}>
@@ -158,7 +161,7 @@ const ContentMain = (props) => {
       </Col>
       <Col sm="12" md={{ size: 'auto', offset: 3 }}>
         <br />
-        <Button onClick={addToBase} color="success" size="lg">Добавить тему</Button>
+        <Button variant="contained" color="primary" onClick={addToBase} size="lg">Добавить тему</Button>
       </Col>
     </Container>
   );

@@ -42,7 +42,7 @@ function CreateDirectory(props) {
         <h5>Add new directory</h5>
         <TextField onChange={inputsChange} label="Title" name="title" value={input.title} />
         <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
-        <Button type="submit" variant="contained">Ok!</Button>
+        <Button type="submit" variant="contained" color="primary">Ok!</Button>
       </form>
 
     </>
