@@ -60,7 +60,7 @@ export default function User() {
         justify="center"
       >
         <Grid item xs={12}>
-          <h3>Company</h3>
+          <h3>Create user</h3>
           <FormGroup className={classes.root} noValidate autoComplete="off">
             <TextField onChange={inputsChange} id="standard-basic" label="Name" name="name" value={input.name} />
             <TextField onChange={inputsChange} id="standard-basic" label="Last name" name="lastname" value={input.lastname} />
