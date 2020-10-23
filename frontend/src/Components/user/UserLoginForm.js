@@ -90,10 +90,12 @@ export default function UserLoginForm() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} onSubmit={(e) => submitForm(e)} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
+        <form className={classes.= await res.json();
+    if (res.ok) {
+          dispatch(isUserAuth({ auth: true, company: data }));
+      dispatch(setThemeAction({primary: data.company.mainColor, secondary: data.company.secondColor }));
+    }
+    console.log
             required
             fullWidth
             id="email"
@@ -104,47 +106,47 @@ export default function UserLoginForm() {
             onChange={inputsChange}
           />
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={inputsChange}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          onChange={inputsChange}
+        />
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
+          Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
               </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                Don't have an account? Sign Up
+          </Grid>
+          <Grid item>
+            <Link href="#" variant="body2">
+              Don't have an account? Sign Up
               </Link>// router.post('/directoryimg', (req, res, next) => {
-                //   console.log('>>>>>>>>>>>>>>>>>', req.body);
-                //   next();
-                // }, upload.single('file'), (req, res) => {
-                //   console.log('>>>>>>>>>>>>>>>>>', req.body);
-                //   res.json({ responseText: 'Response from file upload!' });
-                // });
-                <Copyright />
+              //   console.log('>>>>>>>>>>>>>>>>>', req.body);
+              //   next();
+              // }, upload.single('file'), (req, res) => {
+              //   console.log('>>>>>>>>>>>>>>>>>', req.body);
+              //   res.json({ responseText: 'Response from file upload!' });
+              // });
+              <Copyright />
       </Box>
     </Container>
   );
