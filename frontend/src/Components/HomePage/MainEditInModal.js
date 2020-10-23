@@ -26,7 +26,6 @@ function MainEditInModal(props) {
       data.append('file', selectedFile);
       console.log('>>>>>', data);
     }
-
     const res = await axios.post('/upload/directory', data, { // receive two parameter endpoint url ,form data
     });
     console.log(res);
