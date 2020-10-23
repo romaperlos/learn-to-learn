@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { useDispatch } from 'react-redux';
-import userReducer from '../../redux/reducers/userReducer';
+// import userReducer from '../../redux/reducers/userReducer';
 import { isUserAuth, setThemeAction } from '../../redux/actions';
 
 function Copyright() {
@@ -77,7 +77,6 @@ export default function UserLoginForm() {
       dispatch(isUserAuth({ auth: true, company: data }));
       dispatch(setThemeAction({ primary: data.company.mainColor, secondary: data.company.secondColor }));
     }
-    console.log(data);
   };
 
   return (
