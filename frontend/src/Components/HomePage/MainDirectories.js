@@ -37,7 +37,7 @@ function MainDirectories() {
     <>
       <Route exact path="/">
 
-        <Grid container spacing={3}  alignItems="center">
+        <Grid container spacing={3} alignItems="center">
           {!isLastDir && (
           <Grid item lg={3} sm={6} xs={6}>
             <CreateDirectoryModal />

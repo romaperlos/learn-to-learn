@@ -1,6 +1,8 @@
 export const CREATE_USER = 'CREATE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 
+export const USER_AUTH = 'USER_AUTH';
+
 export const GET_ERROR = 'GET_ERROR';
 
 export const CREATE_DIRECTORY = 'CREATE_DIRECTORY';
@@ -20,3 +22,5 @@ export const SET_ISLASTDIR = 'SET_ISLASTDIR';
 
 export const GET_CONTENT_CATEGORY = 'GET_CONTENT_CATEGORY';
 export const SET_CONTENT_CATEGORY = 'SET_CONTENT_CATEGORY';
+
+export const SET_THEME = 'SET_THEME';
