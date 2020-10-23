@@ -1,5 +1,5 @@
 import {
-  AppBar, Container, Grid, makeStyles, Paper,
+  AppBar, Container, createMuiTheme, Grid, makeStyles, Paper, ThemeProvider,
 } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -35,12 +35,25 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const isAuth = useSelector((state) => state.auth);
+  const isAuth = useSelector((state) => state.user.auth);
+  const themeRedux = useSelector((state) => state.theme);
+  console.log(themeRedux, 'theme redux!');
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: themeRedux.primary,
+      },
+      secondary: {
+        main: themeRedux.secondary,
+      },
+    },
+  });
 
   return (
     <>
-      {!isAuth && <UserLoginForm />}
-      {isAuth
+      <ThemeProvider theme={theme}>
+        {!isAuth && <UserLoginForm />}
+        {isAuth
     && (
     <>
       <AppBar position="fixed">
@@ -62,6 +75,7 @@ function App() {
       </Switch>
     </>
     )}
+      </ThemeProvider>
     </>
   );
 }

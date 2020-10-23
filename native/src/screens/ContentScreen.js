@@ -7,7 +7,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
-import { ContentTitle } from '../components/ContentTitle';
+import { Title } from '../components/Title';
 import { Subtitle } from '../components/Subtitle';
 import { VideoURL } from '../components/VideoURL';
 import { TextURL } from '../components/TextURL';
@@ -61,7 +61,7 @@ export function ContentScreen({ navigation }) {
         keyExtractor={(contentTitle) => contentTitle._id.toString()}
         renderItem={({ item }) => (
           <View>
-            <Text>{item.title}</Text>
+            <Title title={item.title}/>
             {item.item.map((el) => {
               if (el.type === 'subtitle') {
                 return <Subtitle subtitle={el.value} />;

@@ -11,6 +11,10 @@ const initialState = {
   loadingLogin: false,
   errorLogin: false,
   subs: [],
+  companyInfo: {
+    mainColor: '#000',
+    mainFontColor: '#000',
+  },
 };
 
 export const store = createStore(reducer, initialState, applyMiddleware(thunk));
