@@ -10,6 +10,10 @@ const companySchema = new mongoose.Schema({
   logoUrl: {
     type: String,
   },
+  logo: {
+    filename: String,
+    path: String,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

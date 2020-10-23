@@ -11,13 +11,20 @@ function SendFile() {
     });
   };
   const onClickHandler = async (e) => {
-    // console.log(selectedFile);
+    console.log('selectedFile', selectedFile);
     e.preventDefault();
     const data = new FormData();
-    data.append('file', selectedFile);
+    data.append('file', selectedFile.selectedFile);
     // console.log('>>>>>',data);
 
-    const res = await axios.post('/upload', data, { // receive two parameter endpoint url ,form data
+    // const res = await fetch('/upload', {
+    //   method: 'POST',
+    //   body: data
+    // })
+    // // const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
+    // // });
+
+    const res = await axios.post('/upload/logo', data, { // receive two parameter endpoint url ,form data
     });
     console.log(res);
   };
