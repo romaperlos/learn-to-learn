@@ -11,7 +11,7 @@ const companySchema = new mongoose.Schema({
     type: String,
   },
   logo: {
-    tile: String,
+    filename: String,
     path: String,
   },
   user: {

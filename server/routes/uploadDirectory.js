@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
   console.log('>>>>>>>>>>>>>>>>>', req.body);
   next();
 }, upload.single('file'), (req, res) => {
-  console.log('>>>>>>>>>>>>>>>>>', req.body);
+  console.log('>>>>>>>>>>>>>>>>>', req.file);
   res.json({ responseText: 'Response from file upload!' });
 });
 
