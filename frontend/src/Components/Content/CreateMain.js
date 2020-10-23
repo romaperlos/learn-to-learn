@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   Container, Col, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
+import { setContentsCategoryAction, setIsLastDirAction, getContentsCategoryAction } from '../../redux/actions';
 
 const ContentMain = (props) => {
   const { directory } = props;
@@ -12,6 +14,8 @@ const ContentMain = (props) => {
   const [inputValue, setInputValue] = useState([]);
   const [inputTitle, setInputTitle] = useState('');
   const [inputDescription, setInputDescription] = useState('');
+  const dispatch = useDispatch();
+  const currentId = useSelector((state) => state.currentDirectory.id);
 
   function addInput(e) {
     e.persist();
@@ -47,6 +51,7 @@ const ContentMain = (props) => {
         body: JSON.stringify(toBase),
       });
       console.log(res);
+      dispatch(getContentsCategoryAction(currentId));
       history.push('/');
     })();
   }
