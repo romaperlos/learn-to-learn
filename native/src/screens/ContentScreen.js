@@ -9,10 +9,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { Title } from '../components/Title';
 import { Subtitle } from '../components/Subtitle';
+import { Description } from '../components/Description';
 import { VideoURL } from '../components/VideoURL';
 import { TextURL } from '../components/TextURL';
 import { TextArea } from '../components/TextArea';
 import { PicURL } from '../components/picURL';
+import { handlerLogout } from '../redux/actions';
 
 export function ContentScreen({ navigation }) {
   const subDirectory = navigation.getParam('subDirectory');
@@ -61,7 +63,8 @@ export function ContentScreen({ navigation }) {
         keyExtractor={(contentTitle) => contentTitle._id.toString()}
         renderItem={({ item }) => (
           <View>
-            <Title title={item.title}/>
+            <Title title={item.title} />
+            <Description description={item.description} />
             {item.item.map((el) => {
               if (el.type === 'subtitle') {
                 return <Subtitle subtitle={el.value} />;
@@ -101,23 +104,30 @@ export function ContentScreen({ navigation }) {
   );
 }
 
-ContentScreen.navigationOptions = ({ navigation }) => ({
-  headerTitle: 'My content',
-  headerRight: (
-    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-      <Item
-        title="profile"
-        iconName="user"
-        onPress={() => console.log('was pressed user button')}
-      />
-      <Item
-        title="logout"
-        iconName="log-out"
-        onPress={() => console.log('was pressed logout button')}
-      />
-    </HeaderButtons>
-  ),
-});
+ContentScreen.navigationOptions = ({ navigation }) => {
+  const companyInfo = navigation.getParam('companyInfo');
+  const logout = navigation.getParam('logout');
+  return {
+    headerTitle: 'My content',
+    headerStyle: {
+      backgroundColor: companyInfo.mainColor,
+    },
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="home"
+          iconName="home"
+          onPress={() => navigation.navigate('Main')}
+        />
+        <Item
+          title="logout"
+          iconName="log-out"
+          onPress={() => logout()}
+        />
+      </HeaderButtons>
+    ),
+  };
+};
 
 const styles = StyleSheet.create({
   // container: {

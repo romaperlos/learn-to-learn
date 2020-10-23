@@ -6,10 +6,25 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { THEME } from '../theme';
 
-export const SubDirectory = ({ subDirectory, onChooseSubDirectory }) => (
+export const SubDirectory = ({ subDirectory, onChooseSubDirectory, company }) => (
   <TouchableOpacity activeOpacity={0.5} onPress={() => onChooseSubDirectory(subDirectory)}>
     <View style={styles.container}>
-      <Text style={styles.title}>{subDirectory.title}</Text>
+      <Text style={{
+        fontFamily: 'poppins-regular',
+        fontSize: 23,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        backgroundColor: company.mainColor,
+        paddingVertical: 10,
+        marginVertical: 1,
+        width: '100%',
+        borderWidth: 1,
+        color: THEME.MAIN_FONT_COLOR,
+        borderRadius: 5,
+      }}
+      >
+        {subDirectory.title}
+      </Text>
       <View style={styles.iconContainer}>
         {subDirectory.lastDir && <Feather name="corner-down-right" size={30} color="black" />}
       </View>

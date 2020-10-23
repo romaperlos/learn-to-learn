@@ -5,27 +5,28 @@ import {
   StyleSheet, Text, View, TouchableOpacity,
 } from 'react-native';
 
-export const TextArea = ({ textArea }) => {
+export const Description = ({ description }) => {
   return (
       <View style={styles.container}>
-        <Text style={styles.text}>{textArea}</Text>
+        <Text style={styles.text}>{description}</Text>
       </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 8,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    marginBottom: 5,
   },
   text: {
-    fontFamily: 'open-regular',
-    fontSize: 16,
-    textAlign: 'center',
-    width: '100%',
+    fontFamily: 'poppins-regular',
+    fontSize: 14,
+    // textAlign: 'center',
+    // fontWeight: 'bold',
+    width: '95%',
     color: '#000',
   },
 });

@@ -7,13 +7,14 @@ import {
   StyleSheet, FlatList, Text, View,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { getDirectories, startBreadCrumbs, getContent } from '../redux/actions';
+import { getDirectories, startBreadCrumbs, getContent, handlerLogout } from '../redux/actions';
 import { Directory } from '../components/Directory';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
 export function LearningScreen({ navigation }) {
   const directories = useSelector((state) => state.directories);
-  const loading = useSelector((state) => state.loadingTest);
+  const companyInfo = useSelector((state) => state.companyInfo);
+  const loading = useSelector((state) => state.loadingDir);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,11 +27,17 @@ export function LearningScreen({ navigation }) {
   if (directories) {
     parentDirectories = directories.filter((el) => el.parent === null);
   }
+
+  function logout() {
+    dispatch(handlerLogout());
+    navigation.navigate('Main');
+  }
   
   const forwardDirectoryHandler = (directory) => {
     dispatch(startBreadCrumbs(directory));
-    navigation.navigate('Directory', { directory });
+    navigation.navigate('Directory', { directory, companyInfo, logout });
   };
+
 
   return (
     <View>
@@ -39,7 +46,7 @@ export function LearningScreen({ navigation }) {
       <FlatList
         data={parentDirectories}
         keyExtractor={(directory) => directory._id.toString()}
-        renderItem={({ item }) => <Directory directory={item} onForward={forwardDirectoryHandler} />}
+        renderItem={({ item }) => <Directory company={companyInfo} directory={item} onForward={forwardDirectoryHandler} />}
       />
       )}
     </View>
@@ -47,19 +54,25 @@ export function LearningScreen({ navigation }) {
 }
 
 LearningScreen.navigationOptions = ({ navigation }) => {
+  const companyInfo = navigation.getParam('companyInfo');
+  const logout = navigation.getParam('logout');
+
   return {
     headerTitle: 'My courses',
+    headerStyle: {
+      backgroundColor: companyInfo.mainColor,
+    },
     headerRight: (
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
-          title="profile"
-          iconName="user"
-          onPress={() => console.log('was pressed user button')}
+          title="home"
+          iconName="home"
+          onPress={() => navigation.navigate('Main')}
         />
         <Item
           title="logout"
           iconName="log-out"
-          onPress={() => console.log('was pressed logout button')}
+          onPress={() => logout()}
         />
       </HeaderButtons>
     ),

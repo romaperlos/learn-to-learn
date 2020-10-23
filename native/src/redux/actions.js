@@ -5,6 +5,7 @@ import {
   GET_DIRECTORIES,
   LOADING_LOGIN,
   HANDLER_LOGIN,
+  HANDLER_LOGOUT,
   ERROR_LOGIN,
   START_BREAD_CRUMBS,
   ADD_BREAD_CRUMBS,
@@ -47,6 +48,10 @@ export const handlerLogin = (user) => async function (dispatch) {
     return dispatch({ type: HANDLER_LOGIN, payload: result.company });
   }
   return dispatch({ type: ERROR_LOGIN });
+};
+
+export const handlerLogout = () => {
+  return ({ type: HANDLER_LOGOUT });
 };
 
 export const startBreadCrumbs = (directory) => {
