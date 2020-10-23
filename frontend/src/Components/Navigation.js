@@ -10,7 +10,9 @@ import { Box, Container } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Fetch from './Fetch';
+import { isUserAuth } from '../redux/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Navigation() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,6 +37,10 @@ export default function Navigation() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const logout = () => {
+    dispatch(isUserAuth({ auth: false }));
   };
 
   return (
@@ -81,7 +88,7 @@ export default function Navigation() {
             </Link>
             {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
           </Menu>
-          <Button color="secondary" variant="contained">Logout</Button>
+          <Button onClick={logout} color="secondary" variant="contained">Logout</Button>
         </Toolbar>
       </Container>
 

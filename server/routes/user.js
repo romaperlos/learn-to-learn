@@ -91,16 +91,13 @@ router
   .post(async (req, res) => {
     const { email, password } = req.body;
     try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate('company');
+      console.log(user);
       if (user && (await bcrypt.compare(password, user.password))) {
         req.session.user = user;
         req.session.user.password = undefined;
-        res.json({
-          user: {
-            _id: req.session.user._id,
-            name: req.session.user.name,
-          },
-        });
+        req.session.user.company = user.company;
+        res.status(200).json(user);
       } else if (!user) {
         res.status(401).json({ message: 'Введенный e-mail не зарегистрирован' });
       } else {
@@ -138,87 +135,3 @@ router.get('/checkSession', (req, res) => {
 });
 
 export default router;
-
-// Регистрация по прямой ссылки
-// router
-//   .route('/invitation')
-//   .get((req, res) => {
-//     res.end();
-//   })
-//   .post(async (req, res) => {
-//     const {name, lastname, email, company} = req.body;
-
-//     try {
-//       // const errUnqUser = await User.isUserUnique(name);
-//       const errUnqEmail = await User.isEmailUnique(email);
-//       if (errUnqEmail) {
-//         return res.status(401).json({ message: errUnqEmail });
-//       }
-
-//       function generateKey() {
-//         const length = 12;
-//         const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-//         let key = '';
-//         for (let i = 0, n = charset.length; i < length; ++i) {
-//           key += charset.charAt(Math.floor(Math.random() * n));
-//         }
-//         return key;
-//       }
-
-//       const key = generateKey();
-
-//       const message = {
-//         from: 'Mailer Test <learntolearn@mail.ru>',
-//         to: email,
-//         subject: 'Подтверждение регистрации нового пользователя',
-//         text: `
-
-//           Данные вашей учетной записи:
-
-//               Name:   ${name}
-//               Lastname:   ${lastname}
-//               Email:   ${email}
-//               Password:   ${password}
-//               http://localhost:3000/user/signup/${key}
-
-//               ------------------------------------------
-
-// Здравствуйте,
-
-// Вы получили это сообщение, так как ваш адрес был использован при регистрации нового пользователя на сервере www.learntolearn.ru.
-
-// Ваш код для подтверждения регистрации: 9efQm22U
-
-// Для подтверждения регистрации перейдите по следующей ссылке:
-// http://www.niyama.ru/auth/index.php?confirm_registration=yes&confirm_user_id=245963&confirm_code=9efQm22U
-// http://localhost:3000/user/${key}
-// Внимание! Ваш профиль не будет активным, пока вы не подтвердите свою регистрацию.
-
-// ---------------------------------------------------------------------
-
-// Сообщение сгенерировано автоматически.
-
-//         Данное письмо не требует ответа.`,
-//       };
-//       mailer(message);
-//       res.status(200);
-
-//       const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) || 10);
-//       try {
-//         await new User({
-//           name,
-//           lastname,
-//           email,
-//           password: hashedPassword,
-//         }).save();
-//         return res.status(200).end();
-//       } catch (error) {
-//         console.log(error);
-//         res.status(401).json({ message: error.message });
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       res.status(401).json({ message: error.message });
-//     }
-
-//   }

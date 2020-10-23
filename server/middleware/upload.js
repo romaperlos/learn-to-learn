@@ -1,4 +1,3 @@
-// import multer from 'multer';
 // import FTPStorage from 'multer-ftp';
 // import FTP from 'ftp';
 
@@ -42,16 +41,21 @@
 //   // });
 // });
 
-// export default upload;
+// const storage = multer.diskStorage({ destination: '../public' },
+//   {
+//     filename(req, file, cb) {
+//       cb(null, `${Date.now()}-${file.originalname}`);
+//     },
+//   });
 
-// import express from 'express';
-import multer from 'multer';
+// const storage = multer.diskStorage({
+//   destination(req, file, cb) {
+//     cb(null, '../public/');
+//   },
+//   filename(req, file, cb) {
+//     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`;
+//     cb(null, `${file.fieldname}-${uniqueSuffix}`);
+//   },
+// });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => { cb(null, 'public'); },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-
-export default storage;
+// export default storage;

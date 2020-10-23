@@ -5,11 +5,16 @@ import { reducer } from './reducer';
 
 const initialState = {
   directories: null,
-  loadingTest: false,
+  content: null,
+  loadingDir: false,
   loginUser: false,
   loadingLogin: false,
   errorLogin: false,
   subs: [],
+  companyInfo: {
+    mainColor: '#000',
+    mainFontColor: '#000',
+  },
 };
 
 export const store = createStore(reducer, initialState, applyMiddleware(thunk));

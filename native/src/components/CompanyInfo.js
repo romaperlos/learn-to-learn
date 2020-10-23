@@ -5,7 +5,11 @@ import {
 } from 'react-native';
 import { THEME } from '../theme';
 
-export const CompanyInfo = ({ company }) => (
+export const CompanyInfo = ({ company }) => {
+  
+  console.log(company)
+
+  return (
   <View style={styles.container}>
     <View style={styles.imageContainer}>
       <Image style={styles.image} source={{ uri: company.logoUrl }} />
@@ -14,6 +18,7 @@ export const CompanyInfo = ({ company }) => (
     <Text style={styles.description}>{ company.description }</Text>
   </View>
 );
+  }
 
 const styles = StyleSheet.create({
   container: {

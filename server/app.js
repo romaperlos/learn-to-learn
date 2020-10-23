@@ -7,6 +7,7 @@ import directoryRouter from './routes/directory.js';
 import contentRouter from './routes/content.js';
 import nativeRouter from './routes/native.js';
 import companyRouter from './routes/company.js';
+import uploadRouter from './routes/upload.js';
 
 const app = express();
 
@@ -19,8 +20,9 @@ app.use('/content', contentRouter);
 app.use('/user', userRouter);
 app.use('/native', nativeRouter);
 app.use('/company', companyRouter);
+app.use('/upload', uploadRouter);
 
 // Обработка несуществующих запросов
-errorHandlers(app);
+// errorHandlers(app);
 
 export default app;

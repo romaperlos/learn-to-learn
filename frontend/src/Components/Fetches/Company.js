@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { CirclePicker } from 'react-color';
+import { useDispatch, useSelector } from 'react-redux';
+import { FormControlLabel, FormGroup, Switch, Typography } from '@material-ui/core';
 import { useStyles } from '../Fetch';
+import { setThemeAction } from '../../redux/actions';
 
 export default function Company() {
+  const dispatch = useDispatch();
+  const colorRedux = useSelector((state) => state.theme);
+  const userCompany = useSelector((state) => state.user.company.company);
+  console.log(userCompany);
+  console.log(userCompany.companyName);
   const [input, setInput] = useState({
-    companyName: '',
-    description: '',
-    logoUrl: '',
+    companyName: userCompany.companyName,
+    description: userCompany.description,
+    logoUrl: userCompany.logoUrl,
   });
 
   const inputsChange = ({ target: { value, name } }) => {
@@ -17,6 +26,11 @@ export default function Company() {
       ...input,
       [name]: value,
     });
+  };
+  const [checked, setChecked] = React.useState(false);
+
+  const toggleChecked = () => {
+    setChecked((prev) => !prev);
   };
 
   const classes = useStyles();
@@ -36,26 +50,45 @@ export default function Company() {
     });
     return res;
   };
+
+  const colorChange = (color, event) => {
+    dispatch(setThemeAction({ primary: color.hex }));
+  };
+  const colorChangeSecond = (color, event) => {
+    dispatch(setThemeAction({ secondary: color.hex }));
+  };
   return (
-    <div className="d-flex align-items-center justify-content-center">
+    <>
       <Grid
         container
         spacing={3}
         justify="center"
-        alignItems="center"
-        className="p-5"
+        // alignItems="center"
       >
-        <Grid item xs>
+        <Grid item xs={12}>
           <h3>Company</h3>
-          <form onSubmit={fetchSomething} className={classes.root} noValidate autoComplete="off">
+          <FormGroup onSubmit={fetchSomething} className={classes.root} noValidate autoComplete="off">
             <TextField onChange={inputsChange} label="Company name" name="companyName" value={input.companyName} />
             <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
             <TextField onChange={inputsChange} label="logoUrl" name="logoUrl" value={input.logoUrl} />
-            <Button type="submit" variant="contained">Seed!</Button>
-          </form>
-          
+            <Button type="submit" color="primary" variant="outlined">Get color from Logo</Button>
+            <FormControlLabel
+              control={<Switch checked={checked} onChange={toggleChecked} />}
+              label="White font for mobile app"
+            />
+            <Button type="submit" color="secondary" variant="contained">Confirm</Button>
+          </FormGroup>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="h5" className="mb-2">Main theme color</Typography>
+          <CirclePicker onChangeComplete={colorChange} />
+        </Grid>
+        {/* <Grid item xs={6} /> */}
+        <Grid item xs={6}>
+          <Typography variant="h5" className="mb-2">Second color</Typography>
+          <CirclePicker onChangeComplete={colorChangeSecond} />
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 }

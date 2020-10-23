@@ -12,64 +12,26 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       // flexGrow: 0,
-      display: 'block',
-      margin: theme.spacing(1),
+      // display: 'block',
+      margin: theme.spacing(2),
       // width: '25ch',
     },
   },
   mainGrid: {
-    width: 500,
+    // width: 500,
     padding: 10,
   },
-  superHeight: {
-    height: 500,
-    backgroundColor: 'red',
-  },
+  // superHeight: {
+  //   height: 500,
+  //   backgroundColor: 'red',
+  // },
 }));
 
 export default function Fetch() {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      spacing={3}
-      justify="center"
-      alignItems="center"
-      className={classes.mainGrid}
-    >
-      <Grid item md={3}>
-
-        <Link to="/testform/company">
-          <Button variant="contained" color="primary">
-            Company
-          </Button>
-        </Link>
-      </Grid>
-      {/* <Grid item md={3}>
-
-        <Link to="/testform/content">
-          <Button variant="contained" color="primary">
-            Content
-          </Button>
-        </Link>
-      </Grid> */}
-      {/* <Grid item md={3}>
-
-        <Link to="/testform/directory">
-          <Button variant="contained" color="primary">
-            Directory
-          </Button>
-        </Link>
-      </Grid> */}
-      <Grid item md={3}>
-
-        <Link to="/testform/user">
-          <Button variant="contained" color="primary">
-            User
-          </Button>
-        </Link>
-      </Grid>
+    <>
       <Route path="/testform/company">
         <Company />
       </Route>
@@ -82,7 +44,7 @@ export default function Fetch() {
       <Route path="/testform/user">
         <User />
       </Route>
-    </Grid>
+    </>
 
   );
 }

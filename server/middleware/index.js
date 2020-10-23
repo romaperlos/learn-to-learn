@@ -12,6 +12,7 @@ export default function (app) {
   // Body POST запросов.
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  app.use(express.static('../public/'));
 
   // initialize express-session to allow us track the logged-in user across sessions.
   app.use(

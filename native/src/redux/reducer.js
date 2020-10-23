@@ -1,6 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import {
-  LOADING_DIR, GET_DIRECTORIES, LOADING_LOGIN, HANDLER_LOGIN, ERROR_LOGIN, START_BREAD_CRUMBS, ADD_BREAD_CRUMBS, DELETE_BREAD_CRUMBS,
+  LOADING_DIR,
+  GET_DIRECTORIES,
+  GET_CONTENT,
+  LOADING_LOGIN,
+  HANDLER_LOGIN,
+  ERROR_LOGIN,
+  START_BREAD_CRUMBS,
+  ADD_BREAD_CRUMBS,
+  DELETE_BREAD_CRUMBS,
 } from './actionTypes';
 
 export const reducer = (state, action) => {
@@ -14,8 +22,14 @@ export const reducer = (state, action) => {
     case GET_DIRECTORIES:
       return {
         ...state,
-        loadingTest: false,
+        loadingDir: false,
         directories: action.payload,
+      };
+
+    case GET_CONTENT:
+      return {
+        ...state,
+        content: action.payload,
       };
 
     case LOADING_LOGIN:
@@ -36,6 +50,7 @@ export const reducer = (state, action) => {
         loadingLogin: false,
         errorLogin: false,
         loginUser: true,
+        companyInfo: action.payload,
       };
 
     case START_BREAD_CRUMBS:

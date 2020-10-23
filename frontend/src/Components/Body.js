@@ -35,21 +35,16 @@ function Body() {
         spacing={3}
         justify="center"
         alignItems="center"
-        // alignItems="top"
       >
-        {/* <Grid item sm={6} className="mt-3" /> */}
-        {/* <Grid item sm={9}>
-          <Breadcrumbs />
-        </Grid> */}
         <Grid item sm={12}>
           <MainDirectories />
           <Route path="/new">
             <CreateMain directory={currentDirectory} />
           </Route>
         </Grid>
-        {/* <Grid item sm={12} className="mt-3">
+        <Grid item sm={12}>
           <Fetch />
-        </Grid> */}
+        </Grid>
       </Grid>
     </div>
   );
