@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.end();
 });
-
+// Регистрация пользователей
 router
   .route('/signup')
   .get((req, res) => {
@@ -27,7 +27,7 @@ router
       if (errUnqEmail) {
         return res.status(401).json({ message: errUnqEmail });
       }
-
+      // Случайно сгенерированный пароль для входа в мобильное приложение
       function generatePassword() {
         const length = 12;
         const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -39,7 +39,7 @@ router
       }
 
       const password = generatePassword();
-
+      // Формирование текста письма при регистрации нового пользователя
       const message = {
         from: 'Mailer Test <learntolearn@mail.ru>',
         to: email,
@@ -66,7 +66,7 @@ router
       };
       mailer(message);
       res.status(200);
-
+      // Шифрование пароля и запись в базу данных нового пользователя
       const hashedPassword = await bcrypt.hash(password, Number(process.env.ROUNDS) || 10);
       try {
         await new User({
