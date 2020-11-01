@@ -1,20 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeStyles, Breadcrumbs as BreadcrumbsUI } from '@material-ui/core';
+import { Breadcrumbs as BreadcrumbsUI } from '@material-ui/core';
 
 import Link from '@material-ui/core/Link';
 import { useHistory } from 'react-router-dom';
 import {
   deleteBreadcrumbsLinkAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction,
 } from '../../redux/actions';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(6),
-    },
-  },
-}));
 
 function Breadcrumbs() {
   const history = useHistory();

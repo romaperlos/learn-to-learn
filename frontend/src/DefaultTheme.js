@@ -1,8 +1,7 @@
 import { createMuiTheme } from '@material-ui/core';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-
-// const themeRedux = useSelector((state) => state.theme);
+const themeRedux = useSelector((state) => state.theme);
 const theme = createMuiTheme({
   palette: {
     primary: {

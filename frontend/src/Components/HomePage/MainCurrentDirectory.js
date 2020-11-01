@@ -21,7 +21,6 @@ const useStyles = makeStyles({
     minHeight: 400,
   },
   description: {
-    // height: 75,
   },
   action: {
     justifyContent: 'space-evenly',
@@ -36,7 +35,6 @@ export default function MainCurrentDirectory(props) {
     description, title, itemId, isLastDir,
   } = props;
   const classes = useStyles();
-  const random = Math.floor(Math.random() * 4 + 1);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -53,7 +51,6 @@ export default function MainCurrentDirectory(props) {
   };
 
   const getDirectories = () => {
-    // console.log(itemId);
     dispatch(addBreadcrumbsLinkAction({ id: itemId, title, isLastDir }));
     dispatch(getDirectoriesAction(itemId));
     dispatch(setCurrentDirectoryAction(itemId));

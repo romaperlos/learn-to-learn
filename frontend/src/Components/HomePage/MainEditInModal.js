@@ -18,17 +18,14 @@ function MainEditInModal(props) {
     });
   };
   const submitFormImg = async (e) => {
-    // console.log(selectedFile);
     e.preventDefault();
     const data = new FormData();
     if (selectedFile) {
       data.append('directoryId', id);
       data.append('file', selectedFile);
-      console.log('>>>>>', data);
     }
-    const res = await axios.post('/upload/directory', data, { // receive two parameter endpoint url ,form data
+    await axios.post('/upload/directory', data, { // receive two parameter endpoint url ,form data
     });
-    console.log(res);
   };
   const dispatch = useDispatch();
   const [input, setInput] = useState({

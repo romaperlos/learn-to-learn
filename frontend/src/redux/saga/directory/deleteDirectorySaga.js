@@ -1,9 +1,8 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { DELETE_DIRECTORY, TRY_DELETE_ITEM } from '../../actionTypes';
-import { createDirectoryAction, deleteDirectoryAction, setError } from '../../actions';
+import { TRY_DELETE_ITEM } from '../../actionTypes';
+import { deleteDirectoryAction, setError } from '../../actions';
 
 const deleteDirectoryFetch = async (id) => {
-  console.log(id, ' <<<< im FETCH');
   try {
     const res = await fetch('/directory', {
       method: 'DELETE',

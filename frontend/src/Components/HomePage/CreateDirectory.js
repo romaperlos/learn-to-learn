@@ -7,7 +7,6 @@ import { useStyles } from '../Fetch';
 
 function CreateDirectory(props) {
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
-  console.log(currentDirectory, ' <<<< CUR ON CREATE PAGE');
   const { setAnchorEl } = props;
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -20,7 +19,6 @@ function CreateDirectory(props) {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(input, ' <<<<< INPUT!');
     dispatch(addDirectoryAction(input));
     setInput({
       title: '',

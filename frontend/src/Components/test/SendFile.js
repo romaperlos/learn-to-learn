@@ -15,18 +15,8 @@ function SendFile() {
     e.preventDefault();
     const data = new FormData();
     data.append('file', selectedFile.selectedFile);
-    // console.log('>>>>>',data);
-
-    // const res = await fetch('/upload', {
-    //   method: 'POST',
-    //   body: data
-    // })
-    // // const res = await axios.post('/company/upload', data, { // receive two parameter endpoint url ,form data
-    // // });
-
-    const res = await axios.post('/upload/logo', data, { // receive two parameter endpoint url ,form data
+    await axios.post('/upload/logo', data, { // receive two parameter endpoint url ,form data
     });
-    console.log(res);
   };
 
   return (

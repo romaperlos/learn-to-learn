@@ -13,7 +13,6 @@ import rootSaga from './saga/rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 const preloadedState = window.localStorage.getItem('redux') ?? '{}';
-console.log(JSON.parse(preloadedState));
 
 const store = createStore(combineReducers({
   directories: directoryReducer,

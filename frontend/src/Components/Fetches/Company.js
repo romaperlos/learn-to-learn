@@ -17,7 +17,6 @@ import { useStyles } from '../Fetch';
 export default function Company() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
-  const colorRedux = useSelector((state) => state.theme);
   const userCompany = useSelector((state) => state.user.company.company);
   const [input, setInput] = useState({
     companyName: userCompany.companyName,
@@ -41,7 +40,6 @@ export default function Company() {
 
   const classes = useStyles();
   const fetchSomething = async (e) => {
-    console.log('yo');
     e.preventDefault();
     const res = await fetch('/company', {
       method: 'PATCH',
@@ -50,17 +48,12 @@ export default function Company() {
         'Content-Type': 'application/json',
       },
     });
-    // setInput({
-    //   companyName: '',
-    //   description: '',
-    //   logoUrl: '',
-    // });
     dispatch(updateCompany(input));
     setOpen(true);
     return res;
   };
 
-  const colorChange = async (color, event) => {
+  const colorChange = async (color) => {
     dispatch(setThemeAction({ primary: color.hex }));
     await fetch('/company', {
       method: 'PATCH',
@@ -71,7 +64,7 @@ export default function Company() {
     });
     // const data = await res.json();
   };
-  const colorChangeSecond = async (color, event) => {
+  const colorChangeSecond = async (color) => {
     dispatch(setThemeAction({ secondary: color.hex }));
     await fetch('/company', {
       method: 'PATCH',
@@ -125,7 +118,6 @@ export default function Company() {
           <Typography variant="h5" className="mb-2">Main theme color</Typography>
           <CirclePicker onChangeComplete={colorChange} />
         </Grid>
-        {/* <Grid item xs={6} /> */}
         <Grid item xs={6}>
           <Typography variant="h5" className="mb-2">Second color</Typography>
           <CirclePicker onChangeComplete={colorChangeSecond} />

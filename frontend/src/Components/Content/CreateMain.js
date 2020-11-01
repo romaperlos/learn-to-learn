@@ -44,7 +44,7 @@ const ContentMain = (props) => {
       directory,
     };
     (async () => {
-      const res = await fetch('/content', {
+      await fetch('/content', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,6 @@ const ContentMain = (props) => {
     })();
   }
   const theme = useTheme();
-  console.log(theme.palette.primary.main, ' <<<<<<<<<<<<<<< theme');
   return (
     <Container>
       <Col>

@@ -14,7 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { useDispatch } from 'react-redux';
-// import userReducer from '../../redux/reducers/userReducer';
 import { isUserAuth, setThemeAction } from '../../redux/actions';
 
 function Copyright() {

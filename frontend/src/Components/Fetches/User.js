@@ -2,20 +2,15 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { useDispatch } from 'react-redux';
-import {
-  FormControlLabel, FormGroup, Switch, Typography,
-} from '@material-ui/core';
+import { FormGroup } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
-import { setError } from '../../redux/actions';
 import { useStyles } from '../Fetch';
 
 export default function User() {
   const [open, setOpen] = React.useState(false);
-  const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: '',
     lastname: '',
@@ -40,9 +35,7 @@ export default function User() {
       },
     });
     if (res.ok) {
-      // console.log('ok');
       setOpen(true);
-      // dispatch(setError(res));
     }
     return setInput({
       name: '',
