@@ -7,12 +7,28 @@ import {
 } from 'react-native';
 import { THEME } from '../theme';
 
-export const LeftDirectory = ({ leftDirectory, onShowThemes }) => {
+export const LeftDirectory = ({ leftDirectory, onShowThemes, company }) => {
   return (
     <TouchableOpacity activeOpacity={0.5} onPress={() => onShowThemes(leftDirectory)}>
       <View style={styles.container}>
         {leftDirectory.parent && <Feather name="chevron-down" size={18} color="black" />}
-        <Text style={styles.title}>{leftDirectory.title}</Text>
+        <Text style={{
+          fontFamily: 'poppins-regular',
+          fontSize: 15,
+          textAlign: 'center',
+          fontWeight: 'bold',
+          backgroundColor: THEME.MAIN_FONT_COLOR,
+          paddingVertical: 4,
+          marginVertical: 1,
+          width: '100%',
+          borderWidth: 2,
+          borderColor: company.mainColor,
+          color: company.mainColor,
+          borderRadius: 5,
+        }}
+        >
+          {leftDirectory.title}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -24,20 +40,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-  },
-
-  title: {
-    fontFamily: 'poppins-regular',
-    fontSize: 15,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    backgroundColor: THEME.MAIN_FONT_COLOR,
-    paddingVertical: 4,
-    marginVertical: 1,
-    width: '100%',
-    borderWidth: 2,
-    borderColor: THEME.MAIN_COLOR,
-    color: THEME.MAIN_COLOR,
-    borderRadius: 5,
   },
 });

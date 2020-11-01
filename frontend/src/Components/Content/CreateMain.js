@@ -1,8 +1,12 @@
+import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
-  Container, Col, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Container, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
+import { useTheme } from '@material-ui/core/styles';
+import { getContentsCategoryAction } from '../../redux/actions';
 
 const ContentMain = (props) => {
   const { directory } = props;
@@ -12,6 +16,8 @@ const ContentMain = (props) => {
   const [inputValue, setInputValue] = useState([]);
   const [inputTitle, setInputTitle] = useState('');
   const [inputDescription, setInputDescription] = useState('');
+  const dispatch = useDispatch();
+  const currentId = useSelector((state) => state.currentDirectory.id);
 
   function addInput(e) {
     e.persist();
@@ -37,20 +43,19 @@ const ContentMain = (props) => {
       item: inputValue,
       directory,
     };
-    console.log(toBase);
     (async () => {
-      const res = await fetch('/content', {
+      await fetch('/content', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(toBase),
       });
-      console.log(res);
+      dispatch(getContentsCategoryAction(currentId));
       history.push('/');
     })();
   }
-
+  const theme = useTheme();
   return (
     <Container>
       <Col>
@@ -139,7 +144,7 @@ const ContentMain = (props) => {
       </Col>
       <Col>
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret color="success">
+          <DropdownToggle caret style={{ backgroundColor: theme.palette.primary.main }}>
             Выберите дополнительный элемент
           </DropdownToggle>
           <DropdownMenu onClick={(e) => addInput(e)}>
@@ -153,7 +158,7 @@ const ContentMain = (props) => {
       </Col>
       <Col sm="12" md={{ size: 'auto', offset: 3 }}>
         <br />
-        <Button onClick={addToBase} color="success" size="lg">Добавить тему</Button>
+        <Button variant="contained" color="primary" onClick={addToBase} size="lg">Добавить тему</Button>
       </Col>
     </Container>
   );

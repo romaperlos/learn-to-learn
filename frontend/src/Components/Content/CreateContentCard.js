@@ -4,16 +4,14 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
-// import ContentMain from './ContentMain';
-// import { Link, Route } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    minHeight: 318,
+    width: 200,
+    minHeight: 400,
   },
   description: {
-    height: 318,
+    height: 350,
   },
   action: {
     justifyContent: 'space-evenly',

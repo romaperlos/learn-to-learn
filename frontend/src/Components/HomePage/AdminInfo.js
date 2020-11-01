@@ -2,7 +2,9 @@ import React from 'react';
 import { Media, Container, Col } from 'reactstrap';
 
 const AdminInfo = (props) => {
-  const { compName, logoUrl, compDiscript, users } = props
+  const {
+    compName, logoUrl, compDiscript, users,
+  } = props;
   return (
     <Container>
       <Col xs="6">
@@ -12,11 +14,15 @@ const AdminInfo = (props) => {
           </Media>
           <Media body>
             <Media heading>
-              Компания: {compName}
+              Компания:
+              {' '}
+              {compName}
             </Media>
             {compDiscript}
             <Media>
-              Пользователи: {users}
+              Пользователи:
+              {' '}
+              {users}
             </Media>
           </Media>
         </Media>

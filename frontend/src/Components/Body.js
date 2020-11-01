@@ -5,10 +5,9 @@ import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Fetch from './Fetch';
 import MainDirectories from './HomePage/MainDirectories';
-import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
 import CreateMain from './Content/CreateMain';
 
-import { deleteBreadcrumbsLinkAction, setCurrentDirectoryAction } from '../redux/actions';
+import { deleteBreadcrumbsLinkAction } from '../redux/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {

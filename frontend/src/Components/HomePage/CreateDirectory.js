@@ -7,7 +7,6 @@ import { useStyles } from '../Fetch';
 
 function CreateDirectory(props) {
   const currentDirectory = useSelector((state) => state.currentDirectory.id);
-  console.log(currentDirectory, ' <<<< CUR ON CREATE PAGE');
   const { setAnchorEl } = props;
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -20,7 +19,6 @@ function CreateDirectory(props) {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(input, ' <<<<< INPUT!');
     dispatch(addDirectoryAction(input));
     setInput({
       title: '',
@@ -42,7 +40,7 @@ function CreateDirectory(props) {
         <h5>Add new directory</h5>
         <TextField onChange={inputsChange} label="Title" name="title" value={input.title} />
         <TextField onChange={inputsChange} label="Description" name="description" value={input.description} />
-        <Button type="submit" variant="contained">Ok!</Button>
+        <Button type="submit" variant="contained" color="primary">Ok!</Button>
       </form>
 
     </>

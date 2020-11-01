@@ -1,15 +1,11 @@
 import Grid from '@material-ui/core/Grid';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../../css/animation.css';
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 import {
-  getContentsCategoryAction, getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction,
+  getDirectoriesAction, setCurrentDirectoryAction, setIsLastDirAction,
 } from '../../redux/actions';
 import CreateContentCard from '../Content/CreateContentCard';
 
@@ -37,29 +33,23 @@ function MainDirectories() {
     <>
       <Route exact path="/">
 
-        <Grid container spacing={3} alignItems="center">
+        <Grid container spacing={3} alignItems="top" justifyContent="center">
           {!isLastDir && (
-          <Grid item lg={3} sm={6} xs={6}>
+          <Grid item lg={4} sm={6} xs={6}>
             <CreateDirectoryModal />
           </Grid>
           )}
           {/* Проверка на наличие ID в сторе. Если его нет, то это главная и рендера не будет */}
           {(currentDirectory) && (
-          <Grid item lg={3} sm={6} xs={6}>
+          <Grid item lg={4} sm={6} xs={6}>
             <Link to="/new">
               <CreateContentCard />
             </Link>
           </Grid>
           )}
 
-          {/* <TransitionGroup className="myClass"> */}
           {!isLastDir && directories.map((el) => (
-            // <CSSTransition
-            //   key={el._id}
-            //   timeout={500}
-            //   classNames="s-directories"
-            // >
-            <Grid key={el._id} item lg={3} sm={6} xs={6}>
+            <Grid key={el._id} item lg={4} sm={6} xs={6}>
               <MainCurrentDirectory
                 description={el.description}
                 title={el.title}
@@ -68,9 +58,7 @@ function MainDirectories() {
                 isLastDir={el.lastDir}
               />
             </Grid>
-            // </CSSTransition>
           ))}
-          {/* </TransitionGroup> */}
           <Grid item xs={12}>
             {isLastDir && contents.map((el, i) => (
               <ContentListRender key={el._id} title={el.title} description={el.description} id={el._id} num={i + 1} />

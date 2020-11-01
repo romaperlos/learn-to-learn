@@ -12,17 +12,15 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
 import { useDispatch } from 'react-redux';
-import userReducer from '../../redux/reducers/userReducer';
-import { isUserAuth } from '../../redux/actions';
+import { isUserAuth, setThemeAction } from '../../redux/actions';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Learn to learn
       </Link>
       {' '}
       {new Date().getFullYear()}
@@ -30,7 +28,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -50,19 +47,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
 export default function UserLoginForm() {
   const classes = useStyles();
   const [input, setInput] = useState();
   const dispatch = useDispatch();
-
   const inputsChange = ({ target: { value, name } }) => {
     setInput({
       ...input,
       [name]: value,
     });
   };
-
   const submitForm = async (e) => {
     e.preventDefault();
     const res = await fetch('/user/login', {
@@ -75,10 +69,9 @@ export default function UserLoginForm() {
     const data = await res.json();
     if (res.ok) {
       dispatch(isUserAuth({ auth: true, company: data }));
+      dispatch(setThemeAction({ primary: data.company.mainColor, secondary: data.company.secondColor }));
     }
-    console.log(data);
   };
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

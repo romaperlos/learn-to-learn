@@ -48,7 +48,10 @@ router
         Здравствуйте,
 
         Вы получили это сообщение, так как ваш адрес был использован при регистрации нового пользователя на сервере www.learntolearn.ru.
-        
+        Скачать приложение вы можете по этой ссылке:
+        http://www.learntolearn.ru/learn2learn.apk - Android
+        http://www.learntolearn.ru/learn2learn.ipa - Iphone
+
         Данные вашей учетной записи:
           
               Name:   ${name}

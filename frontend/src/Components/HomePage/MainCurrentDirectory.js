@@ -17,14 +17,14 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    // maxWidth: 345,
-    // minHeight: 318,
+    width: 200,
+    minHeight: 400,
   },
   description: {
-    height: 50,
   },
   action: {
     justifyContent: 'space-evenly',
+    alignItems: 'flex-end',
     marginBottom: 10,
   },
 });
@@ -35,7 +35,6 @@ export default function MainCurrentDirectory(props) {
     description, title, itemId, isLastDir,
   } = props;
   const classes = useStyles();
-  const random = Math.floor(Math.random() * 4 + 1);
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -52,7 +51,6 @@ export default function MainCurrentDirectory(props) {
   };
 
   const getDirectories = () => {
-    // console.log(itemId);
     dispatch(addBreadcrumbsLinkAction({ id: itemId, title, isLastDir }));
     dispatch(getDirectoriesAction(itemId));
     dispatch(setCurrentDirectoryAction(itemId));
@@ -72,8 +70,9 @@ export default function MainCurrentDirectory(props) {
           <CardMedia
             component="img"
             alt="Contemplative Reptile"
-            height="140"
-            image={`/static/images/cards/raccoon-${random}.jpg`}
+            height="200"
+            // image={`/static/images/cards/raccoon-${random}.jpg`}
+            image="/static/images/logo/logo2.png"
             title="Contemplative Reptile"
           />
           <CardContent>

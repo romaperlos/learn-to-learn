@@ -6,18 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 import Popover from '@material-ui/core/Popover';
 import CreateDirectory from './CreateDirectory';
-import { useSelector } from 'react-redux';
-
-
-// const isLastDir = useSelector((state) => state)
 
 const useStyles = makeStyles({
   root: {
-    // maxWidth: 345,
-    minHeight: 318,
+    width: 200,
+    minHeight: 400,
   },
   description: {
-    height: 318,
+    height: 350,
   },
   action: {
     justifyContent: 'space-evenly',
@@ -31,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CreateDirectoryModal(props) {
+function CreateDirectoryModal() {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {

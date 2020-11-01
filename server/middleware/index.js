@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import path from 'path';
 import './db-connect.js';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
@@ -12,7 +13,7 @@ export default function (app) {
   // Body POST запросов.
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-  app.use(express.static('../public/'));
+  app.use(express.static('public'));
 
   // initialize express-session to allow us track the logged-in user across sessions.
   app.use(

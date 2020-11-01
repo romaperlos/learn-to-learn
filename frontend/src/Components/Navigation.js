@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -11,7 +10,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Fetch from './Fetch';
 import { isUserAuth } from '../redux/actions';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,8 +42,6 @@ export default function Navigation() {
   };
 
   return (
-  // <div className={classes.root}>
-
     <>
       <Container fixed>
         <Toolbar>
@@ -86,26 +82,10 @@ export default function Navigation() {
             <Link to="/testform/user">
               <MenuItem onClick={handleClose}>Users</MenuItem>
             </Link>
-            {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
           </Menu>
           <Button onClick={logout} color="secondary" variant="contained">Logout</Button>
         </Toolbar>
       </Container>
-
-      {/* <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Learn to Learn App.
-          </Typography>
-         <SimpleTabs />
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-    */}
     </>
   );
 }

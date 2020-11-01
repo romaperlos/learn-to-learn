@@ -5,6 +5,7 @@ import {
   GET_CONTENT,
   LOADING_LOGIN,
   HANDLER_LOGIN,
+  HANDLER_LOGOUT,
   ERROR_LOGIN,
   START_BREAD_CRUMBS,
   ADD_BREAD_CRUMBS,
@@ -51,6 +52,12 @@ export const reducer = (state, action) => {
         errorLogin: false,
         loginUser: true,
         companyInfo: action.payload,
+      };
+
+    case HANDLER_LOGOUT:
+      return {
+        ...state,
+        loginUser: false,
       };
 
     case START_BREAD_CRUMBS:
