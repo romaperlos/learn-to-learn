@@ -2,19 +2,20 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity,
+  StyleSheet, Text, View,
 } from 'react-native';
 
-export const TextArea = ({ subtitle }) => {
+export const TextArea = ({ textArea }) => {
   return (
       <View style={styles.container}>
-        <Text style={styles.text}>{subtitle}</Text>
+        <Text style={styles.text}>{textArea}</Text>
       </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 8,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',

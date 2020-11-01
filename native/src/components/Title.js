@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity,
+  StyleSheet, Text, View,
 } from 'react-native';
 
 export const Title = ({ title }) => {
@@ -19,12 +19,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D8D8D8',
   },
   text: {
-    fontFamily: 'open-regular',
+    fontFamily: 'poppins-regular',
     fontSize: 30,
     textAlign: 'center',
-    fontWeight: 'bold',
     width: '100%',
     color: '#000',
   },

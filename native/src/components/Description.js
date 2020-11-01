@@ -5,29 +5,26 @@ import {
   StyleSheet, Text, View,
 } from 'react-native';
 
-export const Subtitle = ({ subtitle }) => {
+export const Description = ({ description }) => {
   return (
       <View style={styles.container}>
-        <Text style={styles.text}>{subtitle}</Text>
+        <Text style={styles.text}>{description}</Text>
       </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-
+    marginBottom: 5,
   },
   text: {
-    fontFamily: 'open-regular',
-    fontSize: 18,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    width: '100%',
+    fontFamily: 'poppins-regular',
+    fontSize: 14,
+    width: '95%',
     color: '#000',
   },
 });
