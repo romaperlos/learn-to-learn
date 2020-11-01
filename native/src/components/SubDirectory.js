@@ -45,17 +45,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-  title: {
-    fontFamily: 'poppins-regular',
-    fontSize: 23,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    backgroundColor: THEME.MAIN_COLOR,
-    paddingVertical: 10,
-    marginVertical: 1,
-    width: '100%',
-    borderWidth: 1,
-    color: THEME.MAIN_FONT_COLOR,
-    borderRadius: 5,
-  },
 });

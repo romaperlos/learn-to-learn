@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  StyleSheet, Text, View, TouchableOpacity,
+  StyleSheet, Text, View,
 } from 'react-native';
 
 export const Description = ({ description }) => {
@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'poppins-regular',
     fontSize: 14,
-    // textAlign: 'center',
-    // fontWeight: 'bold',
     width: '95%',
     color: '#000',
   },

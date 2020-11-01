@@ -35,18 +35,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-
-  title: {
-    fontFamily: 'poppins-regular',
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    // backgroundColor: company.mainColor,
-    paddingVertical: 20,
-    marginVertical: 1,
-    width: '90%',
-    borderWidth: 1,
-    color: THEME.MAIN_FONT_COLOR,
-    borderRadius: 10,
-  },
 });

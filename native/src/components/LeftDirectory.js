@@ -41,19 +41,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-
-  title: {
-    fontFamily: 'poppins-regular',
-    fontSize: 15,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    backgroundColor: THEME.MAIN_FONT_COLOR,
-    paddingVertical: 4,
-    marginVertical: 1,
-    width: '100%',
-    borderWidth: 2,
-    borderColor: THEME.MAIN_COLOR,
-    color: THEME.MAIN_COLOR,
-    borderRadius: 5,
-  },
 });

@@ -23,7 +23,6 @@ export function DirectoryScreen({ navigation }) {
   }
   const [subDirectories, setSubDirectories] = useState(initialSubDirectories);
 
-
   const showThemes = (leftDirectory) => {
     const newSubDirectories = directories.filter((el) => el.parent === leftDirectory._id);
     const breadCrumbsIndex = breadCrumbs.findIndex((el) => el._id === leftDirectory._id);
@@ -68,7 +67,6 @@ export function DirectoryScreen({ navigation }) {
 }
 
 DirectoryScreen.navigationOptions = ({ navigation }) => {
-  const directory = navigation.getParam('directory');
   const companyInfo = navigation.getParam('companyInfo');
   const logout = navigation.getParam('logout');
   return {
@@ -84,10 +82,10 @@ DirectoryScreen.navigationOptions = ({ navigation }) => {
           onPress={() => navigation.navigate('Main')}
         />
         <Item
-            title="logout"
-            iconName="log-out"
-            onPress={() => logout()}
-          />
+          title="logout"
+          iconName="log-out"
+          onPress={() => logout()}
+        />
       </HeaderButtons>
     ),
   };
@@ -107,11 +105,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     paddingRight: 10,
     borderRightWidth: 1,
-    borderColor:'#D8D8D8',
+    borderColor: '#D8D8D8',
   },
   rightMenu: {
     flex: 3,
     marginHorizontal: 5,
-    // alignItems: 'center',
   },
 });

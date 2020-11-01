@@ -4,10 +4,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  StyleSheet, FlatList, Text, View,
+  FlatList, Text, View,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { getDirectories, startBreadCrumbs, getContent, handlerLogout } from '../redux/actions';
+import {
+  getDirectories, startBreadCrumbs, getContent, handlerLogout,
+} from '../redux/actions';
 import { Directory } from '../components/Directory';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
@@ -32,12 +34,11 @@ export function LearningScreen({ navigation }) {
     dispatch(handlerLogout());
     navigation.navigate('Main');
   }
-  
+
   const forwardDirectoryHandler = (directory) => {
     dispatch(startBreadCrumbs(directory));
     navigation.navigate('Directory', { directory, companyInfo, logout });
   };
-
 
   return (
     <View>
@@ -76,20 +77,5 @@ LearningScreen.navigationOptions = ({ navigation }) => {
         />
       </HeaderButtons>
     ),
-    // headerLeft: (
-    //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-    //     <Item
-    //       title="drawer"
-    //       iconName="menu"
-    //       onPress={() => navigation.toggleDrawer()}
-    //     />
-    //   </HeaderButtons>
-    // ),
   };
 };
-
-// const styles = StyleSheet.create({
-//   center: {
-//     alignItems: 'center',
-//   },
-// });

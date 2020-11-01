@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 
 export const PicURL = ({ picUrl }) => {
-  console.log(picUrl);
   return (
       <View style={styles.container}>
         <Image source={{ uri: picUrl }} style={styles.image} />

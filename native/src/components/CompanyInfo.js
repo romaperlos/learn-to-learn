@@ -3,12 +3,8 @@ import React from 'react';
 import {
   StyleSheet, Text, View, Image,
 } from 'react-native';
-import { THEME } from '../theme';
 
-export const CompanyInfo = ({ company }) => {
-  console.log(company);
-
-  return (
+export const CompanyInfo = ({ company }) => (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{ uri: company.logoUrl }} />
@@ -29,8 +25,7 @@ export const CompanyInfo = ({ company }) => {
         { company.description }
       </Text>
     </View>
-  );
-};
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -51,15 +46,4 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
   },
-
-  // title: {
-  //   color: THEME.MAIN_COLOR,
-  //   fontFamily: 'poppins-regular',
-  //   fontSize: 40,
-  // },
-
-  // description: {
-  //   color: THEME.MAIN_COLOR,
-  //   fontFamily: 'open-regular',
-  // },
 });

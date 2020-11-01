@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CompanyInfo } from '../components/CompanyInfo';
-import { DATA } from '../data';
 import { THEME } from '../theme';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { handlerLogin, handlerLogout } from '../redux/actions';
@@ -99,27 +98,13 @@ export function MainScreen({ navigation }) {
   );
 }
 
-// свойства для конкретного экрана
-
+// настраиваем свойства для конкретного экрана, которые отличаются от дефолтных в AppNavigation
 MainScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Learn-to-Learn',
   headerStyle: {
     backgroundColor: 'grey',
   },
-  // headerRight: (
-  //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-  //     {/* <Item
-  //       title="profile"
-  //       iconName="user"
-  //       onPress={() => console.log('was pressed user button')}
-  //     /> */}
-  //     {/* <Item
-  //       title="logout"
-  //       iconName="log-out"
-  //       onPress={() => console.log('was pressed logout button')}
-  //     />
-  //   </HeaderButtons> */}
-  // ),
+  //иконка о компании
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
@@ -134,19 +119,6 @@ MainScreen.navigationOptions = ({ navigation }) => ({
 const styles = StyleSheet.create({
   wrapper: {
     padding: 10,
-  },
-  title: {
-    fontFamily: 'poppins-regular',
-    fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    // backgroundColor: companyInfo.mainColor,
-    paddingVertical: 20,
-    marginVertical: 1,
-    width: '100%',
-    borderWidth: 1,
-    color: THEME.MAIN_FONT_COLOR,
-    borderRadius: 10,
   },
   center: {
     paddingTop: 130,
