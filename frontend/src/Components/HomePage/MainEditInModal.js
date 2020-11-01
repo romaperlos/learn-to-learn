@@ -37,7 +37,7 @@ function MainEditInModal(props) {
     description,
   });
 
-  const inputsChange = ({ target: { value, name } }) => {
+ const inputsChange = ({ target: { value, name } }) => {
     setInput({
       ...input,
       [name]: value,

@@ -6,7 +6,7 @@ import {
   Container, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
 import { useTheme } from '@material-ui/core/styles';
-import { setContentsCategoryAction, setIsLastDirAction, getContentsCategoryAction } from '../../redux/actions';
+import { getContentsCategoryAction } from '../../redux/actions';
 
 const ContentMain = (props) => {
   const { directory } = props;
@@ -43,7 +43,6 @@ const ContentMain = (props) => {
       item: inputValue,
       directory,
     };
-    console.log(toBase);
     (async () => {
       const res = await fetch('/content', {
         method: 'POST',
@@ -52,7 +51,6 @@ const ContentMain = (props) => {
         },
         body: JSON.stringify(toBase),
       });
-      console.log(res);
       dispatch(getContentsCategoryAction(currentId));
       history.push('/');
     })();
